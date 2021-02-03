@@ -12,7 +12,6 @@ if (!empty($_GET['date_end']))  {
 if (!empty($_GET['typeQuery']))  {
   $typeQuery = $_GET['typeQuery'];
 }
-
 if (!empty($_GET['value'])) {
   $value = $_GET['value'];
 }

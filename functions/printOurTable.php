@@ -1,7 +1,7 @@
 <?php
 
 function printOurTable($arr_name) {
-      echo '<table class="drawtable">';
+      echo "<div class =\"our_table\"> <table class=\"drawtable\">";
       $i=0;
       echo"<tr>
       <td>п/п</td>
@@ -41,7 +41,7 @@ if (isset($arr_name)) {
             <td>".$arr_name[$i]['StatusKp']."</td>
             <td>".$arr_name[$i]['KpImportance']."</td>
             <td>".$arr_name[$i]['Responsible']."</td>
-            <td >".$arr_name[$i]['Comment']."</td>
+            <td class =\"limit_width\">".$arr_name[$i]['Comment']."</td>
             <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=11"."#win1\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>";
       // проверяем дату следующего звонка, если она меньше сегодняшней, то подсвечиваем ее краным      
             $tempDate = ($arr_name[$i]['DateNextCall']);
@@ -65,7 +65,7 @@ if (isset($arr_name)) {
 
       // echo "<br>";
     }
-    echo "</table>";
+    echo "</table></div>";
 
   return 1;
 }
