@@ -1,0 +1,17 @@
+
+.drawtable {
+  max-width: 100%;
+  font-size: 12px;
+  word-wrap : break-word
+}
+
+.drawtable td{
+ background-color: rgb(190, 248, 194);
+ border:  0.5px solid ;
+ word-wrap : break-word
+  
+}
+.alarmcolor {
+  color: red;
+  font-weight: 900;
+}
