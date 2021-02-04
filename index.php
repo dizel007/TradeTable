@@ -1,5 +1,5 @@
 <?php
-require_once ("bodyparts/connect_DB.php"); // подключение к БД
+require_once ("connect_DB.php"); // подключение к БД
  
 require_once ("bodyparts/Include_functions.php"); // подлючаем файл, которые цепляет все функции
 

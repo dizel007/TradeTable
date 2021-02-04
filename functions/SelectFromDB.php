@@ -13,7 +13,6 @@ $sql = "SELECT * FROM reestrkp ORDER BY pp";
 function selectArrByInn ($mysqli,$inn) {
   $sql = "SELECT * FROM reestrkp where InnСustomer = '$inn' ORDER BY pp";
   $fQuery = $mysqli->query($sql);
-   //$arr_name = [];
   $arr_name = makeArrayFromObj($fQuery) ;
   return $arr_name;
 }
@@ -24,7 +23,6 @@ function selectArrByKpNumber ($mysqli,$kpNumber) {
   $New_kpNumber = $kpNumber."E"; // можно вводить номер КП без буквы Е
   $sql = "SELECT * FROM reestrkp where (kpNumber = '$kpNumber' OR kpNumber = '$New_kpNumber') ORDER BY pp";
   $fQuery = $mysqli->query($sql);
-   //$arr_name = [];
   $arr_name = makeArrayFromObj($fQuery) ;
   return $arr_name;
 }
@@ -39,12 +37,26 @@ function selectArrByDate ($mysqli, $date_start, $date_end) {
    } else {
     $sql = "SELECT * FROM reestrkp WHERE (KpData >= '$date_start' AND KpData <= '$date_end')  ORDER BY pp";
    }
-   
-
-    $fQuery = $mysqli->query($sql);
-   //$arr_name = [];
+  $fQuery = $mysqli->query($sql);
   $arr_name = makeArrayFromObj($fQuery) ;
   return $arr_name;
 }
+
+  // выбор масива по ID КП
+function selectArrByIdKp ($mysqli,$idKp) {
+  $sql = "SELECT * FROM reestrkp where idKp = '$idKp' ORDER BY pp";
+  $fQuery = $mysqli->query($sql);
+  $arr_name = makeArrayFromObj($fQuery) ;
+  return $arr_name;
+}
+
+
+  // выбор масива по ID КП
+  function selectArrByResponsible ($mysqli,$Responsible) {
+    $sql = "SELECT * FROM reestrkp where Responsible = '$Responsible' ORDER BY pp";
+    $fQuery = $mysqli->query($sql);
+    $arr_name = makeArrayFromObj($fQuery) ;
+    return $arr_name;
+  }
 
   ?>

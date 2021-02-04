@@ -14,8 +14,8 @@ echo "
 
         <select size=\"1\" name=\"typeQuery\">
           <option disabled>Выберите параметр поиска</option>
-          <option  value=\"2\">Номер КП</option>
-          <option selected value=\"3\">По Дате</option>
+          <option selected value=\"2\">Номер КП</option>
+          <option value=\"3\">По Дате</option>
           <option value=\"4\">ИНН</option>
           <option value=\"7\">ID КП</option>
           <option value=\"10\">Ответственный</option>

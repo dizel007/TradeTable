@@ -16,15 +16,18 @@ if (!empty($_GET['value'])) {
   $value = $_GET['value'];
 }
 
+
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ ИНН
   if ($typeQuery == 4 and $value <> "") {
   $inn = $_GET['value'];
+  echo "Выбран ИНН :". $inn;
   $arr_name = selectArrByInn($mysqli,$inn);
   printOurTable($arr_name) ; 
   }
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ номеру КП
   elseif ($typeQuery == 2 and $value <> "") {
     $kpNumber = $_GET['value'];
+    echo "Выбран номер КП :". $kpNumber. "Е";
     $arr_name = selectArrByKpNumber($mysqli,$kpNumber);
     printOurTable($arr_name) ;
   } 
@@ -32,15 +35,24 @@ if (!empty($_GET['value'])) {
   elseif ($typeQuery == 3 and (isset($date_start) or (isset($date_end)))) {
     $date_start = $_GET['date_start'];
     $date_end = $_GET['date_end'];
-    echo $date_start;
-    echo "zzz#".(isset($date_start)),"#zzz<BR>";
-    echo "222".$date_end."333";
-    echo "xxx#".(isset($date_end)),"#xxx<BR>";
+    echo "Выбрана дата начала:".$date_start. " Дата окончания: ".$date_end."|";
     $arr_name = selectArrByDate($mysqli, $date_start, $date_end);
     printOurTable($arr_name) ;
   } 
-
-
+// ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ ИНН
+  elseif ($typeQuery == 7 and $value <> "") {
+    $idKp = $_GET['value'];
+    echo "Выбран ID КП :". $idKp;
+    $arr_name = selectArrByIdKp($mysqli,$idKp);
+    printOurTable($arr_name) ; 
+    }
+// ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ СОТРУБНИКУ
+elseif ($typeQuery == 10 and $value <> "") {
+  $Responsible = $_GET['value'];
+  echo "Выбран ответственный :". $Responsible;
+  $arr_name = selectArrByResponsible($mysqli,$Responsible);
+  printOurTable($arr_name) ; 
+  }
 
 // ЕСЛИ НИ ОДИН ВАРИАНТ НЕ СРАБОТАЛ, ТО ВЫВОДИМ ВСЮ ТАБЛИЦУ  
   else {
