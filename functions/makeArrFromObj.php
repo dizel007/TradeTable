@@ -14,7 +14,7 @@ function MakeArrayFromObj ($fQuery) {
                $arr_name[$i]['pp'] = $row["pp"];
                $arr_name[$i]['KpNumber'] = $row["KpNumber"];
                $arr_name[$i]['KpData'] = $row["KpData"];
-               $arr_name[$i]['InnСustomer'] = $row["InnСustomer"];
+               $arr_name[$i]['InnCustomer'] = $row["InnCustomer"];
                $arr_name[$i]['NameCustomer'] = $row["NameCustomer"];
                $arr_name[$i]['ContactCustomer'] = $row["ContactCustomer"];
                $arr_name[$i]['idKp'] = $row["idKp"];

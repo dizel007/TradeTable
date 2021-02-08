@@ -13,16 +13,19 @@ function printOurTable($arr_name) {
       <td>ID КП</td>
       <td>Статус КП</td>
       <td>Важность</td>
+          <td>Ред</td>
       <td>Ответственный</td>
+          <td>Ред</td>
       <td>Комментарий</td>
-      <td>Ред</td>
+          <td>Ред</td>
       <td>Дата след.Звонка</td>
-      <td>Ред</td>
+          <td>Ред</td>
       <td>Состояние</td>
-      <td>Ред</td>
+          <td>Ред</td>
       <td>Сумма КП</td>
       <td>НМЦК Закупки</td>
       <td>Контакт закрыт</td>
+          <td>Ред</td>
       <td>Адрес поставки</td>
       </tr>";
       $realDate = date("m.d.y");
@@ -34,15 +37,17 @@ if (isset($arr_name)) {
       echo "<td>".$arr_name[$i]['pp']."</td>
             <td><a href='excel/".$arr_name[$i]['LinkKp']."'".">".$arr_name[$i]['KpNumber'] ."</a></td>
             <td>".$arr_name[$i]['KpData']."</td>
-            <td>".$arr_name[$i]['InnСustomer']."</td>
+            <td>".$arr_name[$i]['InnCustomer']."</td>
             <td>".$arr_name[$i]['NameCustomer']."</td>
             <td>".$arr_name[$i]['ContactCustomer']."</td>
             <td>".$arr_name[$i]['idKp']."</td>
             <td>".$arr_name[$i]['StatusKp']."</td>
             <td>".$arr_name[$i]['KpImportance']."</td>
+    <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=9"."#win5\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>       
             <td>".$arr_name[$i]['Responsible']."</td>
+    <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=10"."#win4\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             <td class =\"limit_width\">".$arr_name[$i]['Comment']."</td>
-            <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=11"."#win1\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>";
+    <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=11"."#win1\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>";
       // проверяем дату следующего звонка, если она меньше сегодняшней, то подсвечиваем ее краным      
             $tempDate = ($arr_name[$i]['DateNextCall']);
             $tempDate=strtotime($tempDate);
@@ -52,13 +57,14 @@ if (isset($arr_name)) {
                 else {
                   echo "<td>".$arr_name[$i]['DateNextCall']."</td>";
                 }
-      echo "<td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=12"."#win2\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
+     echo "<td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=12"."#win2\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             <td>".$arr_name[$i]['KpCondition']."</td>
-            <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=13"."#win3\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
+     <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=13"."#win3\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             <td>".$arr_name[$i]['KpSum']."</td>
             <td>".$arr_name[$i]['TenderSum']."</td>
 
             <td>".$arr_name[$i]['FinishContract']."</td>
+            <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=16"."#win6\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             <td>".$arr_name[$i]['Adress']."</td>
           </tr>";
         }

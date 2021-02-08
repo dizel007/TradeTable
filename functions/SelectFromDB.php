@@ -11,7 +11,7 @@ $sql = "SELECT * FROM reestrkp ORDER BY pp";
 
 // Выбор массива КП по ИНН
 function selectArrByInn ($mysqli,$inn) {
-  $sql = "SELECT * FROM reestrkp where InnСustomer = '$inn' ORDER BY pp";
+  $sql = "SELECT * FROM reestrkp where InnCustomer = '$inn' ORDER BY pp";
   $fQuery = $mysqli->query($sql);
   $arr_name = makeArrayFromObj($fQuery) ;
   return $arr_name;
@@ -51,7 +51,7 @@ function selectArrByIdKp ($mysqli,$idKp) {
 }
 
 
-  // выбор масива по ID КП
+  // выбор масива по ответственному КП
   function selectArrByResponsible ($mysqli,$Responsible) {
     $sql = "SELECT * FROM reestrkp where Responsible = '$Responsible' ORDER BY pp";
     $fQuery = $mysqli->query($sql);
