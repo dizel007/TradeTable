@@ -35,7 +35,7 @@ if (isset($arr_name)) {
   // Заполняем саму таблциу
         for ($i=0; $i<count($arr_name); $i++){
       echo "<td>".$arr_name[$i]['pp']."</td>
-            <td><a href='excel/".$arr_name[$i]['LinkKp']."'".">".$arr_name[$i]['KpNumber'] ."</a></td>
+            <td><a href='".$arr_name[$i]['LinkKp']."'".">".$arr_name[$i]['KpNumber'] ."</a></td> 
             <td>".$arr_name[$i]['KpData']."</td>
             <td>".$arr_name[$i]['InnCustomer']."</td>
             <td>".$arr_name[$i]['NameCustomer']."</td>
