@@ -49,6 +49,46 @@ if ($typeQuery == 11) {
           </div>
       </div>";
   }
+
+  // ПЕРВОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ВВОДА/ИЗМЕНИЯ КОНТАКТОВ ЗАКАЗЧИКА
+  if ($typeQuery == 6) {
+    $Our_comment ="";
+      for ($i=0; $i<count($arr_name); $i++)
+          {
+            if (isset($id))
+                if  ($arr_name[$i]['id']  == $id) 
+                  $Our_comment = $arr_name[$i]['ContactCustomer'];
+          }
+        echo "
+        <div class=\"dm-overlay\" id=\"win6\">
+            <div class=\"dm-table\">
+                <div class=\"dm-cell\">
+                    <div class=\"dm-modal\">
+                        <a href=\"#close\" class=\"close\"></a>
+                        <p>Текстовое содержание : ".$Our_comment."</p>
+                        
+                    <form  action=\"changeDB/update_comment.php?id=";
+                    
+                          if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
+                          echo ("&typeQuery=6");
+                          echo "\" method=\"post\">
+                              <p>
+                                <p>Обновить контакт : </p>
+                                  <p>
+                                    <textarea name=\"text\" rows=\"10\" cols=\"45\">".$Our_comment.
+  
+                                   "</textarea>
+                                  </p>
+                                <p><input type=\"submit\" value=\"Отправить\"></p>
+                              </p>
+                       </form>
+                    </div>
+                </div>
+            </div>
+        </div>";
+    }
+
+
 // ВТОРОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ВВОДА ДАТЫ СЛЕДУЮЩЕГО ЗВОНКА
 
 if ($typeQuery == 12) {
@@ -275,4 +315,6 @@ if ($typeQuery == 16) {
       </div>
   </div>";
 }
+
+
 ?>

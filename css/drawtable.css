@@ -1,12 +1,21 @@
+.up_form {
+/* display: block; */
+/* width: 100%; */
+background-color: rgb(56, 184, 216);
+min-height: 30px;
+margin: 0;
 
+}
 .drawtable {
-  max-width: 100%;
+  max-width: 99%;
   font-size: 12px;
   word-wrap : break-word
 }
-
+table, tbody {
+  max-width: 100%;
+}
 .drawtable td{
- background-color: rgb(190, 248, 194);
+ background-color: rgb(228, 242, 247);
  border:  0.5px solid ;
  word-wrap : break-word
   
@@ -21,4 +30,10 @@
 }
 .our_table {
   width:100%;
+  
+}
+
+.BlinkColor {
+ 
+  color:darkgray
 }

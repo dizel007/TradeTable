@@ -14,6 +14,15 @@ $typeQuery=$_GET['typeQuery'];
             $newPerem = $_POST['text'];
           }
       }
+
+  // если Изменяем контакты Заказчика
+  if ($typeQuery==6) {
+    $changeColumn = 'ContactCustomer';
+        if (isset($_POST['text'])) 
+        { 
+          $newPerem = $_POST['text'];
+        }
+    }
 // если Изменяем дату следующего звонка
     if  ($typeQuery==12) {
       $changeColumn = 'DateNextCall';

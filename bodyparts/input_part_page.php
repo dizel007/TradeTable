@@ -1,7 +1,8 @@
 <?php 
 echo "
+
 <form>
-    <p>
+    <div  class = \"up_form\">
         <label for=\"date_start\">Дата начала : </label>
         <input type=\"date\" id=\"date_start\" name=\"date_start\"/>
 
@@ -23,8 +24,7 @@ echo "
 
         
         <button type=\"submit\">ОБНОВИТЬ</button>
-    </p>
+    </div>
    
-</form>";
-
+</form>"
 ?>
