@@ -1,18 +1,12 @@
 <?php
 
-// if (isset($id))  {
-//   $id = $id;}
-//     else {
-//       $id = $_GET['id'];
-//    }
-   if (!isset($id))  {
+   if (!empty($id))  {
     $id = $_GET['id'];
               }
-    //  else 
-    //  {
-    //    $id = $id;
-    //  };
-
+ 
+    if (!empty($_GET['id']))  {
+      $id = $_GET['id'];
+    }
  
 
  if (!isset($typeQuery))  {

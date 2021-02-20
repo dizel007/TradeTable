@@ -3,6 +3,13 @@ $typeQuery ="";
 $value="";
 //$date_start="";
 //$date_end ="";
+
+ 
+
+
+
+
+
 if (!empty($_GET['date_start']))  {
   $date_start = $_GET['date_start'];
 }
@@ -15,10 +22,15 @@ if (!empty($_GET['typeQuery']))  {
 if (!empty($_GET['value'])) {
   $value = $_GET['value'];
 }
-
-
+/// если есть какая либо выбранная закупка по скрытому id
+if (!empty($_GET['id'])) {
+  $id = $_GET['id'];
+  echo "Выбран id_закупки :". $id;
+  $arr_name = selectArrByHiddenIdKp($mysqli,$id);
+  printOurTable($arr_name);
+}
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ ИНН
-  if ($typeQuery == 4 and $value <> "") {
+  elseif ($typeQuery == 4 and $value <> "") {
   $inn = $_GET['value'];
   echo "Выбран ИНН :". $inn;
   $arr_name = selectArrByInn($mysqli,$inn);
@@ -27,7 +39,7 @@ if (!empty($_GET['value'])) {
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ номеру КП
   elseif ($typeQuery == 2 and $value <> "") {
     $kpNumber = $_GET['value'];
-    echo "Выбран номер КП :". $kpNumber. "Е";
+    echo "Выбран номер КП :". $kpNumber;
     $arr_name = selectArrByKpNumber($mysqli,$kpNumber);
     printOurTable($arr_name) ;
   } 

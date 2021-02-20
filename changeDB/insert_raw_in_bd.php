@@ -3,7 +3,7 @@
 require_once ("../bodyparts/header.php"); // header HTML
 require_once ("../connect_DB.php");
 // mb_internal_encoding("UTF-8");  // не работает
-echo "HELOO. <br>";
+echo "HELllllOO. <br>";
 $handle = fopen ("../myFile1.txt", "r");
 $array = null;
 if ($handle) {
@@ -12,11 +12,13 @@ if ($handle) {
       $buffer = substr($buffer, 0, -3);
 $sql = "INSERT INTO `reestrkp` (`pp`, `KpNumber`, `KpData`, `InnCustomer`, `NameCustomer`, `ContactCustomer`, `idKp`, `StatusKp`, `KpImportance`, `Responsible`, `Comment`, `DateNextCall`, `KpCondition`, `KpSum`, `TenderSum`, `FinishContract`, `LinkKp`, `adress`, `id`) VALUES $buffer";
 
-echo "***".$sql."**<br>";
+echo "XXX=".$buffer."==XXX<br><br>";
+
+echo "***".$sql."**<br><br>";
 
        $query = $mysqli->query($sql);
        if (!$query){
-         echo "WE ARE DIR";
+         echo "WE ARE DIE";
         die();
         printf("Соединение не удалось: ");
         }
