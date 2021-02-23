@@ -12,9 +12,13 @@
     <link rel = "stylesheet" href = "css/media767.css">
     <link rel = "stylesheet" href = "css/item.css"> -->
     <link rel = "stylesheet" href = "css/drawtable.css">
-    <link rel = "stylesheet" href = "css/modal.css">
-    <!-- <script src="js/include_html.js"></script> -->
-    
+    <link rel = "stylesheet" href = "css/modal.css"> 
+    <link rel = "stylesheet" href = "css/mobile.css">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+
+
+
 
 </head>
 

@@ -1,23 +1,28 @@
 .up_form {
 /* display: block; */
-/* width: 100%; */
-background-color: rgb(56, 184, 216);
+display: flex;
+width: 100%;
+background-color: rgb(176, 240, 210);
 min-height: 30px;
 margin: 0;
 
 }
+.mobile_web {
+  margin: 5px;
+}
+
+
 .drawtable {
-  max-width: 99%;
+  /* max-width: 99%; */
   font-size: 12px;
-  word-wrap : break-word
-}
-table, tbody {
-  max-width: 100%;
-}
-.drawtable td{
+  word-wrap : break-word;
+  }
+
+ .drawtable td{
  background-color: rgb(228, 242, 247);
  border:  0.5px solid ;
- word-wrap : break-word
+ word-wrap : break-word;
+ text-align: center;
   
 }
 .alarmcolor {
@@ -29,10 +34,22 @@ table, tbody {
   max-width: 250px;
 }
 .our_table {
-  width:100%;
+  overflow-x:visible;
+  
   
 }
 
+
+.RedColor {
+  color:indigo;
+  font-weight: 700;
+  
+}
+.GreenColor {
+  color:firebrick;
+  font-weight: 900;
+  
+}
 .BlinkColor {
  
   color:darkgray

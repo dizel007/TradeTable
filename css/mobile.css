@@ -1,0 +1,13 @@
+
+@media (max-width: 767px) {
+  .hidden_class_column {
+    display: none;
+   }
+
+  .up_form {
+    display: flex;
+    flex-wrap: wrap;
+    
+  } 
+   
+}
