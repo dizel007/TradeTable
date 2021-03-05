@@ -61,6 +61,15 @@ die();
 printf("Соединение не удалось: ");
 }
 ;
+      $file = '../log.txt';
+      $now_date = date('Y-m-d H:i:s');
+
+      $temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
+      // Пишем содержимое в файл,
+      // используя флаг FILE_APPEND для дописывания содержимого в конец файла
+      // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
+      file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX);
+
 //echo "UPDATE COMMENT <br>";
 header ("Location: ..?id=".$id."&typeQuery=".$typeQuery);  // перенаправление на нужную страницу
 exit();    // прерываем работу скрипта, чтобы забыл о прошлом

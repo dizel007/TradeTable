@@ -1,14 +1,9 @@
 <?php
+
+
+
 $typeQuery ="";
 $value="";
-//$date_start="";
-//$date_end ="";
-
- 
-
-
-
-
 
 if (!empty($_GET['date_start']))  {
   $date_start = $_GET['date_start'];
@@ -22,6 +17,11 @@ if (!empty($_GET['typeQuery']))  {
 if (!empty($_GET['value'])) {
   $value = $_GET['value'];
 }
+if (!empty($_GET['FinishContract'])) {
+  $FinishContract=$_GET['FinishContract'];
+}
+
+
 /// если есть какая либо выбранная закупка по скрытому id
 if (!empty($_GET['id'])) {
   $id = $_GET['id'];

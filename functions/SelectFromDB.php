@@ -3,7 +3,7 @@ $mysqli->query("SET NAMES 'utf8'");
 // Из объекиа данных считанных из БД мы формируем для работы массив с этими данными (выводим весь объем данных)
 function selectAllArr($mysqli) {
 //$sql = "SELECT * FROM reestrkp ORDER BY pp";
-$sql = "SELECT * FROM reestrkp ORDER BY KpData DESC , KpNumber DESC";
+$sql = "SELECT * FROM reestrkp ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
   $fQuery = $mysqli->query($sql);
    //$arr_name = [];
   $arr_name = makeArrayFromObj($fQuery) ;

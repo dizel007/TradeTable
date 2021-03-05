@@ -1,7 +1,9 @@
 <?php
 
 function printOurTable($arr_name) {
-      echo "<div class =\"our_table\"> <table class=\"drawtable\">";
+      echo "<div class =\"our_table\"> 
+      
+      <table class=\"drawtable employee_table\">";
       $i=0;
       echo"<tr>
       <td class=\"hidden_class_column\">п/п</td>

@@ -28,11 +28,16 @@ echo "
             <option value=\"7\">ID КП</option>
             <option value=\"10\">Ответственный</option>
             </select>
-
-            
-            <button type=\"submit\">ОБНОВИТЬ</button>
         </div>
+        <div class=\"mobile_web\">
+            <label for=\"FinishContract\">Закр. Контр : </label>
+            <input type=\"checkbox\" name=\"FinishContract\" value=\"1\">
+        </div>
+
+        <button type=\"submit\">ОБНОВИТЬ</button>
     </div>
    
-</form>"
+</form>
+"
+
 ?>
