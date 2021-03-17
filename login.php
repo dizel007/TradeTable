@@ -1,4 +1,5 @@
 <?php
+
 // Страница авторизации
 
 // Функция для генерации случайной строки
@@ -49,31 +50,34 @@ if(isset($_POST['submit']))
 
         // Записываем в БД новый хеш авторизации и IP
        // mysqli_query($link, "UPDATE users SET user_hash='".$hash."' ".$insip." WHERE user_id='".$data['user_id']."'");
-       //$query = $mysqli->query("UPDATE users SET user_hash='".$hash."' ".$insip." WHERE user_id='".$data['user_id']."'");
+        //$query = $mysqli->query("UPDATE users SET user_hash='".$hash."' ".$insip." WHERE user_id='".$data['user_id']."'");
        
        $sql = ("UPDATE users SET user_hash='".$hash."'  ".$insip." WHERE user_id='".$data['user_id']."'");
              
-    //    $fd = fopen("hello.txt", 'w') or die("не удалось создать файл");
-    //             $str = "+++  Привет мир  +++";
-    //             fwrite($fd, $sql);
-    //             fwrite($fd, $str);
-    //             fwrite($fd, $insip);
-    //    fclose($fd);
-
-
-       $query = $mysqli->query($sql);
+        $query = $mysqli->query($sql);
         
        // Ставим куки
-        setcookie("id", $data['user_id'], time()+60*60*24*30, "/");
-        setcookie("hash", $hash, time()+60*60*24*30, "/", null, null, true); // httponly !!!
+        setcookie("id", $data['user_id'], time()+60*60*26, "/");
+        setcookie("hash", $hash, time()+60*60*26, "/", null, null, true); // httponly !!!
 
 //echo $data['user_id']. "    ssdf    ". $hash;
             
 /// запись в логи, что пользователь зашел на сайт
             $file = 'log.txt';
             $now_date = date('Y-m-d H:i:s');
+            /// Вычитываем пользователя
+            require_once "connect_DB.php";
+            $i=0;
+            $sql = ("SELECT * FROM users WHERE user_hash = '$hash'");
+            $user = $mysqli->query($sql);
+            while ($row = $user -> fetch_assoc()) 
+            {
+                $user_login = $row["user_login"];
+                $i++;
 
-            $temp_var = $now_date." ". $userdata['user_login']." вошел на сайт ;\n";
+            }
+
+            $temp_var = $now_date."  ". $user_login." вошел на сайт ;\n";
             // Пишем содержимое в файл,
             // используя флаг FILE_APPEND для дописывания содержимого в конец файла
             // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
@@ -90,6 +94,6 @@ if(isset($_POST['submit']))
 <form method="POST">
 Логин <input name="login" type="text" required><br>
 Пароль <input name="password" type="password" required><br>
-Не прикреплять к IP(не безопасно) <input type="checkbox" name="not_attach_ip"><br>
+<!-- Не прикреплять к IP(не безопасно) <input type="checkbox" name="not_attach_ip"><br> -->
 <input name="submit" type="submit" value="Войти">
 </form>

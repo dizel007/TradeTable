@@ -91,6 +91,7 @@ if (isset($arr_name)) {
             <td>".$arr_name[$i]['FinishContract']."</td>
             <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=16"."#win6\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             <td class=\"hidden_class_column\">".$arr_name[$i]['Adress']."</td>
+            <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=100"."#win7\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=formatZakup>'."</a></td>
           </tr>";
         }
 

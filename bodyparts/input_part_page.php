@@ -1,8 +1,8 @@
 <?php 
 echo "
-
+<div class =\"up_form\" >
 <form>
-    <div  class =\"up_form\">
+   <div class =\"up_form\">
         
         <div class=\"mobile_web\">
             <label for=\"date_start\">Дата начала : </label>
@@ -35,9 +35,15 @@ echo "
         </div>
 
         <button type=\"submit\">ОБНОВИТЬ</button>
-    </div>
    
-</form>
-"
+        </div>
+</form>";
+
+echo '<button onclick="window.location=\'logout.php\'" class="get_rigth">Выйти</button>';
+
+echo "</div>";
+
+
+
 
 ?>

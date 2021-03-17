@@ -3,7 +3,9 @@ require_once "../connect_DB.php";
 
 // Обновляем данные в талиблице. $typeQuery - выбоо столбца, который будем редактировать. $id -  ИД строки которую будем редактировать
 $id = $_GET['id'];
+$id=htmlspecialchars($id);
 $typeQuery=$_GET['typeQuery'];
+$typeQuery=htmlspecialchars($typeQuery);
 // echo "typeQuery =".$typeQuery."<br>";
 // Выбираем какой столбец редактируем 
 // если Изменяем комментарий
@@ -48,6 +50,7 @@ $typeQuery=$_GET['typeQuery'];
       $newPerem = $_POST['ChangeCondition'];
     }
 
+$newPerem=htmlspecialchars($newPerem);
 
 
 // echo "ID = ".$id."<br>";
@@ -61,10 +64,21 @@ die();
 printf("Соединение не удалось: ");
 }
 ;
+$sql = "SELECT * FROM users WHERE user_hash = '$_COOKIE[hash]'";
+//$sql = "SELECT * FROM reestrkp where InnCustomer = '$inn';
+$user = $mysqli->query($sql);
+
+while ($row = $user -> fetch_assoc()) 
+{
+       $user_login = $row["user_login"];
+   }
+
+   //printf($user_login);
+
       $file = '../log.txt';
       $now_date = date('Y-m-d H:i:s');
-
-      $temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
+      //$temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
+      $temp_var = $now_date." Автор: ".$user_login." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
       // Пишем содержимое в файл,
       // используя флаг FILE_APPEND для дописывания содержимого в конец файла
       // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время

@@ -316,5 +316,12 @@ if ($typeQuery == 16) {
   </div>";
 }
 
+// Изменяем Все поля КП
+if ($typeQuery == 100) {
+  $ChangeCondition ="";
+
+ require_once "modalChangeAll.php";
+}
+
 
 ?>

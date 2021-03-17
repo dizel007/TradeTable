@@ -27,8 +27,8 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
   //or (($userdata['user_ip'] !== $_SERVER['REMOTE_ADDR'])  and ($userdata['user_ip'] !== "0"))
       )
     {
-        setcookie("id", "", time() - 3600*24*30*12, "/");
-        setcookie("hash", "", time() - 3600*24*30*12, "/", null, null, true); // httponly !!!
+        setcookie("id", "", time() - 3600*26, "/");
+        setcookie("hash", "", time() - 3600*26, "/", null, null, true); // httponly !!!
         //print "Хм, что-то не получилось";
         header("Location: login.php"); exit();
     }
@@ -38,7 +38,7 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
   
         
         
-        print "Привет, ".$userdata['user_login'].". Всё работает!";
+        print "Пользователь: ".$userdata['user_login'];
         
                         require_once ("bodyparts/Include_functions.php"); // подлючаем файл, которые цепляет все функции
 						require_once ("bodyparts/header.php"); // header HTML
