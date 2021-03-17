@@ -1,10 +1,13 @@
 <?php
- for ($i=0; $i<count($arr_name); $i++){
+
+if ($typeQuery == 100) {
+
+  if (isset($_GET['id'])) {
+
+//  for ($i=0; $i<count($arr_name); $i++)
+//   {
       
-  if (isset($id))
-        if  ($arr_name[$i]['id']  == $id) 
-          $ChangeCondition = $arr_name[$i]['KpImportance'];
-  }
+
 
   echo "
   <div class=\"dm-overlay\" id=\"win7\">
@@ -181,8 +184,10 @@
                         <td>
                         <p>
                         <select size=\"1\" name=\"FinishContract\">
-                          <option selected value=\"1\">Контракт закрыт</option>
-                          <option value=\"0\">Контракт НЕ закрыт</option>
+                        <option disabled selected value=\"0\">Состояние контракта</option>
+                        <option value=\"0\">Контракт НЕ закрыт</option>
+                          <option value=\"1\">Контракт закрыт</option>
+                          
                           
                           
                         </select>
@@ -213,4 +218,7 @@
       </div>
   </div>";
 
+                }
+              
+              }
 ?>

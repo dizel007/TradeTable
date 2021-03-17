@@ -3,6 +3,7 @@ require_once "../connect_DB.php";
 
 // Обновляем данные в талиблице. $typeQuery - выбоо столбца, который будем редактировать. $id -  ИД строки которую будем редактировать
 $id = $_POST['id'];
+$id=htmlspecialchars($id);
                  //  echo $arr_name[$i]['pp'];
                   //  echo $arr_name[$i]['KpNumber'];
                 //    echo $arr_name[$i]['KpData'];
@@ -21,28 +22,12 @@ $DateNextCall = $_POST['DateNextCall'] ;
 $KpCondition = $_POST['KpCondition'] ;
                  //  echo $arr_name[$i]['KpSum'] ;
                 //   echo $arr_name[$i]['TenderSum'] ;
-$FinishContract = ['FinishContract'] ;
+$FinishContract =$_POST['FinishContract'] ;
                   // echo $arr_name[$i]['LinkKp'] ;
 $Adress = $_POST['Adress'];
 $Adress=htmlspecialchars($Adress);
                   // echo $arr_name[$i]['id'] ;
-
-
-
-
-
-
-
-
 $id=htmlspecialchars($id);
-$typeQuery=$_GET['typeQuery'];
-$typeQuery=htmlspecialchars($typeQuery);
-// echo "typeQuery =".$typeQuery."<br>";
-// Выбираем какой столбец редактируем 
-// если Изменяем комментарий
-    
-$newPerem=htmlspecialchars($newPerem);
-
 
 // echo "ID = ".$id."<br>";
 // echo "Our TExt =".$newPerem."<br>";
