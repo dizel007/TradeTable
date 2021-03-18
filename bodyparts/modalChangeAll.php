@@ -36,7 +36,9 @@ if ($typeQuery == 100) {
                  //   echo $arr_name[$i]['idKp'];
                   //  echo  $arr_name[$i]['StatusKp'];
                   //  echo $arr_name[$i]['KpImportance'] ;
+        //  $KpImportance = extract ($arr_name[$i]['KpImportance'],EXTR_OVERWRITE);
                   //  echo $arr_name[$i]['Responsible'];
+       //  $Responsible = $arr_name[$i]['Responsible'];
                   // echo $arr_name[$i]['Comment'] ;
                  //  echo $arr_name[$i]['DateNextCall'] ;
                   // echo $arr_name[$i]['KpCondition'] ;
@@ -46,6 +48,30 @@ if ($typeQuery == 100) {
                   // echo $arr_name[$i]['LinkKp'] ;
                  //  echo $arr_name[$i]['Adress'] ;
                   // echo $arr_name[$i]['id'] ;
+
+foreach ($arr_name as $key => $value) {
+   foreach ($value as $key1 => $value1) {
+       if ($key1 == 'Responsible') {
+           $Responsible   = $value1;
+        }
+        if ($key1 == 'KpImportance') {
+          $KpImportance   = $value1;
+       }
+       if ($key1 == 'DateNextCall') {
+        $DateNextCall   = $value1;
+     }
+     if ($key1 == 'KpCondition') {
+      $KpCondition   = $value1;
+   }
+   if ($key1 == 'FinishContract') {
+    $FinishContract   = $value1;
+ }
+     }
+  }
+
+
+
+
                     echo "
                         <tr> 
                             <td width=\"200\" valign=\"top\">ID КП в БД</td>
@@ -106,10 +132,11 @@ if ($typeQuery == 100) {
                             <td>
                                   <p>
                                   <select size=\"1\" name=\"KpImportance\">
-                                    <option disabled>Значимость КП</option>
-                                    <option value=\"Нейтрально\">Нейтрально</option>
-                                    <option selected value=\"Важно\">Важно</option>
-                                    <option value=\"Очень важно\">Очень важно</option>
+                                
+                                        <option selected value=\"".$KpImportance."\">".$KpImportance."</option>  
+                                        <option value=\"Нейтрально\">Нейтрально</option>
+                                        <option value=\"Важно\">Важно</option>
+                                        <option value=\"Очень важно\">Очень важно</option>
                                     
                                   </select>
                                   </p>
@@ -119,15 +146,15 @@ if ($typeQuery == 100) {
                         <tr> 
                         <td width=\"200\" valign=\"top\">Ответственный</td>
                         <td valign=\"top\">".$arr_name[$i]['Responsible']."</td>
-                            <td>
-                                  <p>
+                          <td>
+                              <p>
                                   <select size=\"1\" name=\"Responsible\">
-                                      <option disabled>Выберите ответственного</option>
+                                      <option selected value = \"".$Responsible."\">".$Responsible."</option>
                                       <option value=\"Мандрыкин\">Мандрыкин</option>
                                       <option value=\"Гуц\">Гуц</option>
                                       <option value=\"Горячев\">Горячев</option>
                                       <option value=\"Зелизко\">Зелизко</option>
-                                </select>
+                                 </select>
                                 </p>
                             </td>
                         </tr>
@@ -148,7 +175,7 @@ if ($typeQuery == 100) {
                             <td valign=\"top\">".$arr_name[$i]['DateNextCall']."</td>
                              <td    
                                   <p>
-                                    <input type=\"date\" id=\"nextdate\" name=\"DateNextCall\"/>
+                                    <input type=\"date\" id=\"nextdate\" name=\"DateNextCall\" value =\"".$DateNextCall."\"/>
                                   </p>
                              </td>
                         </tr>
@@ -159,7 +186,7 @@ if ($typeQuery == 100) {
                             <td>
                                   <p>
                                   <select size=\"1\" name=\"KpCondition\">
-                                      <option disabled>Выберите состояние</option>
+                                       <option selected value = \"".$KpCondition."\">".$KpCondition."</option>
                                       <option value=\"В работе\">В работе</option>
                                       <option value=\"Не требуется\">Не требуется</option>
                                       <option value=\"Купили у нас\">Купили у нас</option>
@@ -184,7 +211,7 @@ if ($typeQuery == 100) {
                         <td>
                         <p>
                         <select size=\"1\" name=\"FinishContract\">
-                        <option disabled selected value=\"0\">Состояние контракта</option>
+                        <option selected value = \"".$FinishContract."\">".$FinishContract."</option>
                         <option value=\"0\">Контракт НЕ закрыт</option>
                           <option value=\"1\">Контракт закрыт</option>
                           
