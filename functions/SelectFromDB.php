@@ -78,5 +78,26 @@ function selectArrByHiddenIdKp ($mysqli,$id) {
     $arr_name = makeArrayFromObj($fQuery) ;
     return $arr_name;
   }
+//// Выбор ИНН компании по Id закупки
+  Function FindInnById ($mysqli, $id) {
+  $sql = "SELECT * FROM reestrkp where id='$id'";
+  $fQuery = $mysqli->query($sql);
+  $arr_findInn = MakeArrayFromObj($fQuery);
 
+//var_dump($arr_findInn);
+  foreach ($arr_findInn as $key => $value) {
+    foreach ($value as $key1 => $value1) {
+        if ($key1 == 'InnCustomer') {
+            $findInn = $value1;
+         }
+      }
+   }
+  
+  $sql = "SELECT * FROM reestrkp where InnCustomer = '$findInn' AND id <>'$id' ORDER BY pp";
+  $fQuery = $mysqli->query($sql);
+  $arr_findInn = MakeArrayFromObj($fQuery);
+
+  return $arr_findInn;
+
+}
   ?>

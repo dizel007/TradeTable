@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.6);
   display: none;
   overflow: auto;
   width: 100%;
@@ -53,46 +53,30 @@
 }
 /* изображения в модальном окне */
 
-.dm-modal img {
+/* .dm-modal img {
   width: 100%;
   height: auto;
-}
+} */
 /* миниатюры изображений */
 
-.pl-left,
+/* .pl-left,
 .pl-right {
   width: 25%;
   height: auto;
-}
+} */
 /* миниатюра справа */
 
-.pl-right {
+/* .pl-right {
   float: right;
   margin: 5px 0 5px 15px;
-}
+} */
 /* миниатюра слева */
 
-.pl-left {
+/* .pl-left {
   float: left;
   margin: 5px 15px 5px 0;
-}
-/* встраиваемое видео в модальном окне */
+} */
 
-.video {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  height: 0;
-}
-.video iframe,
-.video object,
-.video embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 /* рисуем кнопарь закрытия */
 
 .close {

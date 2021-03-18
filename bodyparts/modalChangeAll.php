@@ -24,7 +24,7 @@ if ($typeQuery == 100) {
 
 
 
-                  <table width=\"100%\" cellspacing=\"0\" cellpadding=\"5\">";
+                  <table class=\"modal_tabel\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\">";
 
                   for ($i=0; $i<count($arr_name); $i++){
                  //  echo $arr_name[$i]['pp'];

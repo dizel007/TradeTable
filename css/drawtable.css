@@ -51,9 +51,20 @@ margin: 0;
   
 }
 .BlinkColor {
- 
-  color:rgb(189, 185, 185)
+   color:rgb(189, 185, 185)
+   
 }
+.BlinkColor a {
+  color:rgb(189, 185, 185); 
+ }
 .get_rigth {
   margin: 0 0 0 auto;
+}
+
+
+.modal_tabel {
+  border:  0.5px solid ;
+  word-wrap : break-word;
+  text-align: center;
+   
 }

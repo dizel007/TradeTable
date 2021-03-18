@@ -1,6 +1,6 @@
 <?php
 
-function printOurTable($arr_name) {
+function printOurTable($arr_name, $FinContr) {
       echo "<div class =\"our_table\"> 
       
       <table class=\"drawtable employee_table\">";
@@ -40,8 +40,14 @@ if (isset($arr_name)) {
   // Заполняем саму таблциу
         for ($i=0; $i<count($arr_name); $i++){
 //// Проверяем актуальность КП (Если не актуально то закрасим серым цветом)
-          if ($arr_name[$i]['StatusKp']=="КП сформировано" || ($arr_name[$i]['FinishContract']==1 || $arr_name[$i]['KpCondition']=="Не требуется") ) {  //// красим цветом статус КП
+          if ($arr_name[$i]['StatusKp']=="КП сформировано" || ($arr_name[$i]['FinishContract']==1 || $arr_name[$i]['KpCondition']=="Не требуется"
+          || $arr_name[$i]['KpCondition']=="Уже купили") ) {  //// красим цветом статус КП
             $statusKpClass = "BlinkColor";
+              // Смотрии нужно ли выводит закрытые контракты
+               if ($FinContr == 0) {
+                  continue;
+               }
+
           }else {
             $statusKpClass = "";
           }
@@ -74,19 +80,17 @@ if (isset($arr_name)) {
             {  
                   if (($tempDate < $realDate) && ($statusKpClass <> "BlinkColor")){
                     $DateNextCall = "alarmcolor";
-                  } else 
-                          {
-                          $DateNextCall = "";
-                          }
-            }  
-            else 
-                    {
-                      $DateNextCall = "";
-                    }
-                   // <td class =\"".$DateNextCall."\">".$arr_name[$i]['DateNextCall']."</td>
-              //     <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=12"."#win2\" class=\"btn\">".$arr_name[$i]['DateNextCall']."</a></td>
+                  } else   
+                    { $DateNextCall = "";  }
+             }  else 
+                  {   $DateNextCall = "";  }
+
       echo "<tr class =\"".$KpImportance." ".$statusKpClass."\">
-            <td class=\"hidden_class_column\">".$arr_name[$i]['pp']."</td>
+           
+            
+            <td><a href='?id=".$arr_name[$i]['id']."'"." target=\"_blank\">".$arr_name[$i]['pp'] ."</a></td> 
+
+
             <td><a href='".$arr_name[$i]['LinkKp']."'".">".$arr_name[$i]['KpNumber'] ."</a></td> 
             <td>".$arr_name[$i]['KpData']."</td>
             <td class=\"hidden_class_column\">".$arr_name[$i]['InnCustomer']."</td>
@@ -104,20 +108,10 @@ if (isset($arr_name)) {
             <td class =\"limit_width \">".$arr_name[$i]['Comment']."</td>
     
     <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=11"."#win1\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
-     
-    
 
     <td class =\"".$DateNextCall."\">".$arr_name[$i]['DateNextCall']."</td>
 
-    
-    
      <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=12"."#win2\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
-
-
-
-
-
-
             <td>".$arr_name[$i]['KpCondition']."</td>
      <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=13"."#win3\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             <td>".$arr_name[$i]['KpSum']."</td>
