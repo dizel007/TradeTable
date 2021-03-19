@@ -35,8 +35,8 @@ if (!empty($_GET['id'])) {
     // echo "Количество Дополнительных строк = ". $str_count;
     if ($arr_inn_id[0]['pp'] !=''){  // чтобы условия чтобы не выводить пустой массив 
          printOurTable($arr_inn_id, $FinishContract) ; 
+    } 
     }
-  }
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ ИНН
   elseif ($typeQuery == 4 and $value <> "") {
   $inn = $_GET['value'];
@@ -79,13 +79,5 @@ elseif ($typeQuery == 10 and $value <> "") {
     $arr_name = selectAllArr($mysqli);
     printOurTable($arr_name, $FinishContract) ;
   }
-  
-  //$arr_name = selectArrByData($mysqli);
-  
-  
-
-  
-
-
 
 ?>

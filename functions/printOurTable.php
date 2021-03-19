@@ -1,11 +1,14 @@
 <?php
 
 function printOurTable($arr_name, $FinContr) {
-      echo "<div class =\"our_table\"> 
+
+// шапка таблицы
+     echo "<div class =\"our_table\"> 
       
       <table class=\"drawtable employee_table\">";
       $i=0;
       echo"<tr>
+      <td>M</td>
       <td class=\"hidden_class_column\">п/п</td>
       <td>№КП</td>
       <td>Дата КП</td>
@@ -37,13 +40,13 @@ function printOurTable($arr_name, $FinContr) {
       $tempDate = "";
 if (isset($arr_name)) {
 
-  // Заполняем саму таблциу
+// Заполняем саму таблциу
         for ($i=0; $i<count($arr_name); $i++){
 //// Проверяем актуальность КП (Если не актуально то закрасим серым цветом)
           if ($arr_name[$i]['StatusKp']=="КП сформировано" || ($arr_name[$i]['FinishContract']==1 || $arr_name[$i]['KpCondition']=="Не требуется"
           || $arr_name[$i]['KpCondition']=="Уже купили") ) {  //// красим цветом статус КП
             $statusKpClass = "BlinkColor";
-              // Смотрии нужно ли выводит закрытые контракты
+              // Смотрии нужно ли выводит закрытые контракты 
                if ($FinContr == 0) {
                   continue;
                }
@@ -51,17 +54,6 @@ if (isset($arr_name)) {
           }else {
             $statusKpClass = "";
           }
-//// Проверяем Состояние КП (Если не требуется продукция то  закрасим серым цветом)
-// if ($arr_name[$i]['KpCondition']=="Не требуется") {  //// красим цветом статус КП
-//   $statusKpClass = "BlinkColor";
-// }else {
-//   $statusKpClass = "";
-// }
-
-
-
-
-
 
 /// Красим строчку в зависомости от важности КП
           if ($arr_name[$i]['KpImportance']=="Важно" ) {  //// красим цветом статус КП
@@ -84,11 +76,20 @@ if (isset($arr_name)) {
                     { $DateNextCall = "";  }
              }  else 
                   {   $DateNextCall = "";  }
+//// Выбираем цвет Фонаря
+        if ($arr_name[$i]['marker'] == 1) {
+          $marker='icons/table/lamp.jpg';
+        } else {
+          $marker='icons/table/nolamp.jpg';
+        }
 
+/// Рисуем саму таблицу
       echo "<tr class =\"".$KpImportance." ".$statusKpClass."\">
            
+
+      <td><a href=\"bodyparts\change_marker.php?id=".$arr_name[$i]['id']."\" class=\"btn\" target=\"_blank\"><img src=".$marker.' alt=formatZakup>'."</a></td>
             
-            <td><a href='?id=".$arr_name[$i]['id']."'"." target=\"_blank\">".$arr_name[$i]['pp'] ."</a></td> 
+            <td><a name=\"".$arr_name[$i]['id']."\" href='?id=".$arr_name[$i]['id']."'"." target=\"_blank\">".$arr_name[$i]['pp'] ."</a></td> 
 
 
             <td><a href='".$arr_name[$i]['LinkKp']."'".">".$arr_name[$i]['KpNumber'] ."</a></td> 
