@@ -10,13 +10,12 @@ $lines = file('../myFile1.txt');
 
 //$array = null;
 
-
 $i=0;
 if ($handle) {
     while (($buffer = fgets($handle)) !== false) {
 
       $buffer = substr($buffer, 0, -3);
-$sql = "INSERT INTO `reestrkp` (`pp`, `KpNumber`, `KpData`, `InnCustomer`, `NameCustomer`, `ContactCustomer`, `idKp`, `StatusKp`, `KpImportance`, `Responsible`, `Comment`, `DateNextCall`, `KpCondition`, `KpSum`, `TenderSum`, `FinishContract`, `LinkKp`, `adress`, `id`) VALUES $buffer";
+$sql = "INSERT INTO `reestrkp` (`pp`, `KpNumber`, `KpData`, `InnCustomer`, `NameCustomer`, `ContactCustomer`, `idKp`, `StatusKp`, `KpImportance`, `Responsible`, `Comment`, `DateNextCall`, `KpCondition`, `KpSum`, `TenderSum`, `FinishContract`, `LinkKp`, `adress`, `id`, `marker`, `konturLink`) VALUES $buffer";
 
 echo "XXX(Zapros)===".$buffer."===(Zapros)XXX<br><br>";
 
@@ -38,32 +37,12 @@ echo "ZZZ(SQL)===".$sql."==(SQL)ZZZ<br><br>";
 }
 fclose($handle);
  
-// echo "<pre>"; print_r($array)."<br>"; echo "</pre>";
-
-
-
-
-  // if ($handle) {
-  //   while (($buffer = fgets($handle, 4096)) !== false) {
-  //     echo $buffer;
-  //     insert_raw_in_bd ($buffer);
-  //   }
-  //   if (!feof($handle)) {
-  //     echo "ERROR. ALARM BLAYYYYYYYYYYYYYYYYYY";
-  //   }
-  //   fclose($handle);
-  // }
-
 function insert_raw_in_bd ($buffer) {
   $buffer = substr($buffer, 0, -3);
-  $sql = "\"INSERT INTO `reestrkp` (`pp`, `KpNumber`, `KpData`, `InnCustomer`, `NameCustomer`, `ContactCustomer`, `idKp`, `StatusKp`, `KpImportance`, `Responsible`, `Comment`, `DateNextCall`, `KpCondition`, `KpSum`, `TenderSum`, `FinishContract`, `LinkKp`, `adress`, `id`) VALUES ".  $buffer. "\"";
+  $sql = "\"INSERT INTO `reestrkp` (`pp`, `KpNumber`, `KpData`, `InnCustomer`, `NameCustomer`, `ContactCustomer`, `idKp`, `StatusKp`, `KpImportance`, `Responsible`, `Comment`, `DateNextCall`, `KpCondition`, `KpSum`, `TenderSum`, `FinishContract`, `LinkKp`, `adress`, `id`, `marker`, `konturLink`) VALUES ".  $buffer. "\"";
  // $query = $mysqli->query($sql);
   echo $sql."<br>";
-
-
-
   // $query = $mysqli->query($sql);
-  
   // if (!$query){
   // die();
   // printf("Соединение не удалось: ");

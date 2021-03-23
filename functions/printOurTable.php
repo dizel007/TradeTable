@@ -82,21 +82,40 @@ if (isset($arr_name)) {
         } else {
           $marker='icons/table/nolamp.jpg';
         }
+//   <td>".$arr_name[$i]['NameCustomer']."</td>
+
+$konturLinkOn =0;
+$realKonturLink = $arr_name[$i]['konturLink'];
+if ($realKonturLink != "") {
+  $konturLinkOn=1;
+}
+
+
+
 
 /// Рисуем саму таблицу
       echo "<tr class =\"".$KpImportance." ".$statusKpClass."\">
            
 
-      <td><a href=\"bodyparts\change_marker.php?id=".$arr_name[$i]['id']."\" class=\"btn\" target=\"_blank\"><img src=".$marker.' alt=formatZakup>'."</a></td>
+      <td><a href=\"bodyparts\change_marker.php?id=".$arr_name[$i]['id']."\" class=\"btn\"><img src=".$marker.' alt=formatZakup>'."</a></td>
             
             <td><a name=\"".$arr_name[$i]['id']."\" href='?id=".$arr_name[$i]['id']."'"." target=\"_blank\">".$arr_name[$i]['pp'] ."</a></td> 
 
 
             <td><a href='".$arr_name[$i]['LinkKp']."'".">".$arr_name[$i]['KpNumber'] ."</a></td> 
             <td>".$arr_name[$i]['KpData']."</td>
-            <td class=\"hidden_class_column\">".$arr_name[$i]['InnCustomer']."</td>
-            <td>".$arr_name[$i]['NameCustomer']."</td>
-            <td class=\"hidden_class_column\">".$arr_name[$i]['ContactCustomer']."</td>
+            <td class=\"hidden_class_column\">".$arr_name[$i]['InnCustomer']."</td>";
+            
+            if ($konturLinkOn ==1) {
+  
+            echo "<td><a href=\"".$arr_name[$i]['konturLink']."\" alt=konturLink>".$arr_name[$i]['NameCustomer']."</a></td>";
+            } else {
+            } echo "<td>".$arr_name[$i]['NameCustomer']."</td>";
+
+
+
+
+            echo "<td class=\"hidden_class_column\">".$arr_name[$i]['ContactCustomer']."</td>
     <td class=\"hidden_class_column\"><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=6"."#win6\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>";  
             // <td class=\"hidden_class_column\">".$arr_name[$i]['idKp']."</td>
             echo "<td class=\"hidden_class_column\">".$arr_name[$i]['StatusKp']."</td>
