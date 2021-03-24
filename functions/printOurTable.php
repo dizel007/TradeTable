@@ -107,7 +107,7 @@ if ($realKonturLink != "") {
             <td class=\"hidden_class_column\">".$arr_name[$i]['InnCustomer']."</td>";
             
             if ($konturLinkOn == 1) {  
-              echo "<td><a href=\"".$arr_name[$i]['konturLink']."\" alt=konturLink>".$arr_name[$i]['NameCustomer']."</a></td>";
+              echo "<td><a href=\"".$arr_name[$i]['konturLink']."\" alt=konturLink target=\"_blank\">".$arr_name[$i]['NameCustomer']."</a></td>";
             } else {
                echo "<td>".$arr_name[$i]['NameCustomer']."</td>";
                     }
@@ -133,8 +133,8 @@ if ($realKonturLink != "") {
      <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=12"."#win2\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             <td>".$arr_name[$i]['KpCondition']."</td>
      <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=13"."#win3\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
-            <td>".$arr_name[$i]['KpSum']."</td>
-            <td class=\"hidden_class_column\">".$arr_name[$i]['TenderSum']."</td>
+            <td>".number_format($arr_name[$i]['KpSum'])."</td>
+            <td class=\"hidden_class_column\">".number_format($arr_name[$i]['TenderSum'])."</td>
 
             <td>".$arr_name[$i]['FinishContract']."</td>
             <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=16"."#win6\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>

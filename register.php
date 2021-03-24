@@ -5,10 +5,11 @@
 require_once ("connect_DB.php");
 //$link=mysqli_connect("localhost", "mysql_user", "mysql_password", "testtable");
 
+
 if(isset($_POST['submit']))
 {
-    $err = [];
 
+    $err = [];
     // проверям логин
     if(!preg_match("/^[a-zA-Z0-9]+$/",$_POST['login']))
     {
@@ -21,11 +22,24 @@ if(isset($_POST['submit']))
       }
 
     // проверяем, не сущестует ли пользователя с таким именем
-    $query = mysqli_query($link, "SELECT user_id FROM users WHERE user_login='".mysqli_real_escape_string($link, $_POST['login'])."'");
-    if(mysqli_num_rows($query) > 0)
-    {
-        $err[] = "Пользователь с таким логином уже существует в базе данных";
-    }
+
+    $EnterUserLogin = $_POST['login'];
+    $sql = "SELECT * FROM users WHERE user_login='$EnterUserLogin'";
+    $query = $mysqli->query($sql);
+        $UsersCount=0;
+     // формируем массив с данными по КП 
+     if ($query -> num_rows > 0) {
+            while ($row = $query -> fetch_assoc()) 
+            {
+               // $arr[$i] = $row['user_login'];
+                $UsersCount++;
+            }
+        }
+
+        if( $UsersCount > 0)
+        {
+            $err[] = "Пользователь с таким логином уже существует в базе данных";
+        }
 
     // Если нет ошибок, то добавляем в БД нового пользователя
     if(count($err) == 0)
@@ -38,7 +52,7 @@ if(isset($_POST['submit']))
 
         $sql = "INSERT INTO users SET user_login='".$login."', user_password='".$password."'";
        
-        echo "***".$sql."**<br><br>";
+        //echo "***".$sql."**<br><br>";
         
                $query = $mysqli->query($sql);
 
@@ -52,7 +66,7 @@ if(isset($_POST['submit']))
                 }
             
     
-        header("Location: login.php"); exit();
+       header("Location: login.php"); exit();
     }
     else
     {

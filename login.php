@@ -4,7 +4,7 @@
 
 // Функция для генерации случайной строки
 function generateCode($length=6) {
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHI JKLMNOPRQSTUVWXYZ0123456789";
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
     $code = "";
     $clen = strlen($chars) - 1;
     while (strlen($code) < $length) {
@@ -30,38 +30,21 @@ if(isset($_POST['submit']))
     //  printf ($data);
     //  echo "</pre>";
 
-
-
     // Сравниваем пароли
     if($data['user_password'] === md5(md5($_POST['password'])))
     {
         // Генерируем случайное число и шифруем его
         $hash = md5(generateCode(10));
 
-        if(!empty($_POST['not_attach_ip']))
-        {
-            // Если пользователя выбрал привязку к IP
-            // Переводим IP в строку
-            $insip = ", user_ip=INET_ATON('".$_SERVER['REMOTE_ADDR']."')";
-        }
-        else {
-            $insip = ", user_ip=INET_ATON('".$_SERVER['REMOTE_ADDR']."')";
-        }
-
-        // Записываем в БД новый хеш авторизации и IP
-       // mysqli_query($link, "UPDATE users SET user_hash='".$hash."' ".$insip." WHERE user_id='".$data['user_id']."'");
-        //$query = $mysqli->query("UPDATE users SET user_hash='".$hash."' ".$insip." WHERE user_id='".$data['user_id']."'");
-       
-       $sql = ("UPDATE users SET user_hash='".$hash."'  ".$insip." WHERE user_id='".$data['user_id']."'");
-             
-        $query = $mysqli->query($sql);
-        
-       // Ставим куки
-        setcookie("id", $data['user_id'], time()+60*60*26, "/");
-        setcookie("hash", $hash, time()+60*60*26, "/", null, null, true); // httponly !!!
-
-//echo $data['user_id']. "    ssdf    ". $hash;
-            
+         // Записываем в БД новый хеш авторизации и IP
+    $tempUserIP = $data['user_id'];
+    $sql = "UPDATE users SET user_hash='$hash' WHERE user_id='$tempUserIP'";
+    $query = $mysqli->query($sql);
+          
+          // Ставим куки
+        setcookie("id", $data['user_id'], time()+60*60*24, "/");
+        setcookie("hash", $hash, time()+60*60*24, "/", null, null, true); // httponly !!!
+           
 /// запись в логи, что пользователь зашел на сайт
             $file = 'log.txt';
             $now_date = date('Y-m-d H:i:s');
@@ -74,7 +57,6 @@ if(isset($_POST['submit']))
             {
                 $user_login = $row["user_login"];
                 $i++;
-
             }
 
             $temp_var = $now_date."  ". $user_login." вошел на сайт ;\n";
@@ -83,7 +65,8 @@ if(isset($_POST['submit']))
             // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
             file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX);
         // Переадресовываем браузер на страницу проверки нашего скрипта
-       header("Location: index.php"); exit();
+       
+        header("Location: index.php"); exit();
     }
     else
     {
