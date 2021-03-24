@@ -46,8 +46,10 @@ if(isset($_POST['submit']))
         setcookie("hash", $hash, time()+60*60*24, "/", null, null, true); // httponly !!!
            
 /// запись в логи, что пользователь зашел на сайт
-            $file = 'log.txt';
-            $now_date = date('Y-m-d H:i:s');
+            $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
+            $file = "logs/".$fileLogName.".txt";
+            $fileAll = 'log.txt';
+            $now_date = date('Y-m-d H:i:s');           
             /// Вычитываем пользователя
             require_once "connect_DB.php";
             $i=0;
@@ -63,7 +65,8 @@ if(isset($_POST['submit']))
             // Пишем содержимое в файл,
             // используя флаг FILE_APPEND для дописывания содержимого в конец файла
             // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
-            file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX);
+            file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX); // логи по датам
+            file_put_contents($fileAll, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
         // Переадресовываем браузер на страницу проверки нашего скрипта
        
         header("Location: index.php"); exit();
