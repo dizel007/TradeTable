@@ -69,8 +69,10 @@ while ($row = $user -> fetch_assoc())
    }
 
    //printf($user_login);
-
-      $file = '../log.txt';
+      $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
+      
+      $file = "../logs/".$fileLogName.".txt";
+      $fileAll = '../log.txt';
       $now_date = date('Y-m-d H:i:s');
       //$temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
       $temp_var = $now_date." Автор: ".$user_login." ID=".$id;
@@ -86,7 +88,7 @@ while ($row = $user -> fetch_assoc())
             if ($my_id_arr[0]['Comment']== $Comment) { $Comment='';}
       else { $temp_var.="; Комментарий :".$Comment;}
       
-      if ($my_id_arr[0]['DateNextCall']== $DateNextCall) { $DateNextCall='';}
+      if ($my_id_arr[0]['DateNextCall'] == $DateNextCall) { $DateNextCall='';}
       else { $temp_var.="; Дата след.Звонка :".$DateNextCall;}
       
       if ($my_id_arr[0]['KpCondition']== $KpCondition) { $KpCondition='';}
@@ -102,17 +104,18 @@ while ($row = $user -> fetch_assoc())
       // Пишем содержимое в файл,
       // используя флаг FILE_APPEND для дописывания содержимого в конец файла
       // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
-      file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX);
+      file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX); // логи по датам
+      file_put_contents($fileAll, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
 
 //echo "UPDATE COMMENT <br>";
 header ("Location: ..?id=".$id);  // перенаправление на нужную страницу
 exit();    // прерываем работу скрипта, чтобы забыл о прошлом
 
 ?>
-
+<!-- 
 $KpCondition = $_POST['KpCondition'] ;
                  //  echo $arr_name[$i]['KpSum'] ;
                 //   echo $arr_name[$i]['TenderSum'] ;
 $FinishContract = ['FinishContract'] ;
                   // echo $arr_name[$i]['LinkKp'] ;
-$Adress = $_POST['Adress'];
+$Adress = $_POST['Adress']; -->

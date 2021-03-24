@@ -106,12 +106,11 @@ if ($realKonturLink != "") {
             <td>".$arr_name[$i]['KpData']."</td>
             <td class=\"hidden_class_column\">".$arr_name[$i]['InnCustomer']."</td>";
             
-            if ($konturLinkOn ==1) {
-  
-            echo "<td><a href=\"".$arr_name[$i]['konturLink']."\" alt=konturLink>".$arr_name[$i]['NameCustomer']."</a></td>";
+            if ($konturLinkOn == 1) {  
+              echo "<td><a href=\"".$arr_name[$i]['konturLink']."\" alt=konturLink>".$arr_name[$i]['NameCustomer']."</a></td>";
             } else {
-            } echo "<td>".$arr_name[$i]['NameCustomer']."</td>";
-
+               echo "<td>".$arr_name[$i]['NameCustomer']."</td>";
+                    }
 
 
 

@@ -74,15 +74,19 @@ while ($row = $user -> fetch_assoc())
    }
 
    //printf($user_login);
-
-      $file = '../log.txt';
+ 
+   $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
+    $file = "../logs/".$fileLogName.".txt";
+    $fileAll = '../log.txt';
+  //    $file = '../log.txt';
       $now_date = date('Y-m-d H:i:s');
       //$temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
       $temp_var = $now_date." Автор: ".$user_login." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
       // Пишем содержимое в файл,
       // используя флаг FILE_APPEND для дописывания содержимого в конец файла
       // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
-      file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX);
+      file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX); // логи по датам
+      file_put_contents($fileAll, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
 
 //echo "UPDATE COMMENT <br>";
 header ("Location: ..?id=".$id."&typeQuery=".$typeQuery);  // перенаправление на нужную страницу
