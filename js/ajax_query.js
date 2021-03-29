@@ -1,60 +1,41 @@
 
-function AjaxQuery(){
-type="text/javascript"> 
-			$("document").ready(function(){
+$("document").ready(function(){
+$('.power').click(function(event){   
+	jsId='';
+	realJsId='';
+	jsId = (event.target.id);
+	// alert(jsId);
+	realJsId = jsId.substring(10);
+	//  alert(realJsId);
+	$.ajax({
+		url: "ajaxChangeMarker.php",
+		method: 'get',             /* Метод передачи (post или get) */
+	  dataType: 'html',
+		data: {id:realJsId},
+		// data: id=realJsId,
+		success: function(data){
+			//  alert(data);
+			marker=data;
+			if (data == 0 ) {document.getElementById(jsId).src = 'icons/table/nolamp.jpg';}
+			if (data == 1 ) {document.getElementById(jsId).src = 'icons/table/lamp.jpg';}
+			
 
-				var send={};
+			$.ajax({
+				url: "logger_ajax_query.php",
+				method: 'get',             /* Метод передачи (post или get) */
+				dataType: 'html',
+				data: {id:realJsId,
+				 				marker: marker}
 				
-				send['a'] = $("#one").text();
-				send['b'] = $("#two").text();
-
-				$.ajax({
-					url: "test.php",
-					type: "POST",
-					data: {
-						a:999
-								},
-					success: function(data){
-							alert(data);
-					}
 				
+		});
 
-					
-				});
-			});
- }
- <?php
 
- $daann = "pppppp";
- $one="#one";
- echo "<p id=\"".$one."\">".$daann."</p>";
- 
- ?>
- 
- <script type="text/javascript"> 
- $("document").ready(function(){
- 
-	 var perem = '<?php echo $one;?>';
-	 var send={};
-	 
-	 send['a'] = $(perem).text();
-	 
-	 // send['b'] = $("#two").text();
- 
-	 $.ajax({
-		 url: "test.php",
-		 type: "GET",
-		 data: {
-			 a:999
-					 },
-		 success: function(data){
-					alert(data);
-					document.getElementById(perem).innerHTML="Новый текст!";
-		 }
-	 
- 
-		 
-	 });
- });
- 
- </script>
+
+
+		}
+});
+});
+});
+
+

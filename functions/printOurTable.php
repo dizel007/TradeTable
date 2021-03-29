@@ -38,7 +38,10 @@ function printOurTable($arr_name, $FinContr) {
       $realDate = date("m.d.y");
       $realDate=strtotime($realDate);
       $tempDate = "";
-if (isset($arr_name)) {
+
+  
+            
+      if (isset($arr_name)) {
 
 // Заполняем саму таблциу
         for ($i=0; $i<count($arr_name); $i++){
@@ -90,15 +93,20 @@ if ($realKonturLink != "") {
   $konturLinkOn=1;
 }
 
-
-
-
+$jsId = $arr_name[$i]['id'];
+//   <td id=\"markerLinkChange\" ><a href=\"bodyparts\change_marker.php?id=".$arr_name[$i]['id']."\" class=\"btn\"><img src=".$marker.' alt=formatZakup>'."</a></td>
 /// Рисуем саму таблицу
       echo "<tr class =\"".$KpImportance." ".$statusKpClass."\">
            
-
-      <td><a href=\"bodyparts\change_marker.php?id=".$arr_name[$i]['id']."\" class=\"btn\"><img src=".$marker.' alt=formatZakup>'."</a></td>
+          <td> 
+                   <img class =\"power\" id=\"markerLink".$arr_name[$i]['id']."\" src=".$marker.'>'."
+          </td>
+ 
+       
             
+
+
+
             <td><a name=\"".$arr_name[$i]['id']."\" href='?id=".$arr_name[$i]['id']."'"." target=\"_blank\">".$arr_name[$i]['pp'] ."</a></td> 
 
 

@@ -22,10 +22,8 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
         }
         else
         {
-
-    
-            
-            
+             
+                                  
             print "Пользователь: ".$userdata['user_login'];
             
                             require_once ("bodyparts/Include_functions.php"); // подлючаем файл, которые цепляет все функции
@@ -36,7 +34,9 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
                             //require_once ("changeDB/update_comment.php");
 
                             require_once ("bodyparts/footer.php"); // подвал страниы
-        }
+                            
+
+                        }
     }
 else
 {

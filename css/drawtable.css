@@ -69,4 +69,6 @@ margin: 0;
    
 }
 
-
+.power {
+  cursor: pointer; 
+}
