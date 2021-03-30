@@ -8,7 +8,7 @@ $('.power').click(function(event){
 	realJsId = jsId.substring(10);
 	//  alert(realJsId);
 	$.ajax({
-		url: "ajaxChangeMarker.php",
+		url: "ajax/ajaxChangeMarker.php",
 		method: 'get',             /* Метод передачи (post или get) */
 	  dataType: 'html',
 		data: {id:realJsId},
@@ -21,7 +21,7 @@ $('.power').click(function(event){
 			
 
 			$.ajax({
-				url: "logger_ajax_query.php",
+				url: "ajax/logger_ajax_query.php",
 				method: 'get',             /* Метод передачи (post или get) */
 				dataType: 'html',
 				data: {id:realJsId,
