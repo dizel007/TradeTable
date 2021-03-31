@@ -13,7 +13,10 @@ $typeQuery=htmlspecialchars($typeQuery);
       $changeColumn = 'Comment';
           if (isset($_POST['text'])) 
           { 
-            $newPerem = $_POST['text'];
+                       
+            $newPerem = " ". date('Y-m-d').": ".$_POST['text']." ";
+            
+           // $newPerem = str_replace("\r\n" , "", $newPerem);
           }
       }
 

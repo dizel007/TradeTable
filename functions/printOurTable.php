@@ -94,12 +94,23 @@ if ($realKonturLink != "") {
 }
 
 $jsId = $arr_name[$i]['id'];
-//   <td id=\"markerLinkChange\" ><a href=\"bodyparts\change_marker.php?id=".$arr_name[$i]['id']."\" class=\"btn\"><img src=".$marker.' alt=formatZakup>'."</a></td>
+// <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=11"."#win1\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
+
+
+
+// <td>
+       
+// <img class =\"commentClass\" id=\"commentLink".$arr_name[$i]['id']."\" src=".'icons/table/kiss.jpg'.' alt=addCooment>'."
+
+// </td>
+
+
+
 /// Рисуем саму таблицу
       echo "<tr class =\"".$KpImportance." ".$statusKpClass."\">
            
           <td> 
-                   <img class =\"power\" id=\"markerLink".$arr_name[$i]['id']."\" src=".$marker.'>'."
+                   <img class =\"markerClass\" id=\"markerLink".$arr_name[$i]['id']."\" src=".$marker.'>'."
           </td>
  
        
@@ -132,9 +143,13 @@ $jsId = $arr_name[$i]['id'];
             <td class=\"hidden_class_column\">".$arr_name[$i]['Responsible']."</td>
     <td class=\"hidden_class_column\"><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=10"."#win4\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
             
-            <td class =\"limit_width \">".$arr_name[$i]['Comment']."</td>
     
+    <td class =\"limit_width \">".$arr_name[$i]['Comment']."</td>
+
+
+
     <td><a href=\"?id=".$arr_name[$i]['id']."&typeQuery=11"."#win1\" class=\"btn\"><img src=".'icons/table/kiss.jpg'.' alt=addCooment>'."</a></td>
+
 
     <td class =\"".$DateNextCall."\">".$arr_name[$i]['DateNextCall']."</td>
 

@@ -15,7 +15,7 @@ $ContactCustomer=htmlspecialchars($ContactCustomer);
 //$StatusKp = $_POST['StatusKp'];
 $KpImportance = $_POST ['KpImportance'] ;
 $Responsible = $_POST['Responsible'];
-$Comment = $_POST['Comment'] ;
+$Comment =" ". date('Y-m-d').": ". $_POST['Comment'] ;
 $Comment=htmlspecialchars($Comment);
 
 $DateNextCall = $_POST['DateNextCall'] ;

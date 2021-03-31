@@ -1,4 +1,9 @@
 <?php
+
+/// Устарело   перешел на AJAX запросы
+
+
+
 require_once "../connect_DB.php";
 require_once "../functions/makeArrFromObj.php";
 
@@ -39,7 +44,5 @@ $fQuery = $mysqli->query($sql);
 
 //header("Location: ../index.php#".$id); exit();
 header("Location: ../index.php?id=".$id); exit();
-
-
 
 ?>

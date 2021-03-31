@@ -69,6 +69,6 @@ margin: 0;
    
 }
 
-.power {
+.markerClass, .commentClass {
   cursor: pointer; 
 }
