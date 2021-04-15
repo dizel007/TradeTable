@@ -1,0 +1,306 @@
+2021-03-30 13:10:16 Автор: qaz ID=3025; Смена маркета :1;
+2021-03-30 13:10:17 Автор: qaz ID=3025; Смена маркета :0;
+2021-03-30 13:10:18 Автор: qaz ID=3025; Смена маркета :1;
+2021-03-30 13:10:19 Автор: qaz ID=3025; Смена маркета :0;
+2021-03-30 13:10:22 Автор: qaz ID=3025; Смена маркета :1;
+2021-03-30 13:10:23 Автор: qaz ID=3025; Смена маркета :0;
+2021-03-30 13:18:05 Автор: qaz ID=3024; Смена маркета :1;
+2021-03-30 13:18:07 Автор: qaz ID=3024; Смена маркета :0;
+2021-03-30 13:18:08 Автор: qaz ID=3024; Смена маркета :1;
+2021-03-30 13:18:08 Автор: qaz ID=3024; Смена маркета :0;
+2021-03-30 13:18:13 Автор: qaz ID=2766; Смена маркета :1;
+2021-03-30 13:18:15 Автор: qaz ID=2766; Смена маркета :0;
+2021-03-30 13:18:16 Автор: qaz ID=3006; Смена маркета :1;
+2021-03-30 13:18:16 Автор: qaz ID=3006; Смена маркета :0;
+2021-03-30 13:18:18 Автор: qaz ID=3007; Смена маркета :1;
+2021-03-30 13:18:19 Автор: qaz ID=3007; Смена маркета :0;
+2021-03-30 13:29:11 Автор: qaz ID=3025; Смена маркета :0;
+2021-03-30 13:29:12 Автор: qaz ID=3025; Смена маркета :1;
+2021-03-30 13:29:13 Автор: qaz ID=3025; Смена маркета :0;
+2021-03-30 13:29:14 Автор: qaz ID=3025; Смена маркета :1;
+2021-03-30 13:29:40 Автор: qaz ID=3024; Смена маркета :1;
+2021-03-30 13:29:41 Автор: qaz ID=3024; Смена маркета :0;
+2021-03-30 13:29:42 Автор: qaz ID=3024; Смена маркета :1;
+2021-03-30 13:29:43 Автор: qaz ID=3024; Смена маркета :0;
+2021-03-30 13:29:52 Автор: qaz ID=3024; Смена маркета :1;
+2021-03-30 13:29:52 Автор: qaz ID=3024; Смена маркета :0;
+2021-03-30 13:29:53 Автор: qaz ID=3025; Смена маркета :0;
+2021-03-30 13:29:54 Автор: qaz ID=3025; Смена маркета :1;
+2021-03-30 13:29:54 Автор: qaz ID=3025; Смена маркета :0;
+2021-03-30 13:33:51 Автор: qaz ID=k3025; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div><br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>43</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>48</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: marker in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>55</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>61</b><br />
+1;
+2021-03-30 13:33:52 Автор: qaz ID=k3025; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div><br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>43</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>48</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: marker in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>55</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>61</b><br />
+1;
+2021-03-30 13:33:53 Автор: qaz ID=k3025; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div><br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>43</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>48</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: marker in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>55</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>61</b><br />
+1;
+2021-03-30 13:34:49 Автор: qaz ID=k3025; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div><br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>43</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>48</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: marker in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>55</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>61</b><br />
+1;
+2021-03-30 13:34:59 Автор: qaz ID=3025; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div><br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>43</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>48</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: marker in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>55</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>61</b><br />
+1;
+2021-03-30 13:35:01 Автор: qaz ID=3024; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div><br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>43</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>48</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: marker in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>55</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>61</b><br />
+1;
+2021-03-30 13:35:03 Автор: qaz ID=3006; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div><br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>43</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>48</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: marker in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>55</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: id in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>61</b><br />
+1;
+2021-03-30 13:35:36 Автор: qaz ID=3025; Смена маркета :<br />
+<b>Notice</b>:  Undefined variable: arr_name in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  count(): Parameter must be an array or an object that implements Countable in <b>C:\xampp\htdocs\TradeTable\ajax\ajaxChangeComment.php</b> on line <b>8</b><br />
+
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : </p>
+                      
+                  <form  action="changeDB/update_comment.php?id=3025&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45"></textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div>1;
+2021-03-30 13:38:31 Автор: qaz ID=3025; Смена маркета :aefasdf
+      <div class="dm-overlay" id="win1">
+          <div class="dm-table">
+              <div class="dm-cell">
+                  <div class="dm-modal">
+                      <a href="#close" class="close"></a>
+                      <p>Текстовое содержание : aefasdf</p>
+                      
+                  <form  action="changeDB/update_comment.php?id=3025&typeQuery=11" method="post">
+                            <p>
+                              <p>Добавить комментарий : </p>
+                                <p>
+                                  <textarea name="text" rows="10" cols="45">aefasdf</textarea>
+                                </p>
+                              <p><input type="submit" value="Отправить"></p>
+                            </p>
+                     </form>
+                  </div>
+              </div>
+          </div>
+      </div>0;
