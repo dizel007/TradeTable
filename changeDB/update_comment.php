@@ -1,11 +1,20 @@
 <?php
 require_once "../connect_DB.php";
-
+require_once "../functions/make_arr_from_obj.php";
 // Обновляем данные в талиблице. $typeQuery - выбоо столбца, который будем редактировать. $id -  ИД строки которую будем редактировать
 $id = $_GET['id'];
 $id=htmlspecialchars($id);
 $typeQuery=$_GET['typeQuery'];
 $typeQuery=htmlspecialchars($typeQuery);
+
+
+  $sql = "SELECT * FROM reestrkp where id = '$id'";
+  $fQuery = $mysqli->query($sql);
+  $my_id_arr = makeArrayFromObj($fQuery) ;
+
+
+
+
 // echo "typeQuery =".$typeQuery."<br>";
 // Выбираем какой столбец редактируем 
 // если Изменяем комментарий
@@ -13,10 +22,18 @@ $typeQuery=htmlspecialchars($typeQuery);
       $changeColumn = 'Comment';
           if (isset($_POST['text'])) 
           { 
-                       
-            $newPerem = " ". date('Y-m-d').": ".$_POST['text']." ";
-            
-           // $newPerem = str_replace("\r\n" , "", $newPerem);
+            $newPerem = $_POST['text'] ; // цепляем дату внесения комметнария
+            $newPerem =  trim ( $newPerem , $character_mask = " \t\n\r\0\x0B"); // убипаем все лишние пробелы и переносы
+            if ($newPerem != $my_id_arr[0]['Comment']) { // Проверяем изменился ли коммень
+ 
+              
+              if ($newPerem !='')  $newPerem ="@!" . date('Y-m-d').": ". $newPerem; // цепляем дату внесения комметнария
+        }
+
+
+           
+          
+                      // $newPerem = str_replace("\r\n" , "", $newPerem);
           }
       }
 

@@ -65,7 +65,10 @@ foreach ($arr_name as $key => $value) {
    }
    if ($key1 == 'FinishContract') {
     $FinishContract   = $value1;
- }
+         }
+         if ($key1 == 'KpSum') {
+          $KpSum   = $value1;
+               }
      }
   }
 
@@ -153,6 +156,7 @@ foreach ($arr_name as $key => $value) {
                                       <option value=\"Мандрыкин\">Мандрыкин</option>
                                       <option value=\"Гуц\">Гуц</option>
                                       <option value=\"Горячев\">Горячев</option>
+                                      <option value=\"Штыбко\">Штыбко</option>
                                       <option value=\"Зелизко\">Зелизко</option>
                                  </select>
                                 </p>
@@ -196,10 +200,19 @@ foreach ($arr_name as $key => $value) {
                             </td>
                         </tr>
 
-                        <tr> 
-                            <td width=\"200\" valign=\"top\">Сумма КП</td>
-                            <td valign=\"top\">".$arr_name[$i]['KpSum']."</td>
-                        </tr>
+                           
+                    <tr> 
+                        <td width=\"200\" valign=\"top\">Сумма КП</td>
+                        <td valign=\"top\">".$arr_name[$i]['KpSum']."</td>
+                         <td    
+                              <p>
+                                <input type=\"number\" id=\"KpSum\" name=\"KpSum\" value =\"".$KpSum."\"/>
+                              </p>
+                         </td>
+                    </tr>
+
+
+
                         <tr> 
                             <td width=\"200\" valign=\"top\">НМЦК Тендера КП</td>
                             <td valign=\"top\">".$arr_name[$i]['TenderSum']."</td>

@@ -1,0 +1,32 @@
+.aboutUser{
+  display: block;
+  background-color: rgb(245, 140, 140);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 900;
+}
+.zagolovok{
+  display: block;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  margin: 10px;
+}
+.up_form {
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  background-color: rgb(160, 201, 255);
+  min-height: 30px;
+  margin: 0;
+  }
+  .datecor {
+    display: flex;
+    flex-direction:column;
+    align-items: flex-end;
+  }
+  .adminButton {
+    display: block;
+    text-align: right;
+    padding: 10px;
+  }

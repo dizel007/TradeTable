@@ -209,6 +209,7 @@ if ($typeQuery == 10) {
                           <option value=\"Мандрыкин\">Мандрыкин</option>
                           <option value=\"Гуц\">Гуц</option>
                           <option value=\"Горячев\">Горячев</option>
+                          <option value=\"Штыбко\">Штыбко</option>
                           <option value=\"Зелизко\">Зелизко</option>
                         </select>
                         </p>

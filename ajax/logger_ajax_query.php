@@ -1,6 +1,6 @@
 <?php
-require_once "../connect_DB.php";
-require_once "../functions/makeArrFromObj.php";
+require_once "../connect_db.php";
+require_once "../functions/make_arr_from_obj.php";
 $id = $_GET['id'];
 $marker = $_GET['marker'];
 //echo ("Hello logger Ajax");

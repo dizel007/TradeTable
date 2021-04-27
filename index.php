@@ -1,8 +1,8 @@
 <?php
  
-require_once ("connect_DB.php"); // подключение к БД
+require_once ("connect_db.php"); // подключение к БД
 
-if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
+if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем зарегистрирован ли пользователь
     {
 
         $sql = "SELECT * FROM users WHERE user_id = '".intval($_COOKIE['id'])."' LIMIT 1";
@@ -17,21 +17,22 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
         {
             setcookie("id", "", time() - 3600*26, "/");
             setcookie("hash", "", time() - 3600*26, "/", null, null, true); // httponly !!!
-            //print "Хм, что-то не получилось";
             header("Location: login.php"); exit();
         }
         else
         {
              
-                                  
-            print "Пользователь: ".$userdata['user_login'];
+            $user = $userdata['user_login'];
+            $userType = $userdata['userType'];
             
-                            require_once ("bodyparts/Include_functions.php"); // подлючаем файл, которые цепляет все функции
+                            require_once ("bodyparts/include_functions.php"); // подлючаем файл, которые цепляет все функции
                             require_once ("bodyparts/header.php"); // header HTML
+                            require_once ("bodyparts/admin_panel.php"); // панель Администратора
+
                             require_once ("bodyparts/input_part_page.php"); // шапка файила
                             require_once ("bodyparts/main_table.php"); // вывод главной таблицы
                             require_once ("bodyparts/modal.php"); // всплывающие окна
-                            //require_once ("changeDB/update_comment.php");
+                            require_once ("bodyparts/modal_change_inn.php"); // всплывающие окна
 
                             require_once ("bodyparts/footer.php"); // подвал страниы
                             
@@ -40,7 +41,7 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
     }
 else
 {
-   // print "Включите куки";
+
     header("Location: login.php"); exit();
 }
 ?>

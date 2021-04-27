@@ -2,11 +2,8 @@
 
 /// Устарело   перешел на AJAX запросы
 
-
-
-require_once "../connect_DB.php";
-require_once "../functions/makeArrFromObj.php";
-
+require_once "../connect_db.php";
+require_once "../functions/make_arr_from_obj.php";
 
 if (!empty($_GET['id']))  {
   $id = $_GET['id'];

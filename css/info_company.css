@@ -1,0 +1,51 @@
+.compInn {
+  /* display: block; */
+  
+  text-align: center;
+}
+.width20 {
+  width: 500px;
+}
+
+.shapka {
+  display: flex;
+  flex-direction: row;
+
+ }
+.kolon {
+  background-color: rgb(253, 223, 179);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 13px;
+  text-align: center;
+  }
+.item {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  margin: 1px;
+  max-height: 30px;
+  min-height: 30px;
+  padding: 5px;
+  border: 1px solid  black; /* Параметры границы */
+  border-radius: 3px;;
+  flex-grow: 1;
+}
+.item_desc {
+  display: flex;
+  align-items: center;  /* flex-grow: 1; */
+
+  margin: 1px;
+  padding: 3px;
+  border: 1px solid  black; /* Параметры границы */
+  border-radius: 3px;;
+  text-align: center;
+  flex-basis: 40%;
+  flex-grow: 1;
+}
+.inntext{
+  
+  font-weight:900;
+   
+}

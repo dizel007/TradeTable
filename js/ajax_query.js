@@ -7,7 +7,7 @@ $('.markerClass').click(function(event){
 	jsId = (event.target.id);
 	realJsId = jsId.substring(10); /// Убираем первую часть
 	$.ajax({
-		url: "ajax/ajaxChangeMarker.php",
+		url: "ajax/ajax_change_marker.php",
 		method: 'get',             /* Метод передачи (post или get) */
 	  dataType: 'html',
 		data: {id:realJsId},
@@ -36,7 +36,7 @@ $("document").ready(function(){
 		realJsId = jsId.substring(11); /// Убираем первую часть
 		alert (realJsId);
 		$.ajax({
-			url: "ajax/ajaxChangeComment.php",
+			url: "ajax/ajax_change_comment.php",
 			method: 'get',             /* Метод передачи (post или get) */
 			dataType: 'html',
 			data: {id:realJsId},
