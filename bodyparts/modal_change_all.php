@@ -17,7 +17,7 @@ if ($typeQuery == 100) {
                   <a href=\"#close\" class=\"close\"></a>
 
 
-      <form  action=\"changeDB/update_all_zakup.php?id=";
+      <form  action=\"changedb/update_all_zakup.php?id=";
               if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                   echo ("&typeQuery=100");
                      echo "\" method=\"post\">

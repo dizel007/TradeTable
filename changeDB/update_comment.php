@@ -1,5 +1,5 @@
 <?php
-require_once "../connect_DB.php";
+require_once "../connect_db.php";
 require_once "../functions/make_arr_from_obj.php";
 // Обновляем данные в талиблице. $typeQuery - выбоо столбца, который будем редактировать. $id -  ИД строки которую будем редактировать
 $id = $_GET['id'];

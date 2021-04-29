@@ -29,7 +29,7 @@ if ($typeQuery == 11) {
                       <a href=\"#close\" class=\"close\"></a>
                       <p>Текстовое содержание : ".$Our_comment."</p>
                       
-                  <form  action=\"changeDB/update_comment.php?id=";
+                  <form  action=\"changedb/update_comment.php?id=";
                   
                         if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                         echo ("&typeQuery=11");
@@ -67,7 +67,7 @@ if ($typeQuery == 11) {
                         <a href=\"#close\" class=\"close\"></a>
                         <p>Текстовое содержание : ".$Our_comment."</p>
                         
-                    <form  action=\"changeDB/update_comment.php?id=";
+                    <form  action=\"changedb/update_comment.php?id=";
                     
                           if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                           echo ("&typeQuery=6");
@@ -109,7 +109,7 @@ if ($typeQuery == 12) {
                       <a href=\"#close\" class=\"close\"></a>
                       <p>Текущая дата : ".$nextDate."</p>
                       
-                  <form  action=\"changeDB/update_comment.php?id=";
+                  <form  action=\"changedb/update_comment.php?id=";
                   
                   if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                   echo ("&typeQuery=12");
@@ -150,7 +150,7 @@ if ($typeQuery == 13) {
                   <a href=\"#close\" class=\"close\"></a>
                   <p>Текущая состояние : ".$ChangeCondition."</p>
                   
-              <form  action=\"changeDB/update_comment.php?id=";
+              <form  action=\"changedb/update_comment.php?id=";
                       
                       if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                       echo ("&typeQuery=13");
@@ -196,7 +196,7 @@ if ($typeQuery == 10) {
                   <a href=\"#close\" class=\"close\"></a>
                   <p>Текущая состояние : ".$ChangeCondition."</p>
                   
-              <form  action=\"changeDB/update_comment.php?id=";
+              <form  action=\"changedb/update_comment.php?id=";
                       
                       if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                       echo ("&typeQuery=10");
@@ -244,7 +244,7 @@ if ($typeQuery == 9) {
                   <a href=\"#close\" class=\"close\"></a>
                   <p>Текущая состояние : ".$ChangeCondition."</p>
                   
-              <form  action=\"changeDB/update_comment.php?id=";
+              <form  action=\"changedb/update_comment.php?id=";
                       
                       if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                       echo ("&typeQuery=9");
@@ -290,7 +290,7 @@ if ($typeQuery == 16) {
                   <a href=\"#close\" class=\"close\"></a>
                   <p>Текущая состояние : ".$ChangeCondition."</p>
                   
-              <form  action=\"changeDB/update_comment.php?id=";
+              <form  action=\"changedb/update_comment.php?id=";
                       
                       if (isset($id)) echo $id; // добавляем ID  - редактируемой строки
                       echo ("&typeQuery=16");
@@ -321,7 +321,7 @@ if ($typeQuery == 16) {
 if ($typeQuery == 100) {
   $ChangeCondition ="";
 
- require_once "modalChangeAll.php";
+ require_once "modal_change_all.php";
 }
 
 

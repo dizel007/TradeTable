@@ -136,7 +136,12 @@ echo <<<HTML
        <td><img class ="markerClass" id="markerLink $id" src="$marker"></td>
        <td><a name="$id" href="?id=$id" target="_blank"> $id </a></td> 
        <td><a href= "$LinkKp">$KpNumber</a></td> 
-       <td>$KpData</td>
+       
+       
+       
+       <td><a name="$id" href="open_excel/simplexlsx.php?LinkKp=$LinkKp" target="_blank">$KpData</a></td>
+       
+       
        <td class="hidden_class_column">$InnCustomer</td>
      HTML;
 

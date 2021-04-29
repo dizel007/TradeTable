@@ -15,7 +15,7 @@ function generateCode($length=6) {
 
 // Соединямся с БД
 //$link=mysqli_connect("localhost", "mysql_user", "mysql_password", "testtable");
-require_once ("connect_DB.php");
+require_once ("connect_db.php");
 
 if(isset($_POST['submit']))
 {
@@ -51,7 +51,7 @@ if(isset($_POST['submit']))
             $fileAll = 'log.txt';
             $now_date = date('Y-m-d H:i:s');           
             /// Вычитываем пользователя
-            require_once "connect_DB.php";
+            require_once "connect_db.php";
             $i=0;
             $sql = ("SELECT * FROM users WHERE user_hash = '$hash'");
             $user = $mysqli->query($sql);

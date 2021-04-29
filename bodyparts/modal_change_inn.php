@@ -13,7 +13,7 @@ echo <<<HTML
           <div class="dm-cell">
               <div class="dm-modal">
                   <a href="#close" class="close"></a>
-      <form  action="changeDB/update_inn_company.php?id=$id&typeQuery=200" method="post">
+      <form  action="changedb/update_inn_company.php?id=$id&typeQuery=200" method="post">
  <table class="modal_tabel" width="100%" cellspacing="0" cellpadding="5">
 
 HTML;
