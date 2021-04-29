@@ -13,9 +13,9 @@ echo <<<HTML
  if ($userType ==  1) {  // если админ
      echo <<<HTML
        <div class ="adminButton">
-                    <a href="changeDB/insert_raw_in_bd.php">Ввод данных в БД</a>
+                    <a href="changedb/insert_raw_in_bd.php">Ввод данных в БД</a>
                     | |  
-                    <a href="changeDB/insert_raw_comp_inn.php">Ввод ИНН</a>
+                    <a href="changedb/insert_raw_comp_inn.php">Ввод ИНН</a>
         <br> <br>
    
 <!-- ФОРМА ДЛЯ ЗАГРУЗКИ ФАЙЛОВ НА САЙТ -->
