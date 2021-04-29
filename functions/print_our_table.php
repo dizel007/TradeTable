@@ -13,6 +13,7 @@ echo <<<HTML
             <td>M</td>
             <td class="hidden_class_column">п/п</td>
             <td>№КП</td>
+            <td>СМ</td> 
             <td>Дата КП</td>
             <td class="hidden_class_column">ИНН</td>
             <td>Наименование</td>
@@ -137,9 +138,9 @@ echo <<<HTML
        <td><a name="$id" href="?id=$id" target="_blank"> $id </a></td> 
        <td><a href= "$LinkKp">$KpNumber</a></td> 
        
+       <td><a href="open_excel/simplexlsx.php?LinkKp=$LinkKp" class="btn" target="_blank"><img style = "opacity: 0.3" src="icons/table/bs.jpg" alt="SeeKp"></a></td> 
        
-       
-       <td><a name="$id" href="open_excel/simplexlsx.php?LinkKp=$LinkKp" target="_blank">$KpData</a></td>
+       <td>$KpData</td>
        
        
        <td class="hidden_class_column">$InnCustomer</td>
