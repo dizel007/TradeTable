@@ -1,6 +1,7 @@
 <?php
 
 function PrintAboutCompany ($arr_inn, $id) {
+      
       $inn= $arr_inn[0]['inn'];
       $name = $arr_inn[0]['name'];
       $fullName = $arr_inn[0]['fullName'];

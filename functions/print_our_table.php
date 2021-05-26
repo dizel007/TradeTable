@@ -26,17 +26,17 @@ echo <<<HTML
             <td class="hidden_class_column">Ответственный</td>
             <td  class="hidden_class_column">Ред</td>
             <td>Комментарий</td>
-                <td>Ред</td>
+                <td class="hidden_class_column">Ред</td>
             <td>Дата след.Звонка</td>
-                <td>Ред</td>
-            <td>Состояние</td>
-                <td>Ред</td>
+                <td class="hidden_class_column">Ред</td>
+            <td class="">Состояние</td>
+                <td class="hidden_class_column">Ред</td>
             <td>Сумма КП</td>
             <td class="hidden_class_column">НМЦК Закупки</td>
             <td>Контакт закрыт</td>
-                <td>Ред</td>
+                <td class="hidden_class_column">Ред</td>
             <td class="hidden_class_column">Адрес поставки</td>
-            <td>Ред</td>
+            <td class="">Ред</td>
       </tr>
 
 HTML;
@@ -134,7 +134,7 @@ $Adress = $arr_name[$i]['Adress'];
 /// Рисуем саму таблицу
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
-       <td><img class ="markerClass" id="markerLink $id" src="$marker"></td>
+       <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td>
        <td><a name="$id" href="?id=$id" target="_blank"> $id </a></td> 
        <td><a href= "$LinkKp">$KpNumber</a></td> 
        
@@ -162,15 +162,15 @@ echo <<<HTML
       <td class="hidden_class_column">$Responsible</td>
       <td class="hidden_class_column"><a href="?id=$id&typeQuery=10#win4" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td class ="limit_width">$Comment</td>
-      <td><a href="?id=$id&typeQuery=11#win1" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=11#win1" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td class ="$DateNextCallTable">$DateNextCall</td>
-      <td><a href="?id=$id&typeQuery=12#win2" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=12#win2" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td> <div class = "$KpConditionTable">$KpCondition</div></td>
-      <td><a href="?id=$id&typeQuery=13#win3" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=13#win3" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td>$KpSum</td>
       <td class="hidden_class_column">$TenderSum</td>
       <td>$FinishContract</td>
-      <td><a href="?id=$id&typeQuery=16#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=16#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td class="hidden_class_column">$Adress</td>
       <td><a href="?id=$id&typeQuery=100#win7" class="btn"><img style = "opacity: 0.5" src="icons/table/rr.jpg" alt="formatZakup"></a></td>
   </tr>

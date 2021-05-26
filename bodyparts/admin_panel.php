@@ -12,6 +12,10 @@ echo <<<HTML
                 
  if ($userType ==  1) {  // если админ
      echo <<<HTML
+     <!-- выборка того, что продали -->
+     <div>
+     <a href="select_what_your_sell.php" target="_blank">Выборка проданных КП</a>
+     </div>
        <div class ="adminButton">
                     <a href="changedb/insert_raw_in_bd.php">Ввод данных в БД</a>
                     | |  

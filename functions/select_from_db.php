@@ -24,15 +24,15 @@ function selectArrByKpNumber ($mysqli,$kpNumber) {
   // можно вводить номер КП как с "Е" так и без него (можно и русскую и английсую вбивать)
     if ((substr($kpNumber, -2) == "Е") or (substr($kpNumber, -2) == "е") ){
           $kpNumber = substr($kpNumber,0,-2)."Е";
-          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY pp";
+          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY KpData DESC";
 
      } elseif ((substr($kpNumber, -1) == "e") or (substr($kpNumber, -1) == "E")) {
           $kpNumber = substr($kpNumber,0,-1)."Е";
-          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY pp";
+          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY KpData DESC";
      
      } else {
           $NewkpNumber = $kpNumber."Е";
-          $sql = "SELECT * FROM reestrkp where kpNumber = '$NewkpNumber'  ORDER BY pp";
+          $sql = "SELECT * FROM reestrkp where kpNumber = '$NewkpNumber'  ORDER BY KpData DESC";
      }
    
   $fQuery = $mysqli->query($sql);
@@ -107,5 +107,14 @@ Function FindInnById ($mysqli, $id) {
     return $arr_name;
   }
 
+//// Выбираем из реестре те КП, которые купили у нас
 
+Function selectArrByKpCondition ($mysqli, $KpCondition) {
+  $sql = "SELECT * FROM reestrkp where KpCondition = '$KpCondition' ORDER BY pp";
+  $fQuery = $mysqli->query($sql);
+  $arr_findInn = MakeArrayFromObj($fQuery);
+
+  return $arr_findInn;
+
+}
   ?>

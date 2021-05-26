@@ -1,10 +1,15 @@
 <?php
 require_once "../connect_db.php";
 require_once "../functions/make_arr_from_obj.php";
+require_once "../functions/get_user.php";
+
 // Обновляем данные в талиблице. $typeQuery - выбоо столбца, который будем редактировать. $id -  ИД строки которую будем редактировать
 $id = $_POST['id'];
 $id=htmlspecialchars($id);
-$id=htmlspecialchars($id);
+
+
+$user_login = GetUser($mysqli); // Получаем имя пользователья
+
 $sql = "SELECT * FROM reestrkp where id = '$id'";
   $fQuery = $mysqli->query($sql);
   $my_id_arr = makeArrayFromObj($fQuery) ;
@@ -26,7 +31,7 @@ $Comment = $_POST['Comment'] ;
 $Comment =  trim ( $Comment , $character_mask = " \t\n\r\0\x0B");  // убипаем все лишние пробелы и переносы
 if ($Comment != $my_id_arr[0]['Comment']) { // Проверяем изменился ли коммень
 
-      if ($Comment !='')  $Comment ="@!" . date('Y-m-d').": ". $Comment; // цепляем дату внесения комметнария
+      if ($Comment !='')  $Comment ="@!" . date('Y-m-d')."(".$user_login."): ". $Comment; // цепляем дату внесения комметнария
 }
 
 $Comment=htmlspecialchars($Comment);
@@ -70,15 +75,15 @@ if (!$query){
 die();
 printf("Соединение не удалось: ");
 }
-;
-$sql = "SELECT * FROM users WHERE user_hash = '$_COOKIE[hash]'";
-//$sql = "SELECT * FROM reestrkp where InnCustomer = '$inn';
-$user = $mysqli->query($sql);
+// ;
+// $sql = "SELECT * FROM users WHERE user_hash = '$_COOKIE[hash]'";
+// //$sql = "SELECT * FROM reestrkp where InnCustomer = '$inn';
+// $user = $mysqli->query($sql);
 
-while ($row = $user -> fetch_assoc()) 
-{
-       $user_login = $row["user_login"];
-   }
+// while ($row = $user -> fetch_assoc()) 
+// {
+//        $user_login = $row["user_login"];
+//    }
 
    //printf($user_login);
       $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
@@ -126,15 +131,7 @@ while ($row = $user -> fetch_assoc())
       file_put_contents($fileAll, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
 
 
-//echo "UPDATE COMMENT <br>";
 header ("Location: ..?id=".$id);  // перенаправление на нужную страницу
 exit();    // прерываем работу скрипта, чтобы забыл о прошлом
 
 ?>
-<!-- 
-$KpCondition = $_POST['KpCondition'] ;
-                 //  echo $arr_name[$i]['KpSum'] ;
-                //   echo $arr_name[$i]['TenderSum'] ;
-$FinishContract = ['FinishContract'] ;
-                  // echo $arr_name[$i]['LinkKp'] ;
-$Adress = $_POST['Adress']; -->
