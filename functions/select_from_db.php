@@ -110,11 +110,30 @@ Function FindInnById ($mysqli, $id) {
 //// Выбираем из реестре те КП, которые купили у нас
 
 Function selectArrByKpCondition ($mysqli, $KpCondition) {
-  $sql = "SELECT * FROM reestrkp where KpCondition = '$KpCondition' ORDER BY pp";
+  $sql = "SELECT * FROM reestrkp where KpCondition = '$KpCondition' ORDER BY KpData DESC";
   $fQuery = $mysqli->query($sql);
   $arr_findInn = MakeArrayFromObj($fQuery);
 
   return $arr_findInn;
 
+}
+
+//// Выбираем КП по части названия компании
+
+Function selectArrByNamePart ($arr_name, $zakName) {
+  
+  foreach ($arr_name as $key => $value) {
+    foreach ($value as $key1 => $value1) {
+        if ($key1 == 'NameCustomer') {
+          if (strpos( mb_strtolower($value1), mb_strtolower($zakName))) {
+                $FindNameCustomer[] = $value;
+              }
+        }
+      }
+  }
+  if (!isset($FindNameCustomer)) {
+    $FindNameCustomer[] = 1;
+  }
+return $FindNameCustomer;
 }
   ?>

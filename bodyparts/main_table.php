@@ -153,6 +153,29 @@ elseif ($typeQuery == 10 and $value <> "") {
   printOurTable($arr_name, $FinishContract) ; 
   }
 
+// ВЫВОДИМ ТАБЛИЦУ ПО Найденному наименованию
+elseif ($typeQuery == 8 and $value <> "") {
+  $FinishContract = 1 ; // всегда показываем СКРЫТЫЕ привязанные закупки
+  $zakName = $_GET['value'];
+  echo "<div class = \"zagolovok\">Название Компании : $zakName<BR></div>";
+  
+  $arr_name = selectAllArr($mysqli);
+  $select_arr = selectArrByNamePart($arr_name, $zakName);
+    
+//   echo '<pre>';
+// print_r($select_arr);
+// echo '</pre>';
+  
+if ($select_arr[0]['pp'] !='') {
+          
+  printOurTable($select_arr, $FinishContract) ; 
+        }
+        else {
+          echo "<div class = \"zagolovok\"> Не нашли таких Наименований<BR></div>";
+        }
+}
+// ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ номеру КП
+
 // ЕСЛИ НИ ОДИН ВАРИАНТ НЕ СРАБОТАЛ, ТО ВЫВОДИМ ВСЮ ТАБЛИЦУ  
   else {
     $arr_name = selectAllArr($mysqli);

@@ -32,6 +32,7 @@ echo <<<HTML
             <option value="4">ИНН</option>
             <option value="7">ID КП</option>
             <option value="10">Ответственный</option>
+            <option value="8">Наименование Заказчика</option>
             </select>
         </div>
 
