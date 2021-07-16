@@ -125,7 +125,11 @@ Function selectArrByNamePart ($arr_name, $zakName) {
   foreach ($arr_name as $key => $value) {
     foreach ($value as $key1 => $value1) {
         if ($key1 == 'NameCustomer') {
-          if (strpos( mb_strtolower($value1), mb_strtolower($zakName))) {
+          $value1 = "222 ".$value1;
+          $value1 = mb_strtolower($value1);
+          $zakName = mb_strtolower($zakName);
+
+          if (stripos($value1, $zakName)) {
                 $FindNameCustomer[] = $value;
               }
         }
@@ -134,6 +138,7 @@ Function selectArrByNamePart ($arr_name, $zakName) {
   if (!isset($FindNameCustomer)) {
     $FindNameCustomer[] = 1;
   }
+
 return $FindNameCustomer;
 }
   ?>

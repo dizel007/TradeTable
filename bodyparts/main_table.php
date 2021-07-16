@@ -162,7 +162,7 @@ elseif ($typeQuery == 8 and $value <> "") {
   $arr_name = selectAllArr($mysqli);
   $select_arr = selectArrByNamePart($arr_name, $zakName);
     
-//   echo '<pre>';
+// echo '<pre>';
 // print_r($select_arr);
 // echo '</pre>';
   
