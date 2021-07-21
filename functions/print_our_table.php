@@ -17,6 +17,7 @@ echo <<<HTML
             <td>Дата КП</td>
             <td class="hidden_class_column">ИНН</td>
             <td>Наименование</td>
+            <td>PDF</td>
             <td class="hidden_class_column">Контакты</td>
             <!-- <td class="hidden_class_column">Ред</td> -->
             <!-- <td  class="hidden_class_column\">ID КП</td>" -->
@@ -131,6 +132,8 @@ $KpSum = number_format($arr_name[$i]['KpSum']);
 $TenderSum = number_format($arr_name[$i]['TenderSum']);
 $FinishContract = $arr_name[$i]['FinishContract'];
 $Adress = $arr_name[$i]['Adress'];
+//делаем ссылку для скачивания PDF
+$LinkKpPdf = substr($LinkKp, 0, -4)."pdf";
 /// Рисуем саму таблицу
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
@@ -153,6 +156,7 @@ echo <<<HTML
              }
              
   echo <<<HTML
+      <td><a href= "$LinkKpPdf" target="_blank"><img style = "opacity: 0.8" src="icons/table/pdf.png" alt="SeeKp"></a> </a></td> 
       <td class="hidden_class_column"> $ContactCustomer</td>
       <!-- <td class="hidden_class_column"><a href="?id=$id&typeQuery=6#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>   -->
       <!-- <td class="hidden_class_column">$idKp"</td> -->

@@ -26,7 +26,7 @@ echo <<<HTML
 
 <form enctype="multipart/form-data" action="functions/loadfiles.php" method="POST">
     
-    <input type="hidden" name="MAX_FILE_SIZE" value="250000" multiple>
+    <input type="hidden" name="MAX_FILE_SIZE" value="500000" multiple>
                 <select size="1" name="adres">
                           <option disabled>Загружать</option>
                           <option value="/EXCEL/">КП</option>

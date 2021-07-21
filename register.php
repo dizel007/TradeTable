@@ -2,7 +2,7 @@
 // Страница регистрации нового пользователя
 
 // Соединямся с БД
-require_once ("connect_DB.php");
+require_once ("connect_db.php");
 //$link=mysqli_connect("localhost", "mysql_user", "mysql_password", "testtable");
 
 
