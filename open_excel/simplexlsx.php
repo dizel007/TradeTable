@@ -15,6 +15,10 @@ $file_xlsx_name ="../". $_GET['LinkKp'];
 				if ($k == 0) continue; // skip first row
 				if ($str==3) {$kp_name  = $r[6];}
 
+				if ($str==5) {$Zakazchik = $r[9];}
+				if ($str==7) {$Phone = $r[9];}
+				if ($str==8) {$Email = $r[9];}
+
 			  if ($str==12) {$ZakupName  = $r[2];}
 			  if ($str<13) { $str++; continue;} // пропускаем все что выше таблицы
 			  if (empty($r[2])) {$stop++;} // находим конец таблицы с ценам и обрезаем после полной цены
@@ -24,6 +28,14 @@ $file_xlsx_name ="../". $_GET['LinkKp'];
 				 if ($stop == 7) {$Dostavka = $r[3]." ".$r[5]."=".$r[12];} // условия отгузки
 			 $str++; // переменная чтобы найти строку начала таблциы
 		 }
+
+
+		 echo "<b>Заказчик :".$Zakazchik;"</b><br>";
+		 echo "<br><br>";
+		 echo "<b>Телефон :".$Phone;"</b><br>";
+		 echo "<br>";
+		 echo "<b>Эл. почта :".$Email;"</b><br>";
+		 echo "<br><br>";
 
 		 $ZakupName = substr($ZakupName, 132, -64);
 		 echo "<b>".$ZakupName;"</b><br>";
