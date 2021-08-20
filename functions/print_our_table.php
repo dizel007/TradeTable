@@ -19,6 +19,7 @@ echo <<<HTML
             <td>Наименование</td>
             <td>PDF</td>
             <td class="hidden_class_column">Контакты</td>
+            <td>EM</td>
             <!-- <td class="hidden_class_column">Ред</td> -->
             <!-- <td  class="hidden_class_column\">ID КП</td>" -->
             <!-- <td class="hidden_class_column">Статус КП</td>": -->
@@ -158,6 +159,9 @@ echo <<<HTML
   echo <<<HTML
       <td><a href= "$LinkKpPdf" target="_blank"><img style = "opacity: 0.8" src="icons/table/pdf.png" alt="SeeKp"></a> </a></td> 
       <td class="hidden_class_column"> $ContactCustomer</td>
+
+
+      <td><a href= "mailer/msg_box.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/pdf.png" alt="SeeKp"></a> </a></td> 
       <!-- <td class="hidden_class_column"><a href="?id=$id&typeQuery=6#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>   -->
       <!-- <td class="hidden_class_column">$idKp"</td> -->
       <!-- <td class="hidden_class_column">$StatusKp</td> -->

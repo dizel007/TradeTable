@@ -4,6 +4,12 @@ echo <<<HTML
                   Пользователь :$user
              <br>
          HTML;
+
+         <<<HTML
+             <div class = "aboutUser">
+                  Пользователь :$user
+             <br>
+         HTML;
  // Если загружали Файл, то при успешной загрузке появится эта надпись
  
   if (!empty($_GET['fullload']))  {
