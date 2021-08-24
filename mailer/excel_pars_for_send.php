@@ -26,15 +26,15 @@ $file_xlsx_name = "../".$arr_kp[0]['LinkKp'];
 		 }
 
 
-		 echo "<b>Заказчик :".$Zakazchik;"</b><br>";
+		 echo "Заказчик :".$Zakazchik;"<br>";
 		 echo "<br><br>";
 		//  echo "<b>Телефон :".$Phone;"</b><br>";
 		//  echo "<br>";
-		 echo "<b>Эл. почта :".$Email;"</b><br>";
+		 echo "Эл. почта в КП :<br>".$Email;"<br>";
 		 echo "<br><br>";
 
 		 $ZakupName = substr($ZakupName, 132, -64);
-		 echo "<b>".$ZakupName;"</b><br>";
+		 echo $ZakupName;"<br>";
 		 echo "<br>";
 
 	} else {

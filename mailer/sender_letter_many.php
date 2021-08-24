@@ -9,24 +9,16 @@ if (!empty($_POST['email_from_kp'])) {
     $ZakupName = $_POST['ZakupName'];
   }
 
-
-
-
 // echo "<pre>";
 // var_dump($_FILES['upload_file']['name']);
 // echo "<pre>";
 
-  $Files_count = 0;
-  // echo "КОЛИЧЕСТВО ФАЙЛОВ NN = ".count($_FILES['upload_file']['name']). "<br>";
+ $Files_count = 0;
 $i=0;
 for ($i=0; $i < count($_FILES['upload_file']['name']); $i++ ){
 $uploadfile = "../EXCEL/" . basename($_FILES['upload_file']['name'][$i]);
-// echo "------------".$uploadfile."----2333==<br>";
 $file_name = basename($_FILES['upload_file']['name'][$i]);
 $link_pppdf[$i] = "../EXCEL/". basename($_FILES['upload_file']['name'][$i]);
-// echo "333333333===".$file_name."3eeeeeeeeeeeeee<br>";
-//  echo "3333--" . $uploadfile;
-// echo "<br>888==".$_FILES['upload_file']['tmp_name']."<br>";
 
       if (move_uploaded_file($_FILES['upload_file']['tmp_name'][$i], $uploadfile)) {
           // echo "Файл корректен и был успешно загружен.\n";
@@ -83,7 +75,7 @@ $mail->isHTML(true);                                  // Set email format to HTM
 $mail->Subject = 'КП от ТД АНМКАКС';
 $mail->Body    = "
 	<b> Добрый день!</b> <br> 
-    Предлагаем рассмотреть приобретение систем водоотвода, для гос.закупки <br>
+    Предлагаем рассмотреть приобретение следующей продукции <br>
     На всю предлагаемую продукцию имеются сертификаты. <br><br>
     Если у Вас есть более интересное предложение, то напишите нам, возможно мы сможешь улучшить наше КП. <br><br>
     Стоимость доставки рассчитана приблизительно, и может быть уточнена.<br><br>
@@ -95,15 +87,6 @@ $mail->Body    = "
 
                                        ";
 
-if(!$mail->send()) {
-    echo "ОШИБКА ОТПРАВКИ";
-    return false;
-   
-   
-} else {
-    echo "СООБЩЕНИЕ ОТПРАВЛЕНО";
-    return true;
-  
-}
-
+// Запускаем отправку письма
+require_once ("modul/sendfile.php");
 ?>

@@ -16,9 +16,10 @@ echo <<<HTML
             <td>СМ</td> 
             <td>Дата КП</td>
             <td class="hidden_class_column">ИНН</td>
-            <td>Наименование</td>
             <td>PDF</td>
-            <td class="hidden_class_column">Контакты</td>
+            <td>Наименование</td>
+         
+            <!-- <td class="hidden_class_column">Контакты</td> -->
             <td>EM</td>
             <!-- <td class="hidden_class_column">Ред</td> -->
             <!-- <td  class="hidden_class_column\">ID КП</td>" -->
@@ -35,7 +36,7 @@ echo <<<HTML
                 <td class="hidden_class_column">Ред</td>
             <td>Сумма КП</td>
             <td class="hidden_class_column">НМЦК Закупки</td>
-            <td>Контакт закрыт</td>
+            <td>КонЗак</td>
                 <td class="hidden_class_column">Ред</td>
             <td class="hidden_class_column">Адрес поставки</td>
             <td class="">Ред</td>
@@ -135,6 +136,7 @@ $FinishContract = $arr_name[$i]['FinishContract'];
 $Adress = $arr_name[$i]['Adress'];
 //делаем ссылку для скачивания PDF
 $LinkKpPdf = substr($LinkKp, 0, -4)."pdf";
+$exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли ПДФ файл
 /// Рисуем саму таблицу
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
@@ -150,15 +152,28 @@ echo <<<HTML
        <td class="hidden_class_column">$InnCustomer</td>
      HTML;
 
+        // Проверяем есть ли ПДФ файл, то рисуем Иконку и цепляем ссылку на него        
+        if ($exist_pdf_file) {  
+          echo "<td><a href= \"$LinkKpPdf\" target=\"_blank\"><img style = \"opacity: 0.8\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></a> </a></td>" ;
+                } else {
+                  echo "<td><a href= \"#\"><img style = \"opacity: 0.1\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></a> </a></td>" ;
+                 }  
+
+
     if ($konturLinkOn == 1) {  
               echo "<td><a href=\"".$arr_name[$i]['konturLink']."\" alt=\"konturLink\" target=\"_blank\">".$arr_name[$i]['NameCustomer']."</a></td>";
             } else {
                echo "<td>".$arr_name[$i]['NameCustomer']."</td>";
              }
-             
+        
+            //  
+
+
+
+
   echo <<<HTML
-      <td><a href= "$LinkKpPdf" target="_blank"><img style = "opacity: 0.8" src="icons/table/pdf.png" alt="SeeKp"></a> </a></td> 
-      <td class="hidden_class_column"> $ContactCustomer</td>
+ 
+      <!-- <td class="hidden_class_column"> $ContactCustomer</td> -->
 
 
       <td><a href= "mailer/msg_box.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 

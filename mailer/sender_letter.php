@@ -4,12 +4,13 @@ require_once('phpmailer/PHPMailerAutoload.php'); // link PHPMailer
 if (!empty($_POST['email_from_kp'])) {
     $email_from_kp = $_POST['email_from_kp'];
   }
-  if (!empty($_POST['link_pdf'])) {
+if (!empty($_POST['link_pdf'])) {
     $link_pdf = $_POST['link_pdf'];
   }
-  if (!empty($_POST['ZakupName'])) {
+if (!empty($_POST['ZakupName'])) {
     $ZakupName = $_POST['ZakupName'];
   }
+ 
 
 $mail = new PHPMailer;
 $mail->CharSet = 'utf-8';
@@ -25,7 +26,10 @@ $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, 
 $mail->Port = 465;                                    // TCP port to connect to
  
 $mail->setFrom('Resetki2020@yandex.ru', 'Коммерческое предложение');   // От кого письмо 
-$mail->addAddress($email_from_kp);     // Add a recipient
+
+$mail->addAddress($email_from_kp);    
+
+// Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
 //$mail->addCC('cc@example.com');
@@ -37,7 +41,7 @@ $mail->isHTML(true);                                  // Set email format to HTM
 $mail->Subject = 'КП от ТД АНМКАКС';
 $mail->Body    = "
 	<b> Добрый день!</b> <br> 
-    Предлагаем рассмотреть приобретение систем водоотвода, для гос.закупки <br>
+    Предлагаем рассмотреть приобретение следующей продукции, для гос.закупки <br>
     <b> $ZakupName</b>  <br><br>
 	На всю предлагаемую продукцию имеются сертификаты. <br><br>
     Если у Вас есть более интересное предложение, то напишите нам, возможно мы сможешь улучшить наше КП. <br><br>
@@ -49,16 +53,7 @@ $mail->Body    = "
     по телефону 8-495-787-24-05<br>
 
                                        ";
-
-if(!$mail->send()) {
-    echo "ОШИБКА ОТПРАВКИ";
-    return false;
-   
-   
-} else {
-    echo "СООБЩЕНИЕ ОТПРАВЛЕНО";
-    return true;
-  
-}
+// Запускаем отправку письма
+require_once ("modul/sendfile.php");
 
 ?>
