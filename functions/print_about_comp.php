@@ -12,14 +12,14 @@ function PrintAboutCompany ($arr_inn, $id) {
       $comment = $arr_inn[0]['comment'];
 echo <<<HTML
 
-<div class="compInn">
+<div  class="compInn">
 
         <div class="zagolovok">Информация о компании : $name</div>
         <div class = "shapka"> 
-            <div class = "kolon">
+            <div  class = "kolon">
                 <div class = "item">ИНН</div>
                 <div class = "item_desc inntext">$inn</div>
-        </div>
+           </div>
         <div class = "kolon">
                 <div class = "item">Наименование</div>
                 <div class = "item_desc">$name</div>
@@ -51,7 +51,7 @@ echo <<<HTML
         <div class = "kolon">
                 <div class = "item">Ред</div>
                 <div class = "item_desc">
-                <a href="?id=$id&typeQuery=200#win8" class="btn"><img style = "opacity: 0.5" width="20" height="20" src="icons/table/rr.jpg" alt="formatZakup"></a>
+                <a href="?id=$id&typeQuery=200#win8" class="btn"><img style = "opacity: 0.9" src="icons/table/redakt1.png" alt="formatZakup"></a>
                 </div>
         </div>
         

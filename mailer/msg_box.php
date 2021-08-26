@@ -51,19 +51,19 @@ if (file_exists($link_pdf_excel)) require_once ("excel_pars_for_send.php"); // �
 
 $ZakupNameTemp = str_replace('"', '', $ZakupName);
 $ZakupNameTemp = str_replace(' ', '%20', $ZakupNameTemp);
-// echo "@@@@<br>". $ZakupNameTemp;
+
 if ($real_file) {
 // Форма Для отправки, Если МЫ нашли в каталоге файл
 echo <<<HTML
 
-
+<h2> ФОРМА ДЛЯ ОТПРАВКИ ПИСЬМА КЛИЕНТУ</h2>
+<br> 
 <form enctype="multipart/form-data" action="sender_letter.php"  method="post">
         <!-- <p>
           email :
            <input type="text" name="email_from_kp" value ="$email_from_kp"/>
       </p> -->
-      <br>
-      <br>
+   
 HTML;
 
 require_once ("modul/email_spisok.php");
@@ -74,7 +74,7 @@ require_once ("modul/email_spisok.php");
 // echo "<br> Новый Email:";
 // echo "<input type=\"email\" name=\"email_from_kp\" value=\"\"><br>";
    echo <<<HTML
-<br>
+
 
       Наименование Закупки :
           <select size="1" name="ZakupName">
@@ -94,6 +94,7 @@ HTML;
 // Форма Для отправки, Если МЫ **** НЕЕЕЕЕ ******* нашли в каталоге файл
 else {
  echo <<< HTML
+ 
  <form enctype="multipart/form-data" action="sender_letter_many.php"  method="post">
  HTML;
  require_once ("modul/email_spisok.php");     

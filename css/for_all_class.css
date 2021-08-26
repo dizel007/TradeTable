@@ -1,9 +1,10 @@
 .aboutUser{
   display: block;
-  background-color: rgb(245, 140, 140);
+  background-color: rgb(236, 180, 180);
   text-align: center;
   font-size: 14px;
   font-weight: 900;
+
 }
 .zagolovok{
   display: block;

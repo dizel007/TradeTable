@@ -1,15 +1,18 @@
 <?php
 require_once('phpmailer/PHPMailerAutoload.php'); // link PHPMailer
 
-if (!empty($_POST['email_from_kp'])) {
-    $email_from_kp = $_POST['email_from_kp'];
-  }
-if (!empty($_POST['link_pdf'])) {
-    $link_pdf = $_POST['link_pdf'];
-  }
-if (!empty($_POST['ZakupName'])) {
-    $ZakupName = $_POST['ZakupName'];
-  }
+
+///
+require_once("modul/get_data.php"); // Заполняем наши переменные
+// if (!empty($_POST['email_from_kp'])) {
+//     $email_from_kp = $_POST['email_from_kp'];
+//   }
+// if (!empty($_POST['link_pdf'])) {
+//     $link_pdf = $_POST['link_pdf'];
+//   }
+// if (!empty($_POST['ZakupName'])) {
+//     $ZakupName = $_POST['ZakupName'];
+//   }
  
 
 $mail = new PHPMailer;
@@ -25,13 +28,15 @@ $mail->Password = 'EVtyzTcnmRcthjrc';                 // Наш пароль о�
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;                                    // TCP port to connect to
  
+
 $mail->setFrom('Resetki2020@yandex.ru', 'Коммерческое предложение');   // От кого письмо 
 
 $mail->addAddress($email_from_kp);    
 
 // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
-//$mail->addReplyTo('info@example.com', 'Information');
+ $mail->addReplyTo('tender@anmaks.ru', 'Information');
+//  $mail->setFrom('tender@anmaks.ru', 'Mailbox name');
 //$mail->addCC('cc@example.com');
 //$mail->addBCC('bcc@example.com');
 $mail->addAttachment($link_pdf);         // Add attachments

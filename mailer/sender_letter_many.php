@@ -1,19 +1,10 @@
 <?php
 require_once('phpmailer/PHPMailerAutoload.php'); // link PHPMailer
 
-if (!empty($_POST['email_from_kp'])) {
-    $email_from_kp = $_POST['email_from_kp'];
-  }
- 
-  if (!empty($_POST['ZakupName'])) {
-    $ZakupName = $_POST['ZakupName'];
-  }
 
-// echo "<pre>";
-// var_dump($_FILES['upload_file']['name']);
-// echo "<pre>";
+require_once("modul/get_data.php"); // Заполняем наши переменные
 
- $Files_count = 0;
+$Files_count = 0;
 $i=0;
 for ($i=0; $i < count($_FILES['upload_file']['name']); $i++ ){
 $uploadfile = "../EXCEL/" . basename($_FILES['upload_file']['name'][$i]);

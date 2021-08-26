@@ -7,20 +7,20 @@ $i=0;
 echo <<<HTML
      <div class ="our_table"> 
       
-      <table class="drawtable employee_table">
+      <table width="100%" class="drawtable employee_table">
       <tbody>
           <tr>
             <td>M</td>
             <td class="hidden_class_column">п/п</td>
             <td>№КП</td>
-            <td>СМ</td> 
+            <td>Ex</td> 
             <td>Дата КП</td>
             <td class="hidden_class_column">ИНН</td>
             <td>PDF</td>
             <td>Наименование</td>
          
             <!-- <td class="hidden_class_column">Контакты</td> -->
-            <td>EM</td>
+            <!-- <td>EM</td> -->
             <!-- <td class="hidden_class_column">Ред</td> -->
             <!-- <td  class="hidden_class_column\">ID КП</td>" -->
             <!-- <td class="hidden_class_column">Статус КП</td>": -->
@@ -30,7 +30,7 @@ echo <<<HTML
             <td  class="hidden_class_column">Ред</td>
             <td>Комментарий</td>
                 <td class="hidden_class_column">Ред</td>
-            <td>Дата след.Звонка</td>
+            <td>Сл.звонок</td>
                 <td class="hidden_class_column">Ред</td>
             <td class="">Состояние</td>
                 <td class="hidden_class_column">Ред</td>
@@ -137,33 +137,45 @@ $Adress = $arr_name[$i]['Adress'];
 //делаем ссылку для скачивания PDF
 $LinkKpPdf = substr($LinkKp, 0, -4)."pdf";
 $exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли ПДФ файл
+
+$exist_excel_file = file_exists($LinkKp);
+
+
 /// Рисуем саму таблицу
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
        <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td>
        <td><a name="$id" href="?id=$id" target="_blank"> $id </a></td> 
        <td><a href= "$LinkKp">$KpNumber</a></td> 
+HTML;
+
+
+
+
+if ($exist_excel_file) {  
+  echo "<td><a href=\"open_excel/simplexlsx.php?LinkKp=$LinkKp\" class=\"btn\" target=\"_blank\"><img style = \"opacity: 0.8\" src=\"icons/table/excel.png\" alt=\"Excel\"></a></td>";
+        } else {
+  echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/excel.png\" alt=\"Excel\"></td>";
+       }  
+
+echo <<<HTML
+       <td width="60">$KpData</td>
        
-       <td><a href="open_excel/simplexlsx.php?LinkKp=$LinkKp" class="btn" target="_blank"><img style = "opacity: 0.3" src="icons/table/bs.jpg" alt="SeeKp"></a></td> 
        
-       <td>$KpData</td>
-       
-       
-       <td class="hidden_class_column">$InnCustomer</td>
+       <td width ="70" class="hidden_class_column">$InnCustomer</td>
      HTML;
 
         // Проверяем есть ли ПДФ файл, то рисуем Иконку и цепляем ссылку на него        
         if ($exist_pdf_file) {  
-          echo "<td><a href= \"$LinkKpPdf\" target=\"_blank\"><img style = \"opacity: 0.8\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></a> </a></td>" ;
+          echo "<td><a href= \"$LinkKpPdf\" target=\"_blank\"><img style = \"opacity: 0.8\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></a></td>" ;
                 } else {
-                  echo "<td><a href= \"#\"><img style = \"opacity: 0.1\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></a> </a></td>" ;
+                  echo "<td><img style = \"opacity: 0.1\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></td>" ;
                  }  
 
-
     if ($konturLinkOn == 1) {  
-              echo "<td><a href=\"".$arr_name[$i]['konturLink']."\" alt=\"konturLink\" target=\"_blank\">".$arr_name[$i]['NameCustomer']."</a></td>";
+              echo "<td width =\"150\" ><a href=\"".$arr_name[$i]['konturLink']."\" alt=\"konturLink\" target=\"_blank\">".$arr_name[$i]['NameCustomer']."</a></td>";
             } else {
-               echo "<td>".$arr_name[$i]['NameCustomer']."</td>";
+               echo "<td width =\"150\">".$arr_name[$i]['NameCustomer']."</td>";
              }
         
             //  
@@ -175,18 +187,19 @@ echo <<<HTML
  
       <!-- <td class="hidden_class_column"> $ContactCustomer</td> -->
 
-
-      <td><a href= "mailer/msg_box.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
+<!-- ******************************  Icons Email  *********************************************** -->
+      <!-- <td><a href= "mailer/msg_box.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td>  -->
+<!-- ****************************************************************************************** -->
       <!-- <td class="hidden_class_column"><a href="?id=$id&typeQuery=6#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>   -->
       <!-- <td class="hidden_class_column">$idKp"</td> -->
       <!-- <td class="hidden_class_column">$StatusKp</td> -->
-      <td class="hidden_class_column">$KpImportance</td>
+      <td width ="50"class="hidden_class_column">$KpImportance</td>
       <td class="hidden_class_column"><a href="?id=$id&typeQuery=9#win5" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>       
-      <td class="hidden_class_column">$Responsible</td>
+      <td width="80" class="hidden_class_column">$Responsible</td>
       <td class="hidden_class_column"><a href="?id=$id&typeQuery=10#win4" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td class ="limit_width">$Comment</td>
-      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=11#win1" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
-      <td class ="$DateNextCallTable">$DateNextCall</td>
+      <td class = "hidden_class_column"><a href="?id=$id&typeQuery=11#win1" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td width="60" class ="$DateNextCallTable">$DateNextCall</td>
       <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=12#win2" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td> <div class = "$KpConditionTable">$KpCondition</div></td>
       <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=13#win3" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
@@ -194,8 +207,8 @@ echo <<<HTML
       <td class="hidden_class_column">$TenderSum</td>
       <td>$FinishContract</td>
       <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=16#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
-      <td class="hidden_class_column">$Adress</td>
-      <td><a href="?id=$id&typeQuery=100#win7" class="btn"><img style = "opacity: 0.5" src="icons/table/rr.jpg" alt="formatZakup"></a></td>
+      <td width ="150" class="hidden_class_column">$Adress</td>
+      <td ><a href="?id=$id&typeQuery=100#win7" class="btn"><img style = "opacity: 0.8" src="icons/table/redakt1.png" alt="formatZakup"></a></td>
   </tr>
 HTML;
      } 

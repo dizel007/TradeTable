@@ -11,18 +11,20 @@
 
  .drawtable td{
  background: rgb(221, 241, 248);
- border:  0.5px solid ;
+ border: 1px solid grey;
  word-wrap : break-word;
  text-align: center;
-  
+ /* border-collapse:collapse; */
+  padding: 1px;
+  margin: 10px;
 }
 .alarmcolor {
   color: red;
   font-weight: 900;
 }
 .limit_width {
-  
-  max-width: 250px;
+  min-width: 400px;
+  max-width: 400px;
 }
 .our_table {
   overflow-x:visible;
@@ -81,7 +83,7 @@
 
  .drawtableinn td{
  background: rgb(240, 194, 134);
- border:  0.5px solid ;
+ border:  1px solid ;
  word-wrap : break-word;
  text-align: center;
  }

@@ -20,6 +20,8 @@ $email_count = count($emails);
 
 // Форма Для отправки, Если МЫ нашли в каталоге файл
 echo <<<HTML
+<h1> ФОРМА ДЛЯ ОТПРАВКИ ПИСЬМА КЛИЕНТУ</h1>
+<br> <br>
 <form enctype="multipart/form-data" action="sender_letter_many.php"  method="post">
 
 <p>Наименование Закупки :
