@@ -1,5 +1,4 @@
 <?php
-require_once "real_time.php";
 function printOurTable($arr_name, $FinContr) {
 
 
