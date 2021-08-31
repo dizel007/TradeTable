@@ -1,7 +1,9 @@
 <?php
-
+require_once "real_time.php";
 function printOurTable($arr_name, $FinContr) {
 
+
+ 
 // шапка таблицы
 $i=0;
 echo <<<HTML
@@ -38,6 +40,7 @@ echo <<<HTML
             <td class="hidden_class_column">НМЦК Закупки</td>
             <td>КонЗак</td>
                 <td class="hidden_class_column">Ред</td>
+            <td class="hidden_class_column">Вр</td>
             <td class="hidden_class_column">Адрес поставки</td>
             <td class="">Ред</td>
       </tr>
@@ -53,6 +56,7 @@ if (isset($arr_name)) {
 for ($i=0; $i<count($arr_name); $i++)
 {
 //// Проверяем актуальность КП (Если не актуально то закрасим серым цветом)
+
     if ($arr_name[$i]['StatusKp']=="КП сформировано" ||
         $arr_name[$i]['FinishContract']==1 || 
         $arr_name[$i]['KpCondition']=="Не требуется" || 
@@ -140,16 +144,15 @@ $exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли П
 
 $exist_excel_file = file_exists($LinkKp);
 
-
 /// Рисуем саму таблицу
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
        <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td>
-       <td><a name="$id" href="?id=$id" target="_blank"> $id </a></td> 
+
+       <!-- <td><a name="$id" href="?id=$id" target="_blank"> $id </a></td>  -->
+       <td><a name="$id" href="?id=$id" target="_blank"><img src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
        <td><a href= "$LinkKp">$KpNumber</a></td> 
 HTML;
-
-
 
 
 if ($exist_excel_file) {  
@@ -197,7 +200,11 @@ echo <<<HTML
       <td class="hidden_class_column"><a href="?id=$id&typeQuery=9#win5" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>       
       <td width="80" class="hidden_class_column">$Responsible</td>
       <td class="hidden_class_column"><a href="?id=$id&typeQuery=10#win4" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      
       <td class ="limit_width">$Comment</td>
+      
+      
+      
       <td class = "hidden_class_column"><a href="?id=$id&typeQuery=11#win1" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       <td width="60" class ="$DateNextCallTable">$DateNextCall</td>
       <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=12#win2" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
@@ -207,9 +214,16 @@ echo <<<HTML
       <td class="hidden_class_column">$TenderSum</td>
       <td>$FinishContract</td>
       <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=16#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      
+      <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>
+
       <td width ="150" class="hidden_class_column">$Adress</td>
-      <td ><a href="?id=$id&typeQuery=100#win7" class="btn"><img style = "opacity: 0.8" src="icons/table/redakt1.png" alt="formatZakup"></a></td>
+      
+      
+      <td width="22"><a href="?id=$id&typeQuery=100#win7" class="btn"><img style = "opacity: 0.8" src="icons/table/redakt1.png" alt="formatZakup"></a></td>
+            
   </tr>
+ 
 HTML;
      } 
    } 
