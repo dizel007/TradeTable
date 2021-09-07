@@ -24,19 +24,15 @@ $file_xlsx_name = "../".$arr_kp[0]['LinkKp'];
 			  if (empty($r[2])) {$stop++;} // находим конец таблицы с ценам и обрезаем после полной цены
 			 $str++; // переменная чтобы найти строку начала таблциы
 		 }
-
-
-		 echo "Заказчик :".$Zakazchik;"<br>";
-		 echo "<br><br>";
-		//  echo "<b>Телефон :".$Phone;"</b><br>";
-		//  echo "<br>";
-		 echo "Эл. почта в КП :<br>".$Email;"<br>";
-		 echo "<br><br>";
-
-		 $ZakupName = substr($ZakupName, 132, -64);
-		 echo $ZakupName;"<br>";
-		 echo "<br>";
-
+		 $ZakupName = substr($ZakupName, 132, -64); // Остается наименование закупки
+// Echo <<<HTML
+// 		 <b>Заказчик : $Zakazchik </b> <br>
+// 		 <br>
+// 		 Эл. почта в КП :<br>$Email<br>
+// 		 <br>
+// 		 $ZakupName<br>
+// 		 <br>
+// HTML;
 	} else {
 		echo SimpleXLSX::parse_error();
 	}
