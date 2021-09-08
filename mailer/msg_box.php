@@ -67,8 +67,21 @@ HTML;
 } else { // Если ексель файла нет
   echo "<h4>КП в формате EXCEL отсутствует на сервере </h4>";
 }
+
+$Zakazchik = str_replace(' ', '%20', $Zakazchik); // чтобы передавать длинные пути с пробелами
+
 echo <<<HTML
 <form enctype="multipart/form-data" action="sender_letter_many.php"  method="post">
+<!-- передаем ID  закупки -->
+<select hidden size="1" name="id">
+            <option value=$id>$id</option>
+</select>
+<!-- передаем ID  закупки -->
+
+<select hidden size="1" name="Zakazchik">
+            <option value=$Zakazchik>$Zakazchik</option>
+</select>
+
 HTML;
 
 require_once ("modul/email_spisok.php"); // Выводим список емайлов из БД

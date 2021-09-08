@@ -1,7 +1,9 @@
 <?php
+// echo "+++1<br>";
 require_once('phpmailer/PHPMailerAutoload.php'); // link PHPMailer
+// echo "+++2<br>";
 require_once("modul/get_data.php"); // Заполняем наши переменные
-
+// echo "+++3<br>";
 $Files_count = 0;
 $i=0;
 
@@ -38,7 +40,7 @@ if ($_FILES['upload_file']['name'][0] <> "") {
 // echo "<pre>";
 // echo "---------------------------------------------------<br>";
 
-
+// echo "+++4<br>";
 
 
 $mail = new PHPMailer;
@@ -96,5 +98,9 @@ $mail->Body    = $body_post;
 // echo "0000000000000000-".$subject_theme."<br>";
 // echo $email_from_kp."<br>";
 // Запускаем отправку письма
+
+// echo "+++5<br>";
+require_once ("modul/mail_logger.php");
 require_once ("modul/sendfile.php");
+// echo "+++6<br>";
 ?>

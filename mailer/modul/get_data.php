@@ -1,5 +1,13 @@
 <?php
 
+if (!empty($_POST['id'])) {
+  $id = $_POST['id'];
+} 
+if (!empty($_POST['Zakazchik'])) {
+  $Zakazchik = $_POST['Zakazchik'];
+  $Zakazchik = str_replace('%20',' ', $Zakazchik); // чтобы передавать длинные пути с пробелами
+} 
+
 if (!empty($_POST['email_from_kp'])) {
     $email_from_kp = $_POST['email_from_kp'];
   } 
