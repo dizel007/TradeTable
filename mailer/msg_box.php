@@ -152,27 +152,5 @@ echo <<<HTML
         <p><input type="submit" value="Отправить"></p>
 </form>
 HTML;
-// }
-// Форма Для отправки, Если МЫ **** НЕЕЕЕЕ ******* нашли в каталоге файл
-// else {
-//  echo <<< HTML
- 
-//  <form enctype="multipart/form-data" action="sender_letter_many.php"  method="post">
-//  HTML;
-//  require_once ("modul/email_spisok.php");     
- 
-//  echo <<<HTML
-//  <!-- <p>
-//           email :
-//            <input type="text" id="email_from_kp" name="email_from_kp" value ="$email_from_kp"/>
-//       </p> -->
-//    файл $link_pdf_text на сервере отсутствует. <br><br> подгрузите файл(ы) для отправки :
-//   <input type="hidden" name="MAX_FILE_SIZE" value="500000" multiple>   
-//   <input name="upload_file[]" type="file" multiple>
-//   <p>
-//   <p><input type="submit" value="Отправить"></p>
-
-// HTML;
-// }
 
 ?>
