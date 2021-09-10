@@ -31,11 +31,15 @@ if (!empty($_POST['link_pdf'])) {
     $link_pdf = str_replace('%20', ' ', $link_pdf);
   }
 
-
+  /// Имя пользователя
+  if (!empty($_POST['user_mail'])) {
+    $user_mail = $_POST['user_mail'];
+  }
+// Наименование закупки
 if (!empty($_POST['ZakupName'])) {
     $ZakupName = $_POST['ZakupName'];
   }
-
+// текст письма
 if (!empty($_POST['bodypost'])) {
     $body_post = $_POST['bodypost'];
   }

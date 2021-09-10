@@ -190,7 +190,7 @@ echo <<<HTML
       <!-- <td class="hidden_class_column"> $ContactCustomer</td> -->
 
 <!-- ******************************  Icons Email  *********************************************** -->
-      <td><a href= "mailer/msg_box.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
+      <td><a href= "mailer/login_mail.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
 <!-- ****************************************************************************************** -->
       <!-- <td class="hidden_class_column"><a href="?id=$id&typeQuery=6#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>   -->
       <!-- <td class="hidden_class_column">$idKp"</td> -->

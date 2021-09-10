@@ -39,7 +39,7 @@ try {
 $mail->CharSet = 'utf-8';
 // $mail->SMTPDebug = 3;                               // Enable verbose debug output
 $mail->isSMTP(); 
-require("data_post.php");
+require_once("data_post.php");
 $mail->addAddress($email_from_kp);     // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
@@ -65,9 +65,11 @@ require_once ("modul/mail_logger.php"); // логирование отправк
         {
             $result = "success";
             echo "СООБЩЕНИЕ ОТПРАВЛЕНО на адрес : ". $email_from_kp;
+            $status ="OK";
         } else {
             $result = "error";
             echo "ОШИБКА ОТПРАВКИ";
+            $status ="ERROR";
         }
 
 }

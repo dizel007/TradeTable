@@ -1,5 +1,5 @@
 <?php
-require_once ("../connect_db.php"); // подключение к БД
+// require_once ("../connect_db.php"); // подключение к БД
 require_once ("../functions/make_arr_from_obj.php"); // подключение к БД
 
 $fquery="";
@@ -77,9 +77,12 @@ echo <<<HTML
             <option value=$id>$id</option>
 </select>
 <!-- передаем ID  закупки -->
-
 <select hidden size="1" name="Zakazchik">
             <option value=$Zakazchik>$Zakazchik</option>
+</select>
+      <!-- имя пользователя : --> 
+<select hidden size="1" name="user_mail">
+          <option value=$user_mail>$user_mail</option>
 </select>
 
 HTML;
@@ -89,6 +92,7 @@ echo "<hr>";
 echo <<<HTML
       <!-- Наименование Закупки : -->
        <select hidden size="1" name="ZakupName" value = $ZakupName></select>
+
 HTML;
 // Когда нужно отправить файл загруженный на сервер
 if ($real_file) {
@@ -96,8 +100,6 @@ echo <<<HTML
   <h4>Подгрузиться либо предложенный файл с сервера, либо подцепите новые файлы</h4>
       к письму подгрузиться файл: <b>$link_pdf_text</b>
     <!-- <select hidden size="1" name="link_pdf" value= $link_pdf></select> -->
-
-
       <select hidden size="1" name="link_pdf">
             <option value=$link_pdf>$link_pdf_text</option>
       </select>
