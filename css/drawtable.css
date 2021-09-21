@@ -69,7 +69,7 @@
     
 }
 
-.markerClass, .commentClass {
+.markerClass, .commentClass, .btncommentClass{
   cursor: pointer; 
 }
 

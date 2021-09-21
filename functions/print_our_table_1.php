@@ -143,16 +143,13 @@ $exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли П
 
 $exist_excel_file = file_exists($LinkKp);
 
-//  ******************************  Рисуем саму таблицу  *********************************************** 
-
+/// Рисуем саму таблицу
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
-<!-- ******************************  AJAX MARKER  ***********************************************  -->
        <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td>
 
-<!-- ******************************  ПАПКА для открытия КП  ***********************************************  -->
+       <!-- <td><a name="$id" href="?id=$id" target="_blank"> $id </a></td>  -->
        <td><a name="$id" href="?id=$id" target="_blank"><img src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
-<!-- *************  ССЫлка для скачивания КП в формате EXCEK  *********************************  -->
        <td><a href= "$LinkKp">$KpNumber</a></td> 
 HTML;
 
@@ -194,44 +191,32 @@ echo <<<HTML
 
 <!-- ******************************  Icons Email  *********************************************** -->
       <td><a href= "mailer/login_mail.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
-
-
-
-      <!-- ********************************** ВАЖНОСТЬ КП ************************************************ -->
-      <td id = "js-KpImportance$id" width ="50"class="hidden_class_column">$KpImportance</td>
-
-      <!-- ТУТ GHFDBV -->
-      <!-- <td  id = "$id" class="js-open-modal commentClass hidden_class_column" data-modal = "write_comment" id="markerLink $id"><a href="?id=$id&typeQuery=100#win7" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td> -->
-<!--       
-      <td  id = "$id" class="js-open-modal commentClass hidden_class_column" data-modal = "write_comment" id="markerLink $id"><img src="icons/table/change.png" alt="addCooment"></td>  -->
-
-      <td  class= "hidden_class_column"  id="markerLink $id"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td> 
-
-
-
-
-
-      <!-- ********************************** ОТветственный  ************************************************ -->
-     <td id= "js-Responsible$id" width="80" class="hidden_class_column">$Responsible</td>
-
-     <td class="hidden_class_column"><a href="?id=$id&typeQuery=100#win7" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
-<!-- ********************************** Комментарий  ************************************************ -->
-      <td  id = "js-comment$id" class ="limit_width">$Comment</td>
-      <td class = "hidden_class_column"><a href="?id=$id&typeQuery=100#win7" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
-<!-- ********************************** Дата следующего звонка  ********************************************* -->
-      <td id = "js-DateNextCall$id" width="60" class ="$DateNextCallTable">$DateNextCall</td>
-      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=100#win7" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+<!-- ****************************************************************************************** -->
+      <!-- <td class="hidden_class_column"><a href="?id=$id&typeQuery=6#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>   -->
+      <!-- <td class="hidden_class_column">$idKp"</td> -->
+      <!-- <td class="hidden_class_column">$StatusKp</td> -->
+      <td width ="50"class="hidden_class_column">$KpImportance</td>
+      <td class="hidden_class_column"><a href="?id=$id&typeQuery=9#win5" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>       
+      <td width="80" class="hidden_class_column">$Responsible</td>
+      <td class="hidden_class_column"><a href="?id=$id&typeQuery=10#win4" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       
-      <td> <div id = "js-KpCondition$id"  class = "$KpConditionTable">$KpCondition</div></td>
-      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=100#win7" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
-      <td id = "js-KpSum$id" >$KpSum</td>
+      <td class ="limit_width">$Comment</td>
+      
+      
+      
+      <td class = "hidden_class_column"><a href="?id=$id&typeQuery=11#win1" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td width="60" class ="$DateNextCallTable">$DateNextCall</td>
+      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=12#win2" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td> <div class = "$KpConditionTable">$KpCondition</div></td>
+      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=13#win3" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td>$KpSum</td>
       <td class="hidden_class_column">$TenderSum</td>
-      <td id = "js-FinishContract$id" >$FinishContract</td>
-      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=100#win7" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
+      <td>$FinishContract</td>
+      <td  class = "hidden_class_column"><a href="?id=$id&typeQuery=16#win6" class="btn"><img src="icons/table/kiss.jpg" alt="addCooment"></a></td>
       
       <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>
 
-      <td id = "js-Adress$id" width ="150" class="hidden_class_column">$Adress</td>
+      <td width ="150" class="hidden_class_column">$Adress</td>
       
       
       <td width="22"><a href="?id=$id&typeQuery=100#win7" class="btn"><img style = "opacity: 0.8" src="icons/table/redakt1.png" alt="formatZakup"></a></td>
