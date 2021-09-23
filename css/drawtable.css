@@ -10,7 +10,7 @@
   }
 
  .drawtable td{
- background: rgb(221, 241, 248);
+ background: rgb(224, 240, 246);
  border: 1px solid grey;
  word-wrap : break-word;
  text-align: center;
@@ -69,7 +69,7 @@
     
 }
 
-.markerClass, .commentClass {
+.markerClass, .commentClass, .btncommentClass{
   cursor: pointer; 
 }
 
@@ -87,4 +87,3 @@
  word-wrap : break-word;
  text-align: center;
  }
- 

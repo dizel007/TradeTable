@@ -52,25 +52,29 @@ $ZakupNameTemp = str_replace(' ', '%20', $ZakupNameTemp); // чтобы пере
 $link_pdf = str_replace(' ', '%20', $link_pdf); // чтобы передавать длинные пути с пробелами
 
 // Форма Для отправки, Если МЫ нашли в каталоге файл
-echo "<h2> ФОРМА ДЛЯ ОТПРАВКИ ПИСЬМА КЛИЕНТУ</h2>	 <hr>";
+echo "<div class=\"col-12 shadow-lg up-page\">";
+echo "<h5 class=\"center\"> ФОРМА ДЛЯ ОТПРАВКИ ПИСЬМА КЛИЕНТУ</h5>";
 
 // if ($real_file) {
 
 if (file_exists($link_pdf_excel)) { /// если есть Ексель файл, то выводим данне с него
 echo <<<HTML
-     <h3>$ZakupName</h3>
+     <b>$ZakupName</b><br>
 		 <b>Заказчик : $Zakazchik </b><br>
-		 <b>EMAIL из КП : $Email</b><br>
-		 <br>
-		 <hr>
+		 <b>EMAIL из КП : $Email</b>
 HTML;
 } else { // Если ексель файла нет
-  echo "<h4>КП в формате EXCEL отсутствует на сервере </h4>";
+  echo "<h5 class =\"text-danger\">КП в формате EXCEL отсутствует на сервере </h5>";
 }
-
-$Zakazchik = str_replace(' ', '%20', $Zakazchik); // чтобы передавать длинные пути с пробелами
+echo "</div>";
+if (isset($Zakazchik)) {
+    $Zakazchik = str_replace(' ', '%20', $Zakazchik); // чтобы передавать длинные пути с пробелами
+  } else {
+    $Zakazchik="";
+  }
 
 echo <<<HTML
+
 <form enctype="multipart/form-data" action="sender_letter_many.php"  method="post">
 <!-- передаем ID  закупки -->
 <select hidden size="1" name="id">
@@ -86,19 +90,19 @@ echo <<<HTML
 </select>
 
 HTML;
-
 require_once ("modul/email_spisok.php"); // Выводим список емайлов из БД
-echo "<hr>";
+echo "<div class =\"col-6 shadow-lg link-file\" >";
 echo <<<HTML
       <!-- Наименование Закупки : -->
+      
        <select hidden size="1" name="ZakupName" value = $ZakupName></select>
-
+       
 HTML;
 // Когда нужно отправить файл загруженный на сервер
 if ($real_file) {
 echo <<<HTML
-  <h4>Подгрузиться либо предложенный файл с сервера, либо подцепите новые файлы</h4>
-      к письму подгрузиться файл: <b>$link_pdf_text</b>
+  <h5>Подгрузиться либо предложенный файл с сервера, либо подцепите новые файлы</h5>
+      к письму подгрузиться файл: <a href="$link_pdf" target="_blank"><img src="../icons/table/pdf.png"></a><b>$link_pdf_text</b>
     <!-- <select hidden size="1" name="link_pdf" value= $link_pdf></select> -->
       <select hidden size="1" name="link_pdf">
             <option value=$link_pdf>$link_pdf_text</option>
@@ -114,21 +118,23 @@ HTML;
 } else {
 // Когда нужно отправить файл новый файл
 echo <<<HTML
-  <b>файл $link_pdf_text на сервере отсутствует.</b> <br><br> подгрузите файл(ы) для отправки :
+  <b class="text-danger">файл $link_pdf_text на сервере отсутствует.</b> <br><br> подгрузите файл(ы) для отправки :
  <input type="hidden" name="MAX_FILE_SIZE" value="500000" multiple>   
  <input name="upload_file[]" type="file" multiple>
 HTML;
 }
-
+echo "</div>";
 echo <<<HTML
-<hr>
+<div></div>
+<div class = "col-12 post-data">
+
 <h4>Предмет письма</h4>
 <p>
-<input type="text"  name="subject_theme"  size="175" value = "КП от ТД АНМКАКС" placeholder="КП от ТД АНМКАКС">
+<input type="text"  name="subject_theme"  size="150" value = "КП от ТД АНМКАКС" placeholder="КП от ТД АНМКАКС">
 </p>
-<h4>ТЕКСТ ПИСЬМА</h4>
-<h4>Можно править все, что угодно, только следить за стилистическими тэгами</h4>
-   <textarea name="bodypost" cols="175" rows="14">
+<h5>ТЕКСТ ПИСЬМА (Можно править все, что угодно, только следить за стилистическими тэгами)</h5>
+
+   <textarea name="bodypost" cols="150" rows="14">
    <b>Добрый день!</b> <br> 
     Предлагаем рассмотреть приобретение следующей продукции, для гос.закупки <br>
     <b>
@@ -151,6 +157,10 @@ HTML;
 echo <<<HTML
         <p><input type="submit" value="Отправить"></p>
 </form>
+
+</div> <!--  конец post-data- -->
+</div>
+</div>
 HTML;
 
 ?>
