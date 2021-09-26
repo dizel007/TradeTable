@@ -1,9 +1,13 @@
 <?php
 $mysqli->query("SET NAMES 'utf8'");
 // Из объекиа данных считанных из БД мы формируем для работы массив с этими данными (выводим весь объем данных)
-function selectAllArr($mysqli) {
+function selectAllArr($mysqli, $FinishContract) {
 //$sql = "SELECT * FROM reestrkp ORDER BY pp";
-$sql = "SELECT * FROM reestrkp ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
+if ($FinishContract == 0) {
+$sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
+} else {
+  $sql = "SELECT * FROM reestrkp ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
+}
   $fQuery = $mysqli->query($sql);
    //$arr_name = [];
   $arr_name = makeArrayFromObj($fQuery) ;

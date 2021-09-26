@@ -1,31 +1,8 @@
 <?php
 require_once ("functions/get_url.php");
-function printOurTable($arr_name, $FinContr,$pageNumber) {
+function printOurTable($arr_name, $FinContr,$pageNumber, $stringCount) {
 // $FinContr=1;
-$pageNumber=1;
-$stringCount=200; // количество строк на странице
-if (!empty($_GET['pageNumber'])) {
-  $pageNumber = $_GET['pageNumber'];
-}
-$elem_count = count($arr_name); // Количество элементов
-$pageCount= $elem_count/$stringCount; // 
-$pageCount = ceil($pageCount); // округление ввех
-$url = remove_key("pageNumber"); // удаляем из URL ключ с номером страницы
-$url = removeDomain($url); // удаляем из URL  наименование сайта
-
-/// Выводим номера страниц если больше одной 
-if ($pageCount>1) {
-echo "<div class=\"pageNumber\">";
-for ($i=0; $i<$pageCount; $i++){
-  $i1 = $i+1;
-      if ($i1 == $pageNumber) {
-      echo "<a class=\"bigNumber\" href=\"$url&pageNumber=$i1\">$i1 </a>";
-      } else {
-      echo "<a class=\"normalNumber\" href=\"$url&pageNumber=$i1\">$i1 </a>";
-      }
-}
-echo "</div>";
-}
+require("functions/page_numbers.php");
 
 // шапка таблицы
 $i=0;
@@ -67,17 +44,18 @@ if (isset($arr_name)) {
 // Заполняем саму таблциу
 $start_string = ($pageNumber-1)*$stringCount;
 // echo "Количество начало :".$start_string ."<br>";
+
 $last_string = ($pageNumber*$stringCount); 
-$last_string = $last_string - 1;
+$last_string = $last_string - 1; // так как с нуля начинаем считать
 if ($last_string>count($arr_name)) {
   $last_string = count($arr_name);
 }
+// echo "Количество начлоа :". $start_string."<br>";
 // echo "Количество конец :". $last_string."<br>";
-
 
 for ($i=$start_string; $i<$last_string; $i++)
 
-// for ($i=$pageNumber; $i<count($arr_name); $i++)
+// for ($i=0; $i<count($arr_name); $i++)
 {
 //// Проверяем актуальность КП (Если не актуально то закрасим серым цветом)
 
@@ -167,7 +145,8 @@ $exist_excel_file = file_exists($LinkKp);
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
 <!-- ******************************  AJAX MARKER  ***********************************************  -->
-       <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td>
+       <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td> -->
+       <td class = "hidden_class_column">$i</td>
 
 <!-- ******************************  ПАПКА для открытия КП  ***********************************************  -->
        <td><a name="$id" href="?id=$id" target="_blank"><img src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
@@ -185,8 +164,6 @@ if ($exist_excel_file) {
 
 echo <<<HTML
        <td width="60">$KpData</td>
-       
-       
        <td width ="70" class="hidden_class_column">$InnCustomer</td>
      HTML;
 

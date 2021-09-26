@@ -9,44 +9,65 @@ echo <<<HTML
 HTML;
 
 
-for ($i=0; $i<count($arr_name); $i++){
+// for ($i=0; $i<count($arr_name); $i++){
 
-    foreach ($arr_name as $key => $value) 
-      {
-        foreach ($value as $key1 => $value1) {
-            if ($key1 == 'Responsible') {
-                $Responsible   = $value1;
-              }
-              if ($key1 == 'KpImportance') {
-                $KpImportance   = $value1;
-            }
-            if ($key1 == 'DateNextCall') {
-              $DateNextCall   = $value1;
-          }
-          if ($key1 == 'KpCondition') {
-            $KpCondition   = $value1;
-        }
-        if ($key1 == 'FinishContract') {
-          $FinishContract   = $value1;
-              }
-              if ($key1 == 'KpSum') {
-                $KpSum   = $value1;
-                    }
-          }
-        }
-$id = $arr_name[$i]['id'];
-$pp = $arr_name[$i]['pp'];
-$KpNumber = $arr_name[$i]['KpNumber'];
-$KpData = $arr_name[$i]['KpData'];
-$InnCustomer = $arr_name[$i]['InnCustomer'];
-$NameCustomer = $arr_name[$i]['NameCustomer'];
-$ContactCustomer = $arr_name[$i]['ContactCustomer'];
-$idKp = $arr_name[$i]['idKp'];
-$StatusKp = $arr_name[$i]['StatusKp'];
-$Comment = $arr_name[$i]['Comment'];
-$TenderSum = $arr_name[$i]['TenderSum'];
-$Adress = $arr_name[$i]['Adress'];
-      }
+    // foreach ($arr_name as $key => $value) 
+    //   {
+    //     foreach ($value as $key1 => $value1) {
+    //         if ($key1 == 'Responsible') {
+    //             $Responsible   = $value1;
+    //           }
+    //           if ($key1 == 'KpImportance') {
+    //             $KpImportance   = $value1;
+    //         }
+    //         if ($key1 == 'DateNextCall') {
+    //           $DateNextCall   = $value1;
+    //       }
+    //       if ($key1 == 'KpCondition') {
+    //         $KpCondition   = $value1;
+    //     }
+    //     if ($key1 == 'FinishContract') {
+    //       $FinishContract   = $value1;
+    //           }
+    //           if ($key1 == 'KpSum') {
+    //             $KpSum   = $value1;
+    //                 }
+    //       }
+    //     }
+// $id = $arr_name[$i]['id'];
+// $pp = $arr_name[$i]['pp'];
+// $KpNumber = $arr_name[$i]['KpNumber'];
+// $KpData = $arr_name[$i]['KpData'];
+// $InnCustomer = $arr_name[$i]['InnCustomer'];
+// $NameCustomer = $arr_name[$i]['NameCustomer'];
+// $ContactCustomer = $arr_name[$i]['ContactCustomer'];
+// $idKp = $arr_name[$i]['idKp'];
+// $StatusKp = $arr_name[$i]['StatusKp'];
+// $Comment = $arr_name[$i]['Comment'];
+// $TenderSum = $arr_name[$i]['TenderSum'];
+// $Adress = $arr_name[$i]['Adress'];
+      // }
+
+$i=0;
+$Responsible   = "";
+$KpImportance  = "";
+$DateNextCall  = "";
+$KpCondition = "";
+$FinishContract = "";
+$KpSum   = "";
+$id = "";
+$pp = "";
+$KpNumber = "";
+$KpData = "";
+$InnCustomer = "";
+$NameCustomer = "";
+$ContactCustomer = "";
+$idKp = "";
+$StatusKp = "";
+$Comment = "";
+$TenderSum = "";
+$Adress = "";
+
 echo <<<HTML
   <div>
     <select id = "js-id" name="id">
