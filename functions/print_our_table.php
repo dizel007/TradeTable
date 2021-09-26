@@ -46,7 +46,7 @@ $start_string = ($pageNumber-1)*$stringCount;
 // echo "Количество начало :".$start_string ."<br>";
 
 $last_string = ($pageNumber*$stringCount); 
-$last_string = $last_string - 1; // так как с нуля начинаем считать
+$last_string = $last_string; // так как с нуля начинаем считать
 if ($last_string>count($arr_name)) {
   $last_string = count($arr_name);
 }

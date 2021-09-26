@@ -39,7 +39,7 @@
                  }
                }
               echo " СУММА = ". number_format($summa)."<br>";
-              printOurTable($arr_name, $FinishContract);
+              printOurTable($arr_name, $FinishContract,0,10000);
         require_once ("bodyparts/footer.php"); // подвал страниы
       }
      }
