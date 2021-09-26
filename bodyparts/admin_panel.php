@@ -1,7 +1,10 @@
 <?php
+require_once ("functions/get_name_user.php");
+$userName = getNameUser($user);
 echo <<<HTML
              <div class = "aboutUser">
                   Пользователь :$user
+                  (<a href="?date_start=&date_end=&value=$userName&id=&typeQuery=10">$userName</a>)
              <br>
         
 HTML;
