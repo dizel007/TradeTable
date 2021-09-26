@@ -27,7 +27,11 @@ if ($typeQuery == 11) {
               <div class=\"dm-cell\">
                   <div class=\"dm-modal\">
                       <a href=\"#close\" class=\"close\"></a>
-                      <p>Текстовое содержание : ".$Our_comment."</p>
+                      <p>Текстовое содержание : 
+                      
+                      <br><br>
+                      
+                      ".$Our_comment."</p>
                       
                   <form  action=\"changedb/update_comment.php?id=";
                   
@@ -37,9 +41,11 @@ if ($typeQuery == 11) {
                             <p>
                               <p>Добавить комментарий : </p>
                                 <p>
-                                  <textarea name=\"text\" rows=\"10\" cols=\"45\">".$Our_comment.
+                                  <textarea name=\"text\" rows=\"5\" cols=\"50\">
 
-                                 "</textarea>
+
+
+                                 </textarea>
                                 </p>
                               <p><input type=\"submit\" value=\"Отправить\"></p>
                             </p>

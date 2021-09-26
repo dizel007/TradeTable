@@ -1,0 +1,50 @@
+h5 {
+  text-align: center;
+  text-decoration: underline;
+}
+.up-page {
+  /* display: block; */
+  /* width: 94%; */
+  margin: 0px 0px 10px 0;
+  /* margin: 10px; */
+  background-color: rgb(221, 207, 207);
+  padding: 10px;
+  border: darkgoldenrod 2px solid;
+  border-radius: 4px;
+}
+form {
+  padding: 0 !important;
+}
+.db-mail{
+  display: inline-block;
+  vertical-align:top;
+  /* width: 47%; */
+  margin: 0px 0px 0px 0px;
+  background-color: rgb(221, 207, 207);
+  padding: 10px;
+  min-height: 220px;
+  border: darkgoldenrod 2px solid;
+  border-radius: 4px;
+}
+.link-file {
+  display: inline-block;
+  /* width: 47%; */
+  /* margin: 5px 0px 5px 5px; */
+  background-color: rgb(221, 207, 207);
+  padding: 10px;
+  min-height: 220px;
+  border: darkgoldenrod 2px solid;
+  border-radius: 4px;
+
+}
+
+.post-data {
+  /* width: 98%; */
+  /* margin-top: 320px; */
+  text-align: center;
+  margin: 10px 0px 0px 0px ;
+  background-color: rgb(221, 207, 207);
+  padding: 10px 10px 10px 20px;
+  border: darkgoldenrod 2px solid;
+  border-radius: 4px;
+}

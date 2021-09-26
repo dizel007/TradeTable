@@ -2,8 +2,11 @@
 
 
 echo <<<HTML
+<div class="container-fluid">
+<div class="row">
 
-<div class ="up_form" >
+
+<div class ="col-11 up_form" >
 <form>
    <div class ="up_form">
     
@@ -42,16 +45,19 @@ echo <<<HTML
             <input type="checkbox" name="FinishContract" value="1">
         </div>
 
-        <button type="submit">ОБНОВИТЬ</button>
+        <button  type="submit">ОБНОВИТЬ</button>
    
         </div>
 </form>
 
 <!-- <button onclick="window.location='logout.php'" class="get_rigth">Выйти</button> -->
 
-<button onclick="window.location='logout.php'" class="get_rigth">Выйти</button>
-
+</div>
+        <div class ="col-1 up-button">
+            <button onclick="window.location='logout.php'">Выйти</button>
+        </div>
 </div>
 
+</div>
 HTML;
 ?>

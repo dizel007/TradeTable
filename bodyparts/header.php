@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>АНМАКС ОНЛАЙН</title>
+    <link rel = "stylesheet" href = "css/bootstrap/css/bootstrap-grid.css">
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
     <!-- <link rel = "stylesheet" href = "css/style1.css">
     <link rel = "stylesheet" href="css/promo.css">
     <link rel = "stylesheet" href = "css/menu.css">
