@@ -4,7 +4,8 @@ echo <<<HTML
      <div class="dm-table">
           <div class="dm-cell">
               <div class="dm-modal"  >
-                  <a href="#close" class="close js-modal-close"></a>
+                  <!-- <a href="#close" class="close js-modal-close"></a> -->
+                  <a class="close js-modal-close"></a>
 HTML;
 
 

@@ -3,7 +3,7 @@ $username = "Dmitriy";
 $typeQuery ="";
 $value="";
 $FinishContract=0;
-
+$pageNumber=0;
 
 
 if (!empty($_GET['date_start']))  {
@@ -20,6 +20,9 @@ if (!empty($_GET['value'])) {
 }
 if (!empty($_GET['FinishContract'])) {
   $FinishContract=$_GET['FinishContract'];
+}
+if (!empty($_GET['pageNumber'])) {
+  $pageNumber=$_GET['pageNumber'];
 }
 
 /// если есть какая либо выбранная закупка по скрытому id
@@ -38,7 +41,7 @@ if (!empty($_GET['id'])) {
         $name = $arr_inn[0]['name'];
         // echo "Выбран id_закупки :". $id;
         echo "<div class = \"zagolovok\">Выбрано КП№".$kpNumber.";   id Закупки :".$id."</div>";
-        printOurTable($arr_name, $FinishContract);
+        printOurTable($arr_name, $FinishContract,$pageNumber);
     //////// сюда же добавим компании с этим же инн
         $arr_inn_id = FindInnById($mysqli, $id);
         // $str_count = count($arr_inn_id) ; // фактическое количество строк в массиве, включая исключенный ID 
@@ -46,7 +49,7 @@ if (!empty($_GET['id'])) {
         if ($arr_inn_id[0]['pp'] !='')
             {  // чтобы условия чтобы не выводить пустой массив 
                 echo "<div class = \"zagolovok\">Остальные КП, которые были высланы в эту компанию <BR></div>";
-                printOurTable($arr_inn_id, $FinishContract) ; 
+                printOurTable($arr_inn_id, $FinishContract,$pageNumber) ; 
             } else {
               echo "<div class = \"zagolovok\">Больше КП в данную компанию не высылали ... <BR></div>";
             }
@@ -58,7 +61,7 @@ if (!empty($_GET['id'])) {
       echo "<div class = \"zagolovok\">Выбран ИНН : $inn<BR></div>";
       
       $arr_name = selectArrByInn($mysqli,$inn);
-      printOurTable($arr_name, $FinishContract) ; 
+      printOurTable($arr_name, $FinishContract,$pageNumber) ; 
   }
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ номеру КП
   
@@ -77,7 +80,7 @@ elseif ($typeQuery == 2 and $value <> "") {
 
               echo "<div class = \"zagolovok\">Выбрано номер КП№".$kpNumber." <BR></div>";
 
-              printOurTable($arr_name, $FinishContract) ;
+              printOurTable($arr_name, $FinishContract,$pageNumber) ;
 
             //////// сюда же добавим компании с этим же инн
               $arr_inn_id = FindInnById($mysqli, $id);
@@ -86,7 +89,7 @@ elseif ($typeQuery == 2 and $value <> "") {
               if ($arr_inn_id[0]['pp'] !='')
                   {  // чтобы условия чтобы не выводить пустой массив 
                       echo "<div class = \"zagolovok\">Остальные КП, которые были высланы в эту компанию <BR></div>";
-                      printOurTable($arr_inn_id, $FinishContract) ; 
+                      printOurTable($arr_inn_id, $FinishContract,$pageNumber) ; 
                   } else {
                     echo "<div class = \"zagolovok\">Больше КП в данную компанию не высылали ... <BR></div>";
                   }
@@ -111,7 +114,7 @@ elseif ($typeQuery == 2 and $value <> "") {
     $date_end = $_GET['date_end'];
     echo "Выбрана дата начала:".$date_start. " Дата окончания: ".$date_end."|";
     $arr_name = selectArrByDate($mysqli, $date_start, $date_end);
-    printOurTable($arr_name, $FinishContract) ;
+    printOurTable($arr_name, $FinishContract, $pageNumber) ;
   } 
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ ИНН
   elseif ($typeQuery == 7 and $value <> "") {
@@ -127,7 +130,7 @@ elseif ($typeQuery == 2 and $value <> "") {
 
                       echo "<div class = \"zagolovok\">Выбран ID КП :".$idKp." <BR></div>";
                       
-                      printOurTable($arr_name, $FinishContract) ; 
+                      printOurTable($arr_name, $FinishContract, $pageNumber) ; 
                   
                   //////// сюда же добавим компании с этим же инн
                   $arr_inn_id = FindInnById($mysqli, $id);
@@ -136,7 +139,7 @@ elseif ($typeQuery == 2 and $value <> "") {
                   if ($arr_inn_id[0]['pp'] !='')
                       {  // чтобы условия чтобы не выводить пустой массив 
                           echo "<div class = \"zagolovok\">Остальные КП, которые были высланы в эту компанию <BR></div>";
-                          printOurTable($arr_inn_id, $FinishContract) ; 
+                          printOurTable($arr_inn_id, $FinishContract,$pageNumber) ; 
                       } else {
                         echo "<div class = \"zagolovok\">Больше КП в данную компанию не высылали ... <BR></div>";
                       }
@@ -150,7 +153,7 @@ elseif ($typeQuery == 10 and $value <> "") {
   $Responsible = $_GET['value'];
   echo "Выбран ответственный :". $Responsible;
   $arr_name = selectArrByResponsible($mysqli,$Responsible);
-  printOurTable($arr_name, $FinishContract) ; 
+  printOurTable($arr_name, $FinishContract, $pageNumber) ; 
   }
 
 // ВЫВОДИМ ТАБЛИЦУ ПО Найденному наименованию
@@ -168,7 +171,7 @@ elseif ($typeQuery == 8 and $value <> "") {
   
 if ($select_arr[0]['pp'] !='') {
           
-  printOurTable($select_arr, $FinishContract) ; 
+  printOurTable($select_arr, $FinishContract, $pageNumber) ; 
         }
         else {
           echo "<div class = \"zagolovok\"> Не нашли таких Наименований<BR></div>";
@@ -179,7 +182,7 @@ if ($select_arr[0]['pp'] !='') {
 // ЕСЛИ НИ ОДИН ВАРИАНТ НЕ СРАБОТАЛ, ТО ВЫВОДИМ ВСЮ ТАБЛИЦУ  
   else {
     $arr_name = selectAllArr($mysqli);
-    printOurTable($arr_name, $FinishContract) ;
+    printOurTable($arr_name, $FinishContract, $pageNumber) ;
   }
 
 ?>

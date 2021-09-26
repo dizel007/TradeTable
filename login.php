@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="css/login.css">
-
-    <title>Форма для отправки письма клиенту</title>
-</head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <?php
-
-            // Страница авторизации
-
-            // Функция для генерации случайной строки
+<?php
+ // Страница авторизации
+   // Функция для генерации случайной строки
             function generateCode($length = 6)
             {
                 $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
@@ -90,6 +72,26 @@
                 }
             }
             ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- <title>Инициализация польззователя</title> -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+
+
     <div class="col-3 w-30 mx-auto shadow-lg loginform">
         <form method="POST">
             <br>

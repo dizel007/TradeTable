@@ -21,6 +21,10 @@
     <link rel = "stylesheet" href = "css/mobile.css">
     
     <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <!-- <script type="text/javascript" src="js/ajax_query_comment.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/ajax_query.js"></script> -->
+
     <!-- <script type="text/javascript" src="js/ajax_query.js"></script> -->
 
 
@@ -29,5 +33,5 @@
 </head>
 
 <body>
-   
+<script type="text/javascript" src="js/modal.js"></script>
    

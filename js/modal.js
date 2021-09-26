@@ -82,5 +82,3 @@ function getParent(elemSelector, parentSelector) {
 $('.js-modal-close').click(function() {
 getParent('.is-show', '.js-modal');
 });
-
-

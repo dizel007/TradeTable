@@ -1,8 +1,32 @@
 <?php
-function printOurTable($arr_name, $FinContr) {
+require_once ("functions/get_url.php");
+function printOurTable($arr_name, $FinContr,$pageNumber) {
+// $FinContr=1;
+$pageNumber=1;
+$stringCount=200; // количество строк на странице
+if (!empty($_GET['pageNumber'])) {
+  $pageNumber = $_GET['pageNumber'];
+}
+$elem_count = count($arr_name); // Количество элементов
+$pageCount= $elem_count/$stringCount; // 
+$pageCount = ceil($pageCount); // округление ввех
+$url = remove_key("pageNumber"); // удаляем из URL ключ с номером страницы
+$url = removeDomain($url); // удаляем из URL  наименование сайта
 
+/// Выводим номера страниц если больше одной 
+if ($pageCount>1) {
+echo "<div class=\"pageNumber\">";
+for ($i=0; $i<$pageCount; $i++){
+  $i1 = $i+1;
+      if ($i1 == $pageNumber) {
+      echo "<a class=\"bigNumber\" href=\"$url&pageNumber=$i1\">$i1 </a>";
+      } else {
+      echo "<a class=\"normalNumber\" href=\"$url&pageNumber=$i1\">$i1 </a>";
+      }
+}
+echo "</div>";
+}
 
- 
 // шапка таблицы
 $i=0;
 echo <<<HTML
@@ -41,7 +65,19 @@ HTML;
         
 if (isset($arr_name)) {
 // Заполняем саму таблциу
-for ($i=0; $i<count($arr_name); $i++)
+$start_string = ($pageNumber-1)*$stringCount;
+// echo "Количество начало :".$start_string ."<br>";
+$last_string = ($pageNumber*$stringCount); 
+$last_string = $last_string - 1;
+if ($last_string>count($arr_name)) {
+  $last_string = count($arr_name);
+}
+// echo "Количество конец :". $last_string."<br>";
+
+
+for ($i=$start_string; $i<$last_string; $i++)
+
+// for ($i=$pageNumber; $i<count($arr_name); $i++)
 {
 //// Проверяем актуальность КП (Если не актуально то закрасим серым цветом)
 
@@ -99,18 +135,18 @@ if ($arr_name[$i]['KpCondition'] == "Купили у нас")
         $KpConditionTable = "";
       }
 
-$jsId = $arr_name[$i]['id'];
+// $jsId = $arr_name[$i]['id'];
 $id = $arr_name[$i]['id'];
-$pp = $arr_name[$i]['pp'];
+// $pp = $arr_name[$i]['pp'];
 $LinkKp = $arr_name[$i]['LinkKp'];
 $KpNumber = $arr_name[$i]['KpNumber'];
 $KpData = $arr_name[$i]['KpData'];
 $InnCustomer = $arr_name[$i]['InnCustomer']; 
-$konturLink = $arr_name[$i]['konturLink'];
-$NameCustomer = $arr_name[$i]['NameCustomer'];
-$ContactCustomer = $arr_name[$i]['ContactCustomer'];
-$idKp = $arr_name[$i]['idKp'];
-$StatusKp = $arr_name[$i]['StatusKp'];
+// $konturLink = $arr_name[$i]['konturLink'];
+// $NameCustomer = $arr_name[$i]['NameCustomer'];
+// $ContactCustomer = $arr_name[$i]['ContactCustomer'];
+// $idKp = $arr_name[$i]['idKp'];
+// $StatusKp = $arr_name[$i]['StatusKp'];
 $KpImportance = $arr_name[$i]['KpImportance'];
 $Responsible = $arr_name[$i]['Responsible'];
 $Comment = $arr_name[$i]['Comment'];
