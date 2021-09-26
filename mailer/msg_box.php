@@ -54,7 +54,9 @@ $link_pdf = str_replace(' ', '%20', $link_pdf); // чтобы передават
 // Форма Для отправки, Если МЫ нашли в каталоге файл
 echo "<div class=\"col-12 shadow-lg up-page\">";
 echo "<h5 class=\"center\"> ФОРМА ДЛЯ ОТПРАВКИ ПИСЬМА КЛИЕНТУ</h5>";
-
+// 
+// 
+// 
 // if ($real_file) {
 
 if (file_exists($link_pdf_excel)) { /// если есть Ексель файл, то выводим данне с него
