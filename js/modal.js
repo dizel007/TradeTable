@@ -1,29 +1,35 @@
 //// Заполняем модальное окно актуальными значениями 
 $(document).ready(function($){
   $('.js-open-modal').on("click",function(event){
-    //  alert ( event.target.id);
-     id = event.target.id;
-     document.getElementById("textarea-Comment").value=""; // Всегда чистим ТехтАриа в комментах при открытии окна
+// открываем модальное окно
+    modalName = $(this).attr('data-modal');
+    modal = $('.js-modal[data-modal = "' + modalName + '"]');
+    modal.addClass('is-show');
+ // вычитываем переменные
+    id = event.target.id;
+  document.getElementById("textarea-Comment").value=""; // Всегда чистим ТехтАриа в комментах при открытии окна
+  
   $.ajax(  {
-    url: "functions/get_one_item.php",
-    method: 'POST',             /* Метод передачи (post или get) */
-    dataType: 'html',
-    data: {id:id},
-    success: function(data){
-      var obj = jQuery.parseJSON( data ); // парсим объем на переменные
-      var KpNumber = String(obj[0]["KpNumber"]); // парсим объем на переменные
-      var InnCustomer = String(obj[0]["InnCustomer"]);
-      var NameCustomer = String(obj[0]["NameCustomer"]);
-      var idKp = String(obj[0]["idKp"]);
-      var KpImportance = String(obj[0]["KpImportance"]);
-      var Responsible = String(obj[0]["Responsible"]);
-      var Comment = String(obj[0]["Comment"]);
-      var DateNextCall = String(obj[0]["DateNextCall"]);
-      var KpCondition = String(obj[0]["KpCondition"]);
-      var KpSum = String(obj[0]["KpSum"]);
-      var TenderSum = String(obj[0]["TenderSum"]);
-      var FinishContract = String(obj[0]["FinishContract"]);
-      var Adress = String(obj[0]["Adress"]);
+          url: "functions/get_one_item.php",
+          method: 'POST',             /* Метод передачи (post или get) */
+          dataType: 'html',
+          cache: false,
+          data: {id:id},
+         success: function(data){
+                      obj = jQuery.parseJSON( data ); // парсим объем на переменные
+                      KpNumber = String(obj[0]["KpNumber"]); // парсим объем на переменные
+                      InnCustomer = String(obj[0]["InnCustomer"]);
+                      NameCustomer = String(obj[0]["NameCustomer"]);
+                      idKp = String(obj[0]["idKp"]);
+                      KpImportance = String(obj[0]["KpImportance"]);
+                      Responsible = String(obj[0]["Responsible"]);
+                      Comment = String(obj[0]["Comment"]);
+                      DateNextCall = String(obj[0]["DateNextCall"]);
+                      KpCondition = String(obj[0]["KpCondition"]);
+                      KpSum = String(obj[0]["KpSum"]);
+                      TenderSum = String(obj[0]["TenderSum"]);
+                      FinishContract = String(obj[0]["FinishContract"]);
+                      Adress = String(obj[0]["Adress"]);
 
       document.getElementById("js-new-modal-id").innerHTML = id;
       document.getElementById('js-new-modal-id').value = id;
@@ -31,10 +37,10 @@ $(document).ready(function($){
       document.getElementById("js-new-modal-InnCustomer").innerHTML = InnCustomer;
       document.getElementById("js-new-modal-NameCustomer").innerHTML = NameCustomer;
       document.getElementById("js-new-modal-idKp").innerHTML = idKp;
-      document.getElementById("js-new-modal-KpImportance").innerHTML = KpImportance; // отображаемое значение
-      document.getElementById('js-new-modal-KpImportance').value = KpImportance; // value  - коде
-      document.getElementById("js-new-modal-Responsible").innerHTML = Responsible; // отображаемое значение
-      document.getElementById('js-new-modal-Responsible').value = Responsible; // value  - коде
+      // document.getElementById("js-new-modal-KpImportance").innerHTML = KpImportance; // отображаемое значение
+      // document.getElementById('js-new-modal-KpImportance').value = KpImportance; // value  - коде
+      // document.getElementById("js-new-modal-Responsible").innerHTML = Responsible; // отображаемое значение
+      // document.getElementById('js-new-modal-Responsible').value = Responsible; // value  - коде
       document.getElementById("js-new-modal-Comment").innerHTML = Comment; // отображаемое значение
       document.getElementById('js-new-modal-Comment').value = Comment; // value  -  коде
       document.getElementById("DateNextCall").innerHTML = DateNextCall; // отображаемое значение
@@ -47,20 +53,36 @@ $(document).ready(function($){
       document.getElementById('js-new-modal-FinishContract').value = FinishContract; // value  - коде
       document.getElementById("textarea-Adress").innerHTML = Adress; // отображаемое значение
       document.getElementById('textarea-Adress').value = Adress; // value  -  коде
+
+      document.getElementById("Responsible").value=Responsible; // изменям options в Select
+      document.getElementById("Responsible").text=Responsible; //изменям options в Select
+      var elem = document.getElementById("Responsible").options[0]; // делаем этот отшинс активным
+
+      document.getElementById("KpImportance").value=KpImportance;
+      document.getElementById("KpImportance").text=KpImportance;
+       var elem1 = document.getElementById("KpImportance").options[0];
+ 
       }
 
    });
+
 });
 });
 
 /// открываем модальное окно
-$('.js-open-modal').click(function(){
+// $('.js-open-modal').click(function(){
 
-  var modalName = $(this).attr('data-modal');
-  console.log(modalName);
-  var modal = $('.js-modal[data-modal = "' + modalName + '"]');
-  modal.addClass('is-show');
+//   var modalName = $(this).attr('data-modal');
+//   console.log(modalName);
+//   var modal = $('.js-modal[data-modal = "' + modalName + '"]');
+//   modal.addClass('is-show');
 
+// });
+
+  
+/// Закрываем модальное окно
+$('.js-modal-close').click(function() {
+getParent('.is-show', '.js-modal');
 });
 function getParent(elemSelector, parentSelector) {
   var elem = document.querySelector(elemSelector);
@@ -77,8 +99,4 @@ function getParent(elemSelector, parentSelector) {
     }
   }
   return null;
-}   
-/// Закрываем модальное окно
-$('.js-modal-close').click(function() {
-getParent('.is-show', '.js-modal');
-});
+} 

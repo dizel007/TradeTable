@@ -16,8 +16,8 @@
 //          }
 //       }
 //    }
-$marker=0;
-echo $marker;
+// $marker=0;
+// echo $marker;
 // Echo "GHBDTN";
   
 //   echo <<<HTML

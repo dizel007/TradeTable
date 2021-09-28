@@ -1,6 +1,6 @@
 <?php
 echo <<<HTML
-  <div class="dm-overlay js-modal " data-modal = "write_comment"  id="win7">
+  <div class="dm-overlay js-modal " data-modal = "write_comment">
      <div class="dm-table">
           <div class="dm-cell">
               <div class="dm-modal"  >
