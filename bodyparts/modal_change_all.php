@@ -67,7 +67,7 @@ $StatusKp = "";
 $Comment = "";
 $TenderSum = "";
 $Adress = "";
-
+$dateContract="";
 echo <<<HTML
   <div>
     <select id = "js-id" name="id">
@@ -133,6 +133,13 @@ echo <<<HTML
 </div>
 <div><p>Сумма КП  <input type="number" id="KpSum" name="KpSum" value ="$KpSum"></p></div>
 <div><p>НМЦК Тендера КП : <span id="js-new-modal-TenderSum">$TenderSum</span></p></div>
+<!-- ************************************************** -->
+<hr>
+<div> 
+    <p >Дата заключ.Контакта <input id="dateContract" type="date" name="dateContract" value ="$dateContract"></p>
+</div>
+<hr>
+<!-- *************************************************************************** -->
 <div> 
   <p>Контракт закрыт 
     <select id="FinishContract" size="1" name="FinishContract">

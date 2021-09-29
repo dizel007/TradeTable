@@ -38,6 +38,7 @@ $KpSum = $_POST['KpSum'] ;
 $FinishContract =$_POST['FinishContract'] ;
 $Adress = $_POST['Adress'];
 $Adress = htmlspecialchars($Adress);
+$dateContract = $_POST['dateContract'] ;
 
 
 
@@ -49,7 +50,8 @@ $sql = "UPDATE `reestrkp` SET
        `KpCondition`= '$KpCondition',
        `KpSum`= '$KpSum',
        `FinishContract`= '$FinishContract',
-       `Adress`= '$Adress'
+       `Adress`= '$Adress',
+       `dateContract`='$dateContract'
         WHERE `id`='$id'";
 
 $backArr = array ("id" => $id, 
@@ -60,7 +62,8 @@ $backArr = array ("id" => $id,
              "KpCondition" => $KpCondition,
              "KpSum" => $KpSum,
              "FinishContract" => $FinishContract,
-             "Adress" => $Adress            
+             "Adress" => $Adress,
+             "dateContract" => $dateContract            
             );
 
 
@@ -98,6 +101,7 @@ $fileUser = "../logs/".$user_login.".txt";
        $temp_var.="; Комментарий :".$Comment;
        $temp_var.="; Состояние КП :".$KpCondition;
        $temp_var.="; Сумма КП = :".$KpSum;
+       $temp_var.="; Контракт Заключен :".$dateContract;
        $temp_var.="; Контракт Закрыт :".$FinishContract;
        $temp_var.="; Адрес :".$Adress;
        $temp_var.=";\n";

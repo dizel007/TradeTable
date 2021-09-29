@@ -32,7 +32,7 @@ function MakeArrayFromObj ($fQuery) {
                $arr_name[$i]['id'] = $row["id"];
                $arr_name[$i]['marker'] = $row["marker"];
                $arr_name[$i]['konturLink'] = $row["konturLink"];
- 
+               $arr_name[$i]['dateContract'] = $row["dateContract"];
                }
           $i++;
        }

@@ -59,19 +59,19 @@ $mail->isHTML(true);                                  // Set email format to HTM
 $mail->Subject = $subject_theme; // тема письма
 $mail->Body    = $body_post;
 
-require_once ("modul/mail_logger.php"); // логирование отправки
+
 
     if ($mail->send()) 
         {
-            $result = "success";
+            $result = "НОРМА";
             echo "СООБЩЕНИЕ ОТПРАВЛЕНО на адрес : ". $email_from_kp;
             $status ="OK";
         } else {
-            $result = "error";
+            $result = "ОШИБКА!!!!";
             echo "ОШИБКА ОТПРАВКИ";
-            $status ="ERROR";
+            $status ="$mail->ErrorInfo";
         }
-
+        require_once ("modul/mail_logger.php"); // логирование отправки
 }
  catch (Exception $e) {
     $result = "error";

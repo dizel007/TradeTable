@@ -29,7 +29,8 @@ echo <<<HTML
             <td class="">Состояние</td>
             <td>Сумма КП</td>
             <td class="hidden_class_column">НМЦК Закупки</td>
-            <td>КонЗак</td>
+            <td>ДКЗ</td>
+            <td>КЗ</td>
             <td class="hidden_class_column">Вр</td>
             <td class="hidden_class_column">Адрес поставки</td>
          </tr>
@@ -137,9 +138,8 @@ $Adress = $arr_name[$i]['Adress'];
 //делаем ссылку для скачивания PDF
 $LinkKpPdf = substr($LinkKp, 0, -4)."pdf";
 $exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли ПДФ файл
-
 $exist_excel_file = file_exists($LinkKp);
-
+$dateContract = $arr_name[$i]['dateContract'];
 //  ******************************  Рисуем саму таблицу  *********************************************** 
 
 echo <<<HTML
@@ -156,6 +156,7 @@ HTML;
 
 // Проверяем есть ли файл с КП в формате ексель на сервере **************************************
 // Если есть то картника стает яркой 
+
 if ($exist_excel_file) {  
   echo "<td><a href=\"open_excel/simplexlsx.php?LinkKp=$LinkKp\" class=\"btn\" target=\"_blank\"><img style = \"opacity: 0.8\" src=\"icons/table/excel.png\" alt=\"Excel\"></a></td>";
         } else {
@@ -198,6 +199,18 @@ echo <<<HTML
       <td> <div id = "js-KpCondition$id"  class = "$KpConditionTable">$KpCondition</div></td>
       <td id = "js-KpSum$id" >$KpSum</td>
       <td class="hidden_class_column">$TenderSum</td>
+
+
+HTML;
+if (($dateContract<>"0000-00-00") and ($dateContract)) {
+      // if ($exist_excel_file) {  
+  echo "<td><img style = \"opacity: 0.8\" src=\"icons/table/dateContract.png\" title=\"Дата Закл :$dateContract\"></td>";
+        } else {
+  echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/dateContract.png\" title=\"Нет данных\"></td>";
+       } ;
+      // <td id = "js-dateContract$id" >$dateContract</td>
+
+echo <<<HTML
       <td id = "js-FinishContract$id" >$FinishContract</td>
 <!-- ****************************** ССылка на часики   ********************************************* -->
       <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>

@@ -30,6 +30,7 @@ $(document).ready(function($){
                       TenderSum = String(obj[0]["TenderSum"]);
                       FinishContract = String(obj[0]["FinishContract"]);
                       Adress = String(obj[0]["Adress"]);
+                      dateContract = String(obj[0]["dateContract"]);
 
       document.getElementById("js-new-modal-id").innerHTML = id;
       document.getElementById('js-new-modal-id').value = id;
@@ -44,7 +45,7 @@ $(document).ready(function($){
       document.getElementById("js-new-modal-Comment").innerHTML = Comment; // отображаемое значение
       document.getElementById('js-new-modal-Comment').value = Comment; // value  -  коде
       document.getElementById("DateNextCall").innerHTML = DateNextCall; // отображаемое значение
-      document.getElementById('DateNextCall').value = DateNextCall; // value  - коде
+      document.getElementById("DateNextCall").value = DateNextCall; // value  - коде
       document.getElementById("js-new-modal-KpCondition").innerHTML = KpCondition; // отображаемое значение
       document.getElementById('js-new-modal-KpCondition').value = KpCondition; // value  - коде
       document.getElementById('KpSum').value = KpSum; // value  - коде
@@ -53,6 +54,10 @@ $(document).ready(function($){
       document.getElementById('js-new-modal-FinishContract').value = FinishContract; // value  - коде
       document.getElementById("textarea-Adress").innerHTML = Adress; // отображаемое значение
       document.getElementById('textarea-Adress').value = Adress; // value  -  коде
+      
+      document.getElementById("dateContract").innerHTML = dateContract; // отображаемое значение
+      document.getElementById("dateContract").value = dateContract; // value  - коде
+      
 
       document.getElementById("Responsible").value=Responsible; // изменям options в Select
       document.getElementById("Responsible").text=Responsible; //изменям options в Select

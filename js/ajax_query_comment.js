@@ -19,7 +19,10 @@ $('document').ready(function(){
     var FinishContract = sel.value;
         sel = document.getElementById("textarea-Adress"); 
    var Adress = sel.value;
-    $.ajax({  // отправляем запрос на обновление БД
+       sel = document.getElementById("dateContract");
+   var dateContract = sel.value;
+
+   $.ajax({  // отправляем запрос на обновление БД
       url: "changedb/update_all_zakup.php",
       method: 'POST',             /* Метод передачи (post или get) */
       dataType: 'html',
@@ -31,7 +34,8 @@ $('document').ready(function(){
         KpCondition:KpCondition,
         KpSum:KpSum,
         FinishContract:FinishContract,
-        Adress:Adress
+        Adress:Adress,
+        dateContract:dateContract
       },
       success: function(data){
            // alert ('ОБНОВЛЕНИЕ ПРОШЛО УСПЕШНО  ' + data);
@@ -47,6 +51,7 @@ $('document').ready(function(){
         var KpSum = String(obj['KpSum']);
         var FinishContract = String(obj['FinishContract']);
         var Adress = String(obj['Adress']);
+        var dateContract = String(obj['dateContract']);
         // alert (Comment);
         ///////////// ОБНОВЛЕНИЕ ДАННЫХ В НАШЕЙ ТАБЛИЦЕ***********************************
         var find= 'js-KpImportance' + id;
@@ -96,6 +101,11 @@ $('document').ready(function(){
         find= 'js-Adress' + id;
         sel = document.getElementById(find);
         sel.innerHTML = Adress;
+        sel.style.color="blue";
+
+        find= 'js-dateContract' + id;
+        sel = document.getElementById(find);
+        sel.innerHTML = dateContract;
         sel.style.color="blue";
 
       }

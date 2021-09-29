@@ -6,7 +6,7 @@ $fileMailLogName = date('Y-m-d'); // создаем имя фаила куда �
       $file = "../logs/".$fileMailLogName."_mailsend_".".txt";
       $now_date = date('Y-m-d H:i:s');
 // Форсурием переменную для записи в ЛОГфайл
-      $temp_var = $now_date." ID=".$id.": Автор :".$user_mail." выслал КП на EMAIL: ".$email_from_kp." Заказчик=".$Zakazchik;
+      $temp_var = $now_date." ID=".$id.": Автор :".$user_mail." выслал КП на EMAIL: ".$email_from_kp." Заказчик=".$Zakazchik. "; Статус :". $result;
       $temp_var.=";\n";
       
       // Пишем содержимое в файл,
