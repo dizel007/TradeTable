@@ -10,6 +10,9 @@ $name="";
   if ($user == "man") {
     $name = "Мандрыкин";
   }
+  if ($user == "gor") {
+    $name = "Король бордюров";
+  }
   if ($user == "sti") {
     $name = "Штыбко";
   }
