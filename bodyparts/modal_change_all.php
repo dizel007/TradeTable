@@ -128,6 +128,7 @@ echo <<<HTML
         <option value="Не требуется">Не требуется</option>
         <option value="Купили у нас">Купили у нас</option>
         <option value="Уже купили">Уже купили</option>
+        <option value="Перенос на сл.год">Перенос на сл.год</option>
   </select>
   </p>
 </div>

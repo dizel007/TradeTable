@@ -11,7 +11,7 @@
 
  .drawtable td{
  background: rgb(224, 240, 246);
- border: 1px solid grey;
+ border: 1px solid  grey;
  word-wrap : break-word;
  text-align: center;
  /* border-collapse:collapse; */
@@ -68,6 +68,14 @@
     font-weight: 900;
     
 }
+/* Перенос на следующий год */
+.buy_next_year {
+  background-color:rgb(250, 137, 44);
+    color:rgb(3, 71, 3);;
+    font-weight: 900;
+    
+}
+
 
 .markerClass, .commentClass, .btncommentClass{
   cursor: pointer; 

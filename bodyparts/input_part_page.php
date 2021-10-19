@@ -1,5 +1,9 @@
 <?php 
-
+if (isset($_GET['FinishContract'])) {
+    $FinishContract = $_GET['FinishContract'];
+} else {
+    $FinishContract=0;
+}
 
 echo <<<HTML
 <div class="container-fluid">
@@ -41,8 +45,15 @@ echo <<<HTML
 
         
         <div class="mobile_web">
-            <label for="FinishContract">Закр. Контр : </label>
-            <input type="checkbox" name="FinishContract" value="1">
+            <label for="FinishContract">Закр.Перенос Контр : </label>
+HTML;
+if ($FinishContract == 1) {            
+echo "<input type=\"checkbox\" name=\"FinishContract\" value=\"1\" checked>";
+} else {
+    echo "<input type=\"checkbox\" name=\"FinishContract\" value=\"1\">";
+}
+
+echo <<<HTML
         </div>
 
         <button  type="submit">ОБНОВИТЬ</button>
@@ -50,7 +61,6 @@ echo <<<HTML
         </div>
 </form>
 
-<!-- <button onclick="window.location='logout.php'" class="get_rigth">Выйти</button> -->
 
 </div>
         <div class ="col-1 up-button">

@@ -55,15 +55,61 @@ if ($last_string>count($arr_name)) {
 // echo "Количество конец :". $last_string."<br>";
 
 for ($i=$start_string; $i<$last_string; $i++)
-
 // for ($i=0; $i<count($arr_name); $i++)
 {
-//// Проверяем актуальность КП (Если не актуально то закрасим серым цветом)
+// Заводим все переменные 
 
-    if ($arr_name[$i]['StatusKp']=="КП сформировано" ||
-        $arr_name[$i]['FinishContract']==1 || 
-        $arr_name[$i]['KpCondition']=="Не требуется" || 
-        $arr_name[$i]['KpCondition']=="Уже купили")  
+// $jsId = $arr_name[$i]['id'];
+$id = $arr_name[$i]['id'];
+// $pp = $arr_name[$i]['pp'];
+$LinkKp = $arr_name[$i]['LinkKp'];
+$KpNumber = $arr_name[$i]['KpNumber'];
+$KpData = $arr_name[$i]['KpData'];
+$InnCustomer = $arr_name[$i]['InnCustomer']; 
+// $konturLink = $arr_name[$i]['konturLink'];
+// $NameCustomer = $arr_name[$i]['NameCustomer'];
+// $ContactCustomer = $arr_name[$i]['ContactCustomer'];
+// $idKp = $arr_name[$i]['idKp'];
+$StatusKp = $arr_name[$i]['StatusKp'];
+$KpImportance = $arr_name[$i]['KpImportance'];
+$Responsible = $arr_name[$i]['Responsible'];
+$Comment = $arr_name[$i]['Comment'];
+$DateNextCall = $arr_name[$i]['DateNextCall'];
+$KpCondition =  $arr_name[$i]['KpCondition'];
+$KpSum = number_format($arr_name[$i]['KpSum']);
+$TenderSum = number_format($arr_name[$i]['TenderSum']);
+$FinishContract = $arr_name[$i]['FinishContract'];
+$Adress = $arr_name[$i]['Adress'];
+//делаем ссылку для скачивания PDF
+$LinkKpPdf = substr($LinkKp, 0, -4)."pdf";
+$exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли ПДФ файл
+$exist_excel_file = file_exists($LinkKp);
+$dateContract = $arr_name[$i]['dateContract'];
+$KpConditionTable = ""; // Вводим пустую переченную
+
+
+
+  /// Не выводим перенесенные на следующий год КП
+  $KpData_d = strtotime($KpData); // приводим дату КП к типу дата
+  $KpData_d = date('Y',$KpData_d); // Берем год из даты КП
+  $realDate_d = date('Y',$realDate); // Берем сегодняшний год
+  
+  if (($KpCondition == "Перенос на сл.год") &&
+  ($KpData_d == $realDate_d))
+   { 
+    $KpConditionTable = "buy_next_year"; // Красим стутус КП (В оранжевый)
+     if ($FinContr == 0) { // если не выбран флаг =Э показывать закрытые перенесенные контракты, то не показываем закупку
+      continue;
+      
+     }
+     
+  } 
+  //// Проверяем актуальность КП (Если не актуально то закрасим серым цветом)
+
+    if ($StatusKp == "КП сформировано" ||
+        $FinishContract == 1 || 
+        $KpCondition =="Не требуется" || 
+        $KpCondition =="Уже купили")  
           {  //// красим цветом статус КП
                   $statusKpClass = "BlinkColor";
               // Смотрии нужно ли выводит закрытые контракты 
@@ -73,9 +119,9 @@ for ($i=$start_string; $i<$last_string; $i++)
                 }
 
 /// Красим строчку в зависомости от важности КП
-          if ($arr_name[$i]['KpImportance']=="Важно" ) {  //// красим цветом статус КП
+          if ($KpImportance == "Важно" ) {  //// красим цветом статус КП
               $KpImportanceTable = "RedColor";
-          }elseif ($arr_name[$i]['KpImportance']=="Очень важно" ) {
+          }elseif ($KpImportance =="Очень важно" ) {
             $KpImportanceTable = "GreenColor";
           }
           else {
@@ -107,46 +153,22 @@ if ($realKonturLink != "") {
 }
 
 /// ЕСЛИ КУПИЛИ У НАС ТО КРАСИМ ЗЕЛЕНЫМ
-if ($arr_name[$i]['KpCondition'] == "Купили у нас")
+if ($KpCondition == "Купили у нас")
       {  //// красим цветом статус КП
             $KpConditionTable = "buyour";
-      } else {
-        $KpConditionTable = "";
       }
+      //  else {
+      //   $KpConditionTable = "";
+      // }
 
-// $jsId = $arr_name[$i]['id'];
-$id = $arr_name[$i]['id'];
-// $pp = $arr_name[$i]['pp'];
-$LinkKp = $arr_name[$i]['LinkKp'];
-$KpNumber = $arr_name[$i]['KpNumber'];
-$KpData = $arr_name[$i]['KpData'];
-$InnCustomer = $arr_name[$i]['InnCustomer']; 
-// $konturLink = $arr_name[$i]['konturLink'];
-// $NameCustomer = $arr_name[$i]['NameCustomer'];
-// $ContactCustomer = $arr_name[$i]['ContactCustomer'];
-// $idKp = $arr_name[$i]['idKp'];
-// $StatusKp = $arr_name[$i]['StatusKp'];
-$KpImportance = $arr_name[$i]['KpImportance'];
-$Responsible = $arr_name[$i]['Responsible'];
-$Comment = $arr_name[$i]['Comment'];
-$DateNextCall = $arr_name[$i]['DateNextCall'];
-$KpCondition =  $arr_name[$i]['KpCondition'];
-$KpSum = number_format($arr_name[$i]['KpSum']);
-$TenderSum = number_format($arr_name[$i]['TenderSum']);
-$FinishContract = $arr_name[$i]['FinishContract'];
-$Adress = $arr_name[$i]['Adress'];
-//делаем ссылку для скачивания PDF
-$LinkKpPdf = substr($LinkKp, 0, -4)."pdf";
-$exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли ПДФ файл
-$exist_excel_file = file_exists($LinkKp);
-$dateContract = $arr_name[$i]['dateContract'];
+
 //  ******************************  Рисуем саму таблицу  *********************************************** 
-
+$i1=$i+1;
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass">
 <!-- ******************************  AJAX MARKER  ***********************************************  -->
        <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td> -->
-       <td class = "hidden_class_column">$i</td>
+       <td class = "hidden_class_column">$i1</td>
 
 <!-- ******************************  ПАПКА для открытия КП  ***********************************************  -->
        <td><a name="$id" href="?id=$id" target="_blank"><img src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
