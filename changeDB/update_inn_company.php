@@ -52,8 +52,8 @@ while ($row = $user -> fetch_assoc())
    //printf($user_login);
       $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
       
-      $file = "../logs/"."ИНН_".$fileLogName.".txt";
-      $fileAll = '../log.txt';
+      $file = "../logs/inn/"."ИНН_".$fileLogName.".txt";
+      $fileAll = '../logs/inn/log.txt';
       $now_date = date('Y-m-d H:i:s');
       //$temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
 // Форсурием переменную для записи в ЛОГфайл

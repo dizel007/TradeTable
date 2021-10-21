@@ -46,6 +46,7 @@
                     $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
                     $file = "logs/" . $fileLogName . ".txt";
                     $fileAll = 'log.txt';
+                   
                     $now_date = date('Y-m-d H:i:s');
                     /// Вычитываем пользователя
                     require_once "connect_db.php";
@@ -57,12 +58,15 @@
                         $i++;
                     }
 
+                    $file_user_log= "logs/user/".$user_login.".txt"; // 
                     $temp_var = $now_date . "  " . $user_login . " вошел на сайт ;\n";
                     // Пишем содержимое в файл,
                     // используя флаг FILE_APPEND для дописывания содержимого в конец файла
                     // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
                     file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX); // логи по датам
                     file_put_contents($fileAll, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
+                    file_put_contents($file_user_log, $temp_var, FILE_APPEND | LOCK_EX); // Все по юзеру
+
                     // Переадресовываем браузер на страницу проверки нашего скрипта
 
                     header("Location: index.php");

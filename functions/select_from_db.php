@@ -4,9 +4,11 @@ $mysqli->query("SET NAMES 'utf8'");
 function selectAllArr($mysqli, $FinishContract) {
 //$sql = "SELECT * FROM reestrkp ORDER BY pp";
 if ($FinishContract == 0) {
-$sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
+// $sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
+$sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY KpData DESC , KpNumber DESC";
 } else {
-  $sql = "SELECT * FROM reestrkp ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
+  // $sql = "SELECT * FROM reestrkp ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
+  $sql = "SELECT * FROM reestrkp ORDER BY KpData DESC , KpNumber DESC";
 }
   $fQuery = $mysqli->query($sql);
    //$arr_name = [];
@@ -16,7 +18,7 @@ $sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY FinishContract
 
 // Выбор массива КП по ИНН
 function selectArrByInn ($mysqli,$inn) {
-  $sql = "SELECT * FROM reestrkp where InnCustomer = '$inn' ORDER BY pp";
+  $sql = "SELECT * FROM reestrkp where InnCustomer = '$inn' ORDER BY KpData DESC , KpNumber DESC";
   $fQuery = $mysqli->query($sql);
   $arr_name = makeArrayFromObj($fQuery) ;
   return $arr_name;
@@ -28,15 +30,15 @@ function selectArrByKpNumber ($mysqli,$kpNumber) {
   // можно вводить номер КП как с "Е" так и без него (можно и русскую и английсую вбивать)
     if ((substr($kpNumber, -2) == "Е") or (substr($kpNumber, -2) == "е") ){
           $kpNumber = substr($kpNumber,0,-2)."Е";
-          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY KpData DESC";
+          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY KpData DESC , KpNumber DESC";
 
      } elseif ((substr($kpNumber, -1) == "e") or (substr($kpNumber, -1) == "E")) {
           $kpNumber = substr($kpNumber,0,-1)."Е";
-          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY KpData DESC";
+          $sql = "SELECT * FROM reestrkp where kpNumber = '$kpNumber' ORDER BY KpData DESC , KpNumber DESC";
      
      } else {
           $NewkpNumber = $kpNumber."Е";
-          $sql = "SELECT * FROM reestrkp where kpNumber = '$NewkpNumber'  ORDER BY KpData DESC";
+          $sql = "SELECT * FROM reestrkp where kpNumber = '$NewkpNumber'  ORDER BY KpData DESC , KpNumber DESC";
      }
    
   $fQuery = $mysqli->query($sql);
@@ -48,11 +50,11 @@ function selectArrByKpNumber ($mysqli,$kpNumber) {
 function selectArrByDate ($mysqli, $date_start, $date_end) {
   //
   if (($date_start <> "") and ($date_end == "")) { 
-    $sql = "SELECT * FROM reestrkp WHERE KpData >= '$date_start'  ORDER BY pp";
+    $sql = "SELECT * FROM reestrkp WHERE KpData >= '$date_start'  ORDER BY KpData DESC , KpNumber DESC";
    }  elseif (($date_start == "") and ($date_end <> "")) {
-    $sql = "SELECT * FROM reestrkp WHERE KpData <= '$date_end'  ORDER BY pp";
+    $sql = "SELECT * FROM reestrkp WHERE KpData <= '$date_end'  ORDER BY KpData DESC , KpNumber DESC";
    } else {
-    $sql = "SELECT * FROM reestrkp WHERE (KpData >= '$date_start' AND KpData <= '$date_end')  ORDER BY pp";
+    $sql = "SELECT * FROM reestrkp WHERE (KpData >= '$date_start' AND KpData <= '$date_end')  ORDER BY KpData DESC , KpNumber DESC";
    }
   $fQuery = $mysqli->query($sql);
   $arr_name = makeArrayFromObj($fQuery) ;
@@ -61,13 +63,13 @@ function selectArrByDate ($mysqli, $date_start, $date_end) {
 
   // выбор масива по ID КП
 function selectArrByIdKp ($mysqli,$idKp) {
-  $sql = "SELECT * FROM reestrkp where idKp = '$idKp' ORDER BY pp";
+  $sql = "SELECT * FROM reestrkp where idKp = '$idKp' ORDER BY KpData DESC , KpNumber DESC";
   $fQuery = $mysqli->query($sql);
   $arr_name = makeArrayFromObj($fQuery) ;
   return $arr_name;
 }
 function selectArrByHiddenIdKp ($mysqli,$id) {
-  $sql = "SELECT * FROM reestrkp where id = '$id' ORDER BY pp";
+  $sql = "SELECT * FROM reestrkp where id = '$id' ORDER BY KpData DESC , KpNumber DESC";
   $fQuery = $mysqli->query($sql);
   $arr_name = makeArrayFromObj($fQuery) ;
   return $arr_name;
@@ -77,7 +79,7 @@ function selectArrByHiddenIdKp ($mysqli,$id) {
   function selectArrByResponsible ($mysqli,$Responsible) {
     
     //$sql = "SELECT * FROM reestrkp where Responsible = '$Responsible' ORDER BY pp";
-    $sql = "SELECT * FROM reestrkp where Responsible = '$Responsible' ORDER BY KpData DESC";
+    $sql = "SELECT * FROM reestrkp where Responsible = '$Responsible' ORDER BY KpData DESC , KpNumber DESC";
     $fQuery = $mysqli->query($sql);
     $arr_name = makeArrayFromObj($fQuery) ;
     return $arr_name;
@@ -95,7 +97,7 @@ Function FindInnById ($mysqli, $id) {
         }
     }
     
-    $sql = "SELECT * FROM reestrkp where InnCustomer = '$findInn' AND id <>'$id' ORDER BY pp";
+    $sql = "SELECT * FROM reestrkp where InnCustomer = '$findInn' AND id <>'$id' ORDER BY KpData DESC , KpNumber DESC";
     $fQuery = $mysqli->query($sql);
     $arr_findInn = MakeArrayFromObj($fQuery);
 
@@ -114,7 +116,7 @@ Function FindInnById ($mysqli, $id) {
 //// Выбираем из реестре те КП, которые купили у нас
 
 Function selectArrByKpCondition ($mysqli, $KpCondition) {
-  $sql = "SELECT * FROM reestrkp where KpCondition = '$KpCondition' ORDER BY KpData DESC";
+  $sql = "SELECT * FROM reestrkp where KpCondition = '$KpCondition' ORDER BY KpData DESC , KpNumber DESC";
   $fQuery = $mysqli->query($sql);
   $arr_findInn = MakeArrayFromObj($fQuery);
 

@@ -144,7 +144,7 @@ echo <<<HTML
 <div> 
   <p>Контракт закрыт 
     <select id="FinishContract" size="1" name="FinishContract">
-      <option id="js-new-modal-FinishContract" selected value = "$FinishContract">$FinishContract</option>
+      <!-- <option id="js-new-modal-FinishContract" selected value = "$FinishContract">$FinishContract</option> -->
       <option value="0">Контракт НЕ закрыт</option>
       <option value="1">Контракт закрыт</option>
   </select>

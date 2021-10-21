@@ -91,7 +91,7 @@ printf("Соединение не удалось: ");
 
 $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
 $file = "../logs/".$fileLogName.".txt";
-$fileUser = "../logs/".$user_login.".txt";
+$fileUser = "../logs/user/".$user_login.".txt";
        $fileAll = '../log.txt';
        $now_date = date('Y-m-d H:i:s');
        $temp_var = $now_date." ID=".$id;

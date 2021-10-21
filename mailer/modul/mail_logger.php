@@ -2,8 +2,8 @@
 
 $fileMailLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
      
-      $fileUser = "../logs/".$user_mail.".txt";
-      $file = "../logs/".$fileMailLogName."_mailsend_".".txt";
+      $fileUser = "../logs/user/".$user_mail.".txt";
+      $file = "../logs/mail/".$fileMailLogName."_mailsend_".".txt";
       $now_date = date('Y-m-d H:i:s');
 // Форсурием переменную для записи в ЛОГфайл
       $temp_var = $now_date." ID=".$id.": Автор :".$user_mail." выслал КП на EMAIL: ".$email_from_kp." Заказчик=".$Zakazchik. "; Статус :". $result;
