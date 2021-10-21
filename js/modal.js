@@ -64,9 +64,6 @@ $(document).ready(function($){
       document.getElementById('KpSum').value = KpSum; // value  - коде
       document.getElementById("js-new-modal-TenderSum").innerHTML = TenderSum;
 
-      // document.getElementById("js-new-modal-FinishContract").innerHTML = FinishContract; // отображаемое значение
-      // document.getElementById('js-new-modal-FinishContract').value = FinishContract; // value  - коде
-
       // В зависимости от значения FinishContract выбираем какой опшинс сделать активным
       select = document.getElementById('FinishContract').getElementsByTagName('option');
             if (FinishContract == 1) select[1].selected = true;
