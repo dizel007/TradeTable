@@ -2,23 +2,32 @@
   margin: 5px;
 }
 
+.our_table {
+  overflow-x:visible;
+
+}
 
 .drawtable {
-  /* max-width: 99%; */
   font-size: 12px;
-  /* word-wrap : break-word; */
+  border-collapse: collapse;
+  /* border-spacing: 0; */
   }
 
  .drawtable td{
- background: rgb(224, 240, 246);
- border: 1px solid  grey;
+ border: 2px double grey ;
  word-wrap : break-word;
  text-align: center;
- /* border-collapse:collapse; */
-  padding: 1px;
-  margin: 10px;
+ padding: 1px;
 }
-.alarmcolor {
+
+.DrawLight {
+  background: rgb(224, 240, 246);
+ }
+ .DrawDark {
+  background: rgb(202, 212, 216);
+ }
+
+ .alarmcolor {
   color: red;
   font-weight: 900;
 }
@@ -26,11 +35,7 @@
   min-width: 400px;
   max-width: 400px;
 }
-.our_table {
-  overflow-x:visible;
-  
-  
-}
+
 
 
 .RedColor {
@@ -118,5 +123,8 @@
   text-align: center;
   text-decoration:none;
   color:darkcyan;
+}
+.scale11:hover {
+  transform: scale(1.1); 
 }
 

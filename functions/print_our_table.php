@@ -11,9 +11,9 @@ echo <<<HTML
       
       <table width="100%" class="drawtable employee_table">
       <tbody>
-          <tr>
-            <td>M</td>
-            <td class="hidden_class_column">п/п</td>
+          <tr class="DrawDark">
+            <td>пп</td>
+            <td class="hidden_class_column">id</td>
             <td>№КП</td>
             <td>Ex</td> 
             <td>Дата КП</td>
@@ -161,17 +161,22 @@ if ($KpCondition == "Купили у нас")
       //   $KpConditionTable = "";
       // }
 
+if(($i % 2) == 0) {
+  $StringColor = "DrawLight";
+} else {
+  $StringColor = "DrawDark";
+}
 
 //  ******************************  Рисуем саму таблицу  *********************************************** 
 $i1=$i+1;
 echo <<<HTML
-       <tr class ="$KpImportanceTable  $statusKpClass">
+       <tr class ="$KpImportanceTable  $statusKpClass $StringColor">
 <!-- ******************************  AJAX MARKER  ***********************************************  -->
        <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td> -->
        <td class = "hidden_class_column">$i1</td>
 
 <!-- ******************************  ПАПКА для открытия КП  ***********************************************  -->
-       <td><a name="$id" href="?id=$id" target="_blank"><img src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
+       <td><a name="$id" href="?id=$id" target="_blank"><img class="scale11" src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
 <!-- *************  ССЫлка для скачивания КП в формате EXCEL  *********************************  -->
        <td><a href= "$LinkKp">$KpNumber</a></td> 
 HTML;
@@ -180,7 +185,7 @@ HTML;
 // Если есть то картника стает яркой 
 
 if ($exist_excel_file) {  
-  echo "<td><a href=\"open_excel/simplexlsx.php?LinkKp=$LinkKp\" class=\"btn\" target=\"_blank\"><img style = \"opacity: 0.8\" src=\"icons/table/excel.png\" alt=\"Excel\"></a></td>";
+  echo "<td><a href=\"open_excel/simplexlsx.php?LinkKp=$LinkKp\" class=\"btn\" target=\"_blank\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/excel.png\" alt=\"Excel\"></a></td>";
         } else {
   echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/excel.png\" alt=\"Excel\"></td>";
        }  
@@ -192,7 +197,7 @@ echo <<<HTML
 
 // Проверяем есть ли ПДФ файл, то рисуем Иконку и цепляем ссылку на него        
         if ($exist_pdf_file) {  
-          echo "<td><a href= \"$LinkKpPdf\" target=\"_blank\"><img style = \"opacity: 0.8\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></a></td>" ;
+          echo "<td><a href= \"$LinkKpPdf\" target=\"_blank\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></a></td>" ;
                 } else {
                   echo "<td><img style = \"opacity: 0.1\" src=\"icons/table/pdf.png\" alt=\"SeeKp\"></td>" ;
                  }  
@@ -206,7 +211,7 @@ echo <<<HTML
     echo <<<HTML
  
 <!-- ******************************  Icons Email  *********************************************** -->
-      <td><a href= "mailer/login_mail.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
+      <td><a href= "mailer/login_mail.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img class="scale11" style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
  <!-- ********************************** ВАЖНОСТЬ КП ************************************************ -->
       <td id = "js-KpImportance$id" width ="50"class="hidden_class_column">$KpImportance</td>
  <!-- ********************************** ОТветственный  ************************************************ -->
@@ -214,11 +219,11 @@ echo <<<HTML
 <!-- ********************************** Комментарий  ************************************************ -->
       <td  id = "js-comment$id" class ="limit_width">$Comment</td>
 <!-- ********************************** Редактирование  ************************************************ -->
-<td  class= "hidden_class_column"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td> 
+<td  class= "hidden_class_column"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass scale11" src="icons/table/change.png" alt="addCooment"></td> 
       <!-- <td  class= "hidden_class_column"  id="markerLink $id"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td>  -->
 <!-- ********************************** Дата следующего звонка  ********************************************* -->
       <td id = "js-DateNextCall$id" width="60" class ="$DateNextCallTable">$DateNextCall</td>
-      <td> <div id = "js-KpCondition$id"  class = "$KpConditionTable">$KpCondition</div></td>
+      <td > <div id = "js-KpCondition$id" class = "$KpConditionTable">$KpCondition</div></td>
       <td id = "js-KpSum$id" >$KpSum</td>
       <td class="hidden_class_column">$TenderSum</td>
 
@@ -226,7 +231,7 @@ echo <<<HTML
 HTML;
 if (($dateContract<>"0000-00-00") and ($dateContract)) {
       // if ($exist_excel_file) {  
-  echo "<td><img style = \"opacity: 0.8\" src=\"icons/table/dateContract.png\" title=\"Дата Закл :$dateContract\"></td>";
+  echo "<td><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/dateContract.png\" title=\"Дата Закл :$dateContract\"></td>";
         } else {
   echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/dateContract.png\" title=\"Нет данных\"></td>";
        } ;
@@ -235,7 +240,7 @@ if (($dateContract<>"0000-00-00") and ($dateContract)) {
 echo <<<HTML
       <td id = "js-FinishContract$id" >$FinishContract</td>
 <!-- ****************************** ССылка на часики   ********************************************* -->
-      <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>
+      <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img class="scale11" src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>
 <!-- ****************************** Адрес поставки   ********************************************* -->
       <td id = "js-Adress$id" width ="150" class="hidden_class_column">$Adress</td>
   </tr>
