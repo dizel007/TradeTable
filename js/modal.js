@@ -59,8 +59,15 @@ $(document).ready(function($){
       document.getElementById('js-new-modal-Comment').value = Comment; // value  -  коде
       document.getElementById("DateNextCall").innerHTML = DateNextCall; // отображаемое значение
       document.getElementById("DateNextCall").value = DateNextCall; // value  - коде
-      document.getElementById("js-new-modal-KpCondition").innerHTML = KpCondition; // отображаемое значение
-      document.getElementById('js-new-modal-KpCondition').value = KpCondition; // value  - коде
+     
+               
+     // В зависимости от значения KpImportance выбираем какой опшинс сделать активным
+  select = document.getElementById('KpCondition').getElementsByTagName('option');
+  for (i=0; i<select.length; i++) {
+     if (select[i].value == KpCondition) select[i].selected = true;
+      }
+     
+     
       document.getElementById('KpSum').value = KpSum; // value  - коде
       document.getElementById("js-new-modal-TenderSum").innerHTML = TenderSum;
 
