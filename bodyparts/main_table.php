@@ -36,10 +36,10 @@ if (!empty($_GET['id'])) {
         $inn = $arr_name[0]['InnCustomer'];
         $kpNumber = $arr_name[0]['KpNumber'];
         $NameCustomer = $arr_name[0]['NameCustomer'];
+// делаем запрос в БД, чтобы найти ИНН нашей компании
+        $arr_inn= selectInnFromDB($mysqli,$inn); 
 
-        $arr_inn= selectInnFromDB($mysqli,$inn); // делаем запрос в БД, чтобы найти ИНН нашей компании
-      
-        printAboutCompany($arr_inn, $id); // выводим на экран инфу о комании
+        printAboutCompany($arr_inn, $id, $mysqli); // выводим на экран инфу о комании
         $name = $arr_inn[0]['name'];
         // echo "Выбран id_закупки :". $id;
         echo "<div class = \"zagolovok\">Выбрано КП№".$kpNumber.";   id Закупки :".$id."</div>";
@@ -78,7 +78,7 @@ elseif (($typeQuery == 2) and (!empty($value))) {
     if (!empty($id)) { // проверяем есть ли какой либо ID  закупки
               $arr_inn= selectInnFromDB($mysqli,$inn); // делаем запрос в БД, чтобы получить массив с данными о компании
                       
-              printAboutCompany($arr_inn, $id); // выводим на экран инфу о комании
+              printAboutCompany($arr_inn, $id, $mysqli); // выводим на экран инфу о комании
 
               echo "<div class = \"zagolovok\">Выбрано номер КП№".$kpNumber." <BR></div>";
 
@@ -128,7 +128,7 @@ elseif (($typeQuery == 2) and (!empty($value))) {
         $id = $arr_name[0]['id'];  // Берем ID закупки
         $arr_inn= selectInnFromDB($mysqli,$inn); // делаем запрос в БД, чтобы получить массив с данными о компании
         if (!empty($id)) { // проверяем есть ли какой либо ID  закупки             
-                      printAboutCompany($arr_inn, $id); // выводим на экран инфу о комании
+                      printAboutCompany($arr_inn, $id, $mysqli); // выводим на экран инфу о комании
 
                       echo "<div class = \"zagolovok\">Выбран ID КП :".$idKp." <BR></div>";
                       

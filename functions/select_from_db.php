@@ -147,4 +147,12 @@ Function selectArrByNamePart ($arr_name, $zakName) {
 
 return $FindNameCustomer;
 }
+
+/// Находим телефон для корректировки
+Function FindPhoneNumber ($inn, $mysqli){
+$sql = ("SELECT * FROM telephone WHERE `inn` = '$inn'");
+$query = $mysqli->query($sql);
+$arr_phone = MakeArrayFromObjTelephone($query);
+return $arr_phone;
+}
   ?>

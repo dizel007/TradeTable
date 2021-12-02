@@ -83,4 +83,37 @@ if (isset($arr_inn)) {
       }
      
 }
+
+function MakeArrayFromObjTelephone ($fQuery) {
+ 
+  $i=0;
+  // формируем массив с данными по КП 
+  if ($fQuery -> num_rows > 0) {
+         while ($row = $fQuery -> fetch_assoc()) 
+         {
+         for ($k=1; $k<11; $k++) 
+               {
+               $arr_phone[$i]['id_phone'] = $row["id"];
+               $arr_phone[$i]['inn'] = $row["inn"];
+               $arr_phone[$i]['telephone'] = $row["telephone"];
+               $arr_phone[$i]['comment'] = $row["comment"];
+               $arr_phone[$i]['whatsapp'] = $row["whatsapp"];
+               $arr_phone[$i]['name'] = $row["name"];
+               $arr_phone[$i]['old_phone'] = $row["old_phone"];
+               $arr_phone[$i]['date_write'] = $row["date_write"];
+               $arr_phone[$i]['actual'] = $row["actual"];
+
+                
+               }
+          $i++;
+       }
+     }
+if (isset($arr_phone)) {
+            return $arr_phone;
+      }else {
+        $false_arr[] = 1;
+        return $false_arr;
+      }
+     
+}
 ?>

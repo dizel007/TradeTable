@@ -16,8 +16,11 @@
     <link rel = "stylesheet" href = "css/info_company.css">
     <link rel = "stylesheet" href = "css/modal.css"> 
     <link rel = "stylesheet" href = "css/mobile.css">
+    <link rel = "stylesheet" href = "css/phone_tab.css">
     
     <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <!-- скрипт для телефоной маски -->
+    <script src="jquery-3.3.1.maskedinput.min.js" type="text/javascript"></script> 
  </head>
 
 <body>

@@ -20,11 +20,32 @@
  padding: 1px;
 }
 
+/* ДЛЯ ТАБЛИЦЫ ИНН */
+.table_inn {
+ font-size: 12px;
+ border-collapse: collapse;
+  /* border-spacing: 0; */
+  }
+
+
+
+ .table_inn td{
+ border: 2px double grey ;
+ word-wrap : break-word;
+ text-align: center;
+ padding: 1px;
+ border-left: 2px double grey ;
+}
+
+
 .DrawLight {
   background: rgb(224, 240, 246);
  }
  .DrawDark {
   background: rgb(202, 212, 216);
+ }
+ .draw_inn {
+  background: rgb(250, 230, 174);
  }
 
  .alarmcolor {
