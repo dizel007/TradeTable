@@ -148,15 +148,17 @@ echo <<<HTML
                   <form  action="changedb/update_telephone.php?id=$id" method="post">
  <table class="modal_tabel" width="100%" cellspacing="0" cellpadding="5">
  <caption>Наименование КОМПАНИИ: $name</caption>
+ 
+ <caption><b>Телефон: $phone_real</b></caption>
 
-       <tr> 
+       <!-- <tr> 
           <td width="100" valign="top">id_phone_cor</td>
           <td valign="top">$id_phone_cor</td>
           <td> 
               <select size="1" name="id_phone_cor">
               <option value ="$id_phone_cor">$id_phone_cor</option>
         </td>
-      </tr>
+      </tr> -->
       <tr> 
         <td> 
              <input type="hidden" name="id_phone_cor" value="$id_phone_cor">
@@ -167,7 +169,7 @@ echo <<<HTML
         </td>
       </tr>
       
-      <tr> 
+      <!-- <tr> 
           <td valign="top">Телефон</td>
           <td valign="top">$phone_real</td>
           <td>   
@@ -175,12 +177,11 @@ echo <<<HTML
                 <textarea name="telefon" rows="1" cols="30">$phone_real</textarea>
               
          </td>
-      </tr>
+      </tr> -->
       <tr>           
         <td valign="top">WhatsApp</td>
         <td valign="top">$whatsapp_</td>
         <td> 
-            
                   <select size="1" name="whatsapp">
                       <option selected value = "$whatsapp">$whatsapp_</option>
                       <option value="1">есть</option>

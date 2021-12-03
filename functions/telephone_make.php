@@ -16,6 +16,7 @@ function DeleteFirstSymbol($value) {
 mb_internal_encoding("UTF-8");
 $value = mb_substr( $value, $toDelete);
 $value = trim($value);
+$value = "7 ".$value;
 return $value;
 }
 

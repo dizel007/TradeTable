@@ -33,14 +33,14 @@ if (isset($phone_db)) {
       $phone_ =  DeleteFirstSymbol($phone_);
       if ($new_telephone == $phone_) { 
         $priz = 1;
-        echo "<b>8 ".$new_telephone."  =  8 ".$phone_,"</b><br>";
+        echo "<b>".$new_telephone."  =  ".$phone_,"</b><br>";
        } else {
-      echo "8 ".$new_telephone."   |   8 ".$phone_,"<br>";
+      echo "".$new_telephone."   |   ".$phone_,"<br>";
        }
     }
   }
  
-  $new_telephone = "8 ".$new_telephone;
+ 
   if ($priz <> 1) {
     $sql_insert_phone  = "INSERT INTO `telephone`(`id`, `inn`, `telephone`, `comment`, `whatsapp`, `date_write`, `name`, `old_phone`) VALUES ('','$inn','$new_telephone','$commentPhone','$whatsapp', '$today','$contactName','')";
     $query = $mysqli->query($sql_insert_phone);

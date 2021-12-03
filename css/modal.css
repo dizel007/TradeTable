@@ -121,3 +121,6 @@
   box-shadow: 0 0 10px rgba(5,5,3,1);
   
 }
+.modal_tabel_update td {
+  border: 1px solid green ;
+}

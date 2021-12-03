@@ -63,7 +63,8 @@ echo <<<HTML
 <table width ="100%" class ="telephone">
     <tr>
          <td width="70" class ="$act_phone">
-            $phone
+         <a class ="link_tel $act_phone" itemprop="telephone" href="tel:+$phone">$phone</a>
+            
          </td>
          <!-- Актуальность номера -->
          <td width="40">
