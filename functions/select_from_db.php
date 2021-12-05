@@ -155,4 +155,13 @@ $query = $mysqli->query($sql);
 $arr_phone = MakeArrayFromObjTelephone($query);
 return $arr_phone;
 }
+
+Function FindEmailByInn($inn, $mysqli) {
+$sql = "SELECT * FROM `email` WHERE `inn` = $inn";
+$fQuery = $mysqli->query($sql);
+$arr_comp = MakeArrayFromObjEmail($fQuery) ;
+// возвращаем массив с почтами
+return $arr_comp;
+}
+
   ?>

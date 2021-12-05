@@ -329,8 +329,166 @@ echo <<<HTML
      </div>
     </div>
    </div>
-  </div>";
+  </div>
 HTML;
 }
+
+
+ //***********************************// корректировка EMAIL /////////************************* */
+ if ($typeQuery == 400) {
+
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+  }
+    if (isset($_GET['id_email'])) {
+      $id_email_cor = $_GET['id_email'];
+      $sql = "SELECT * FROM `email` WHERE id='$id_email_cor'";
+      $query = $mysqli->query($sql);
+      $email_cor = MakeArrayFromObjEmail($query); // массив с данными по телефону
+
+
+      $email_real = $email_cor[0]['email'];
+      $commentEmail = $email_cor[0]["comment"];
+      $date_write = $email_cor[0]["date_write"];
+      $actual_email = $email_cor[0]["actual"];
+      
+    }
+    for ($i=0; $i<count($arr_name); $i++){
+
+echo <<<HTML
+  <div class="dm-overlay" id="win400">
+      <div class="dm-table">
+          <div class="dm-cell">
+              <div class="dm-modal">
+                  <a href="#close" class="close"></a>
+      
+      <div class ="center">ИЗМЕНЕНИЕ ДАННЫХ EMAIL<br><br></div>
+                  <form  action="changedb/update_email.php?id=$id" method="post">
+ <table class="modal_tabel" width="100%" cellspacing="0" cellpadding="5">
+ <caption>Наименование КОМПАНИИ: $name</caption>
  
+ <caption><b>Email: $email_real</b></caption>
+
+      <tr> 
+        <td> 
+             <input type="hidden" name="id_email_cor" value="$id_email_cor">
+        </td>
+        <td> 
+          <!-- передаем id  чтобы знать куда вернуться -->
+             <input type="hidden" name="id" value="$id">   
+        </td>
+      </tr>
+      <tr>           
+      </tr>
+
+      <tr>           
+        <td valign="top">Актуальность email</td>
+        <td valign="top">$actual_email</td>
+         <td> 
+            
+                  <select id="js-actual_email" size="1" name="actual_email">
+                      <option id="js-new-modal-" selected value = "$actual_email">$actual_email</option>
+                      <option value="Актуальная">Актуальная</option>
+                      <option value="Неактуальная">Неактуальная</option>
+                      <option value=""></option>
+                </select>
+            
+          </td>
+    </tr>
+
+      <tr> 
+          <td width="200" valign="top">Коментарий</td>
+          <td valign="top">$commentEmail</td>
+          <td>   
+              <p>    
+                <textarea name="commentEmail" rows="3" cols="30">$commentEmail</textarea>
+              </p>
+         </td>
+      </tr>
+
+
+                           
+ 
+           </table>
+                                    
+       <p><input type="submit" value="Отправить"></p>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+HTML;
+}
+}
+
+
+//***********************************// Добавление НОВОГО EMAIL  /////////
+if ($typeQuery == 409) {
+
+  if (isset($_GET['id']))  {$id = $_GET['id'];}
+  if (isset($_GET['inn'])) { $inn = $_GET['inn'];}
+
+  
+
+echo <<<HTML
+  <div class="dm-overlay" id="win409">
+      <div class="dm-table-phone">
+          <div class="dm-cell-phone">
+              <div class="dm-modal-phone">
+                  <a href="#close" class="close"></a>
+      
+      <div class ="center">ДОБАВЛЕНИЕ НОВОГО ТЕЛЕФОННОГО НОМЕРА<br><br></div>
+                  <form  action="changedb/insert_email.php?id=$id&inn=$inn" method="post">
+ <table class="modal_tabel" width="100%" cellspacing="0" cellpadding="5">
+ <caption>Наименование КОМПАНИИ: $name</caption>
+
+       <tr> 
+          <td width="100" valign="top">ИНН</td>
+           <td> 
+              <select size="1" name="inn">
+              <option value ="$inn">$inn</option>
+          </td>
+      </tr>
+      <tr> 
+        <td> 
+          <!-- передаем id  чтобы знать куда вернуться -->
+             <input type="hidden" name="id" value="$id">   
+        </td>
+      </tr>
+      
+      <tr> 
+          <td valign="top">email</td>
+           <td>   
+              <input type="email"  name="new_email" value="">
+	         </td>
+      </tr>
+      <tr>           
+        <td valign="top">Актуальность номера</td>
+              <td> 
+            
+                  <select size="1" name="actual_email">
+                      <option selected value="Актуальная">Актуальная</option>
+                      <option value="Неактуальная">Неактуальная</option>
+                       <option value=""></option>
+                </select>
+            
+          </td>
+    </tr>
+      <tr> 
+          <td width="200" valign="top">Коментарий</td>
+          <td>   
+                 <textarea name="commentEmail" rows="3" cols="30"></textarea>
+          </td>
+      </tr>
+           </table>
+                              
+       <p><input type="submit" value="Отправить"></p>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+HTML;
+}
+
 ?>

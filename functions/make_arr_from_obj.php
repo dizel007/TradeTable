@@ -84,6 +84,7 @@ if (isset($arr_inn)) {
      
 }
 
+/// Получаем массив из таблицы телефонов
 function MakeArrayFromObjTelephone ($fQuery) {
  
   $i=0;
@@ -110,6 +111,38 @@ function MakeArrayFromObjTelephone ($fQuery) {
      }
 if (isset($arr_phone)) {
             return $arr_phone;
+      }else {
+        $false_arr[] = 1;
+        return $false_arr;
+      }
+     
+}
+
+/// Получаем массив из таблицы телефонов
+function MakeArrayFromObjEmail ($fQuery) {
+ 
+  $i=0;
+  // формируем массив с данными по КП 
+  if ($fQuery -> num_rows > 0) {
+         while ($row = $fQuery -> fetch_assoc()) 
+         {
+         for ($k=1; $k<11; $k++) 
+               {
+               $arr_emails[$i]['id_email'] = $row["id"];
+               $arr_emails[$i]['inn'] = $row["inn"];
+               $arr_emails[$i]['email'] = $row["email"];
+               $arr_emails[$i]['comment'] = $row["comment"];
+               $arr_emails[$i]['date_write'] = $row["date_write"];
+               $arr_emails[$i]['actual'] = $row["actual"];
+
+                
+               }
+          $i++;
+       }
+     }
+
+if (isset($arr_emails)) {
+            return $arr_emails;
       }else {
         $false_arr[] = 1;
         return $false_arr;

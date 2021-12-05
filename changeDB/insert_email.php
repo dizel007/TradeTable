@@ -5,45 +5,43 @@ require_once "../functions/telephone_make.php";
  
 $id = $_POST["id"];
 $inn = $_POST["inn"];
-$new_telephone = $_POST["telefon"];
-$new_telephone=htmlspecialchars($new_telephone);
-$new_telephone = telephoneMake($new_telephone); // приводит телефон к стандартному виду
-$new_telephone =  DeleteFirstSymbol($new_telephone);
-$whatsapp = $_POST["whatsapp"];
-$actual = $_POST["actual_phone"];
-$commentPhone = $_POST["commentPhone"];
-$commentPhone=htmlspecialchars($commentPhone);
-$contactName = $_POST["contactName"];
-$contactName=htmlspecialchars($contactName);
+$new_email = $_POST["new_email"];
+$new_email=htmlspecialchars($new_email);
+$email_from_kp = $new_email;
+require_once("../mailer/modul/valid_email.php"); // Проверяем валидный ли емайл
+$actual_email = $_POST["actual_email"];
+$commentEmail = $_POST["commentEmail"];
+$commentEmail=htmlspecialchars($commentEmail);
 $today = date("Y-m-d H:i:s"); 
 
 
 // Вычитываем все телефоны с таким ИНН
-$sql = "SELECT telephone FROM telephone WHERE inn = '$inn'";
+$sql = "SELECT email FROM email WHERE inn = '$inn'";
 $query = $mysqli->query($sql);
 $i = 0;
 while ($row = $query->fetch_assoc()) {
-  $phone_db[] = $row["telephone"];
+  $email_db[] = $row["email"];
   $i++;
 }
 $priz = 0;
-if (isset($phone_db)) {
+if (isset($email_db)) {
   
-    foreach ($phone_db as $key => $phone_) {
-      $phone_ =  DeleteFirstSymbol($phone_);
-      if ($new_telephone == $phone_) { 
+    foreach ($email_db as $key => $email_) {
+      
+      if ($new_email == $email_) { 
         $priz = 1;
-        echo "<b>".$new_telephone."  =  ".$phone_,"</b><br>";
+        echo "<b>".$new_email."  =  ".$email_,"</b><br>";
        } else {
-      echo "".$new_telephone."   |   ".$phone_,"<br>";
+      echo "".$new_email."   |   ".$email_,"<br>";
        }
     }
   }
  
  
   if ($priz <> 1) {
-    $sql_insert_phone  = "INSERT INTO `telephone`(`id`, `inn`, `telephone`, `comment`, `whatsapp`, `date_write`, `name`, `old_phone`, `actual`) VALUES ('','$inn','$new_telephone','$commentPhone','$whatsapp', '$today','$contactName','','$actual')";
-    $query = $mysqli->query($sql_insert_phone);
+    $sql_insert_email  = "INSERT INTO `email`(`id`, `inn`, `email`, `comment`,`date_write`, `actual`)
+                                      VALUES ('','$inn','$new_email','$commentEmail','$today','$actual_email')";
+    $query = $mysqli->query($sql_insert_email);
     if (!$query) {
       echo "WE ARE DIE <br>";
       die(mysqli_error($mysqli));

@@ -48,14 +48,7 @@ if (!empty($email_from_kp_new)) {
   $email_from_kp = $email_from_kp_new;
 }
 
-// if (preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", $email_from_kp))
-if (preg_match("/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/i", $email_from_kp))
-{
-  //все ОК, email правильный
-}
-else
-{
-  exit("ЕМАЙЛ (".$email_from_kp.") НЕ ВАЛИДНЫЙ"); 
-//проверка email на правильность НЕ пройдена
-}
+
+require_once "valid_email.php";
+
 ?>

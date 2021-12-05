@@ -11,25 +11,32 @@ function PrintAboutCompany ($arr_inn, $id, $mysqli) {
       $contactFace = $arr_inn[0]['contactFace'];
       $comment = $arr_inn[0]['comment'];
       
-      $arr_phones = FindPhoneNumber ($inn, $mysqli);
-      
-      
+      $arr_phones = FindPhoneNumber($inn, $mysqli);
+      $arr_emails = FindEmailByInn($inn, $mysqli);
+
+
+
 echo <<<HTML
-<div class="zagolovok">Информация о компании : $name</div>
+<div class="zagolovok">
+        $name <br>
+ </div>
        <table width="100%" class="table_inn employee_table">
        <tbody>
            <tr class="draw_inn">
              <td width="70">ИНН</td>
-             <td width="150">Наименование</td>
+             
              <td width="200">Полное наименование</td> 
-             <td width="400">
-              
-                             Телефон
-                             <a href="?id=$id&inn=$inn&typeQuery=309#win309"><img src ="icons/table/add_tel.jpg"></a>
-                    
-                     
+             <td  width="400">
+             Телефон
+           
+             </td>
+             <td width="32">
+             <a href="?id=$id&inn=$inn&typeQuery=309#win309"><img src ="icons/table/plus.png"></a>
              </td>
              <td>Емайл</td>
+             <td width="32">
+             <a href="?id=$id&inn=$inn&typeQuery=409#win409"><img src ="icons/table/plus.png"></a>
+             </td>
              <td>Контактное лицо</td>
              <td width = "160">Адрес</td>
              <td>Комментарий</td>
@@ -37,9 +44,10 @@ echo <<<HTML
           </tr>
           <tr class="draw_inn">
              <td class = "inntext" >$inn</td>
-             <td >$name</td>
+            
              <td>$fullName</td> 
-             <td width="300">
+<!-- ************************ ВЫВОД ТЕЛЕФОНОВ *********************************** -->
+<td valign="top" colspan="2" width="300">
                      
 HTML;
  for ($i=0; $i < count($arr_phones); $i++)
@@ -56,18 +64,23 @@ HTML;
         if ($actual == "Актуальный") {$act_phone ="actual_phone_number";}
         if (($actual == "Неактуальный") or ($actual == "Не звонить")){$act_phone ="nonactual_phone_number";}
         if ($actual == "Новый") {$act_phone ="new_phone_number";}
-        if ($whatsapp == "Новый") {$act_phone ="new_phone_number";}
+       
      
         $actual = mb_strimwidth($actual, 0, 6, "");
 echo <<<HTML
 <table width ="100%" class ="telephone">
     <tr>
-         <td width="70" class ="$act_phone">
-         <a class ="link_tel $act_phone" itemprop="telephone" href="tel:+$phone">$phone</a>
-            
+       <td width ="20">
+       <a class="link_tel" itemprop="telephone" href="tel:+$phone">
+       <img style = "opacity: 0.9" src="icons/table/telephone.png">
+       </a>
+       </td>
+
+        <td width="80" title="$commentPhone" class ="$act_phone">
+         $phone
          </td>
          <!-- Актуальность номера -->
-         <td width="40">
+         <td width="40" >
             $actual
          </td>
          <!-- WhatsApp -->
@@ -85,7 +98,7 @@ echo <<<HTML
           </a>
           </td>
           <!-- Контактное лицо -->
-          <td width ="130"  title="$commentPhone">
+          <td width ="130">
           $contactName
           </td>
           <td width="20">
@@ -96,9 +109,56 @@ echo <<<HTML
 HTML;                         
 }
 echo <<<HTML
-        </td>
-             <td>$email</td>
-             <td>$contactFace</td>
+    </td>
+
+ <!-- *********************  ВЫВОД EMAILS ********************* -->
+ <td valign="top" colspan="2" width="300">
+                     
+HTML;
+                      for ($i=0; $i < count($arr_emails); $i++)
+                       {
+                             $email_n = $arr_emails[$i]['email'];
+                             $id_email = $arr_emails[$i]['id_email'];
+                             $actualEmail = $arr_emails[$i]['actual'];
+                             $commentEmail = $arr_emails[$i]['comment'];
+                             
+                             $act_email="";
+                             if ($actualEmail == "Актуальная") {$act_email ="actual_phone_number";}
+                             if ($actualEmail == "Неактуальная"){$act_email ="nonactual_phone_number";}
+                             $actual = mb_strimwidth($actualEmail, 0, 6, "");
+
+echo <<<HTML
+                     <table width ="100%" class ="telephone">
+                         <tr>
+                         <td width="150" class ="$act_email">
+<a class = "link_tel $act_email" href="mailto:$email_n"> $email_n</a>
+                              
+                              </td>
+                              <!-- Актуальность email -->
+                              <td width="40">
+                                 $actual
+                              </td>
+                               <!-- КОмантарий к почте -->
+                               <td width =""  title="$commentEmail">
+                               $commentEmail
+                               </td>
+                               <td width="20">
+                     <a href="?id=$id&id_email=$id_email&typeQuery=400#win400" class="btn"><img style = "opacity: 0.9" src="icons/table/change.png"></a>
+                               </td>
+                        </tr>
+ </table>
+HTML;                         
+                     }
+                     echo <<<HTML
+                             </td>          
+ 
+ 
+ <!-- <td>$email</td> -->
+
+
+
+ <!-- *********************  ВЫВОД КОНТАКТНОЕ ЛИЦО ********************* -->
+             <td width ="200">$contactFace</td>
              <td>$adress</td>
              <td>$comment</td>
              <td width="20">

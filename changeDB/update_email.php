@@ -1,57 +1,38 @@
 <?php
 
 require_once "../connect_db.php";
-require_once "../functions/telephone_make.php";
+require_once "../functions/make_arr_from_obj.php";
+// Обновляем данные в талиблице. $typeQuery - выбоо столбца, который будем редактировать. $id -  ИД строки которую будем редактировать
+
  
-$id = $_POST["id"];
-$inn = $_POST["inn"];
-$new_telephone = $_POST["telefon"];
-$new_telephone=htmlspecialchars($new_telephone);
-$new_telephone = telephoneMake($new_telephone); // приводит телефон к стандартному виду
-$new_telephone =  DeleteFirstSymbol($new_telephone);
-$whatsapp = $_POST["whatsapp"];
-$actual = $_POST["actual_phone"];
-$commentPhone = $_POST["commentPhone"];
-$commentPhone=htmlspecialchars($commentPhone);
-$contactName = $_POST["contactName"];
-$contactName=htmlspecialchars($contactName);
-$today = date("Y-m-d H:i:s"); 
+  $id_email = $_POST["id_email_cor"];
 
+  // достаем данные о записи из таблицы // В Дальнейшем для комментариев
+$sql = "SELECT * FROM `email` where `id` = '$id_email'";
+$fQuery = $mysqli->query($sql);
+$my_inn_arr = MakeArrayFromObjEmail($fQuery) ;
 
-// Вычитываем все телефоны с таким ИНН
-$sql = "SELECT telephone FROM telephone WHERE inn = '$inn'";
-$query = $mysqli->query($sql);
-$i = 0;
-while ($row = $query->fetch_assoc()) {
-  $phone_db[] = $row["telephone"];
-  $i++;
-}
-$priz = 0;
-if (isset($phone_db)) {
+  $id = $_POST["id"];
+  $actual = $_POST["actual_email"];
+  $commentEmail = $_POST["commentEmail"];
+  $commentEmail=htmlspecialchars($commentEmail);
+  $today = date("Y-m-d H:i:s");       
   
-    foreach ($phone_db as $key => $phone_) {
-      $phone_ =  DeleteFirstSymbol($phone_);
-      if ($new_telephone == $phone_) { 
-        $priz = 1;
-        echo "<b>".$new_telephone."  =  ".$phone_,"</b><br>";
-       } else {
-      echo "".$new_telephone."   |   ".$phone_,"<br>";
-       }
-    }
-  }
- 
- 
-  if ($priz <> 1) {
-    $sql_insert_phone  = "INSERT INTO `telephone`(`id`, `inn`, `telephone`, `comment`, `whatsapp`, `date_write`, `name`, `old_phone`, `actual`) VALUES ('','$inn','$new_telephone','$commentPhone','$whatsapp', '$today','$contactName','','$actual')";
-    $query = $mysqli->query($sql_insert_phone);
-    if (!$query) {
-      echo "WE ARE DIE <br>";
-      die(mysqli_error($mysqli));
-      printf("Соединение не удалось: ");
-    }
-  } else {
-     exit("ТАКОЙ НОМЕР УЖЕ СУЩЕСТВУЕТ");
-  }
+$sql = "UPDATE `email` SET 
+      `comment`= '$commentEmail' ,
+      `actual`= '$actual' ,
+      `date_write` = '$today' 
+
+      WHERE `id`='$id_email'";
+
+$query = $mysqli->query($sql);
+
+if (!$query){
+die();
+printf("Соединение не удалось: ");
+};
+
+
 
 $sql = "SELECT * FROM users WHERE user_hash = '$_COOKIE[hash]'";
 //$sql = "SELECT * FROM reestrkp where InnCustomer = '$inn';
