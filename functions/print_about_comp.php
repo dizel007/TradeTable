@@ -142,7 +142,7 @@ echo <<<HTML
                                <td width =""  title="$commentEmail">
                                $commentEmail
                                </td>
-                               <td width="20">
+                               <td width="30">
                      <a href="?id=$id&id_email=$id_email&typeQuery=400#win400" class="btn"><img style = "opacity: 0.9" src="icons/table/change.png"></a>
                                </td>
                         </tr>

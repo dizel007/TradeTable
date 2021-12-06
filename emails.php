@@ -2,7 +2,7 @@
 
 require_once("connect_db.php");
 $i = 0;
-$today = date("j-n-Y");
+$today = date("Y-m-d H:i:s"); 
 
 $sql = ("SELECT * FROM inncompany");
 $user = $mysqli->query($sql);
@@ -12,6 +12,13 @@ while ($row = $user->fetch_assoc()) {
   $email = $row["email"];
   
   echo $email . "<br>";
+  $sql= "SELECT * FROM inncompany WHERE inn='$inn'";
+  $query1 = $mysqli->query($sql);
+  if ($query1-> num_rows>1) {
+    echo "MANY INN";
+    continue;
+   
+  }
   $email = str_replace(";", ",", $email);
   $arr_email = explode(",", $email);
   $i++;
@@ -20,23 +27,21 @@ echo "<br>";
 echo "ID=".$id."<br>";
 echo "ИНН=".$inn."<br>";
 
-foreach ($arr_email as $key => $value) {
-  
-  echo "EMAIL = ".$value."<br>";
-  $tel[] = ($value);
-  
-}
+foreach ($arr_email as $key => $value) 
+  {
+    echo "EMAIL = ".$value."<br>";
+    $tel[] = ($value);
+  }
+
 // Вычитываем все телефоны с таким ИНН
 $sql = "SELECT email FROM `email` WHERE `inn` = '$inn'";
 $query = $mysqli->query($sql);
-$i = 0;
 
-while ($row = $query->fetch_assoc()) {
-  $email_db[] = $row["email"];
+$i = 0;
+  while ($row = $query->fetch_assoc()) {
+  $email_db[$i] = $row["email"];
   $i++;
 }
-
-
 
 foreach ($tel as $tel => $val) {
   $priz = 0;
@@ -46,7 +51,7 @@ foreach ($tel as $tel => $val) {
   if (isset($email_db)) {
   
     foreach ($email_db as $key => $email_) {
-      echo "phone__=" . $email_ . "===" . $new_email . "<br>";
+      echo "email_old_=" . $email_ . "===" . $new_email . "<br>";
       if ($new_email == $email_) { $priz = 1; }
     }
   }

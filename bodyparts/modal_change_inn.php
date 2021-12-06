@@ -69,11 +69,11 @@ HTML;
       <tr> 
           <td width="200" valign="top">Емайл</td>
           <td valign="top">$email</td>
-          <td>   
+          <!-- <td>   
               <p>    
                 <textarea name="email" rows="3" cols="50">$email</textarea>
               </p>
-         </td>
+         </td> -->
       </tr>
       <tr> 
           <td width="200" valign="top">Контактное Лицо</td>

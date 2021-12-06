@@ -1,6 +1,5 @@
 <?php
 
-require_once "../connect_db.php";
 require_once "../functions/telephone_make.php";
  
 $id = $_POST["id"];

@@ -2,7 +2,7 @@
 
 require_once("connect_db.php");
 $i = 0;
-$today = date("j-n-Y");
+$today = date("Y-m-d H:i:s"); 
 
 $sql = ("SELECT * FROM inncompany");
 $user = $mysqli->query($sql);
