@@ -103,6 +103,7 @@ function MakeArrayFromObjTelephone ($fQuery) {
                $arr_phone[$i]['old_phone'] = $row["old_phone"];
                $arr_phone[$i]['date_write'] = $row["date_write"];
                $arr_phone[$i]['actual'] = $row["actual"];
+               $arr_phone[$i]['viber'] = $row["viber"];
 
                 
                }

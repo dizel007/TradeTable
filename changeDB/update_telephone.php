@@ -16,6 +16,8 @@ $my_inn_arr = MakeArrayFromObjTelephone($fQuery) ;
   $telephone = $_POST["telefon"];
   $telephone=htmlspecialchars($telephone);
   $whatsapp = $_POST["whatsapp"];
+  $viber = $_POST["viber"];
+
   $actual = $_POST["actual_phone"];
   $commentPhone = $_POST["commentPhone"];
   $commentPhone=htmlspecialchars($commentPhone);
@@ -26,6 +28,7 @@ $my_inn_arr = MakeArrayFromObjTelephone($fQuery) ;
 $sql = "UPDATE `telephone` SET 
       `comment`= '$commentPhone' ,
       `whatsapp`= '$whatsapp' ,
+      `viber`= '$viber' ,
       `name`= '$contactName' ,
       `actual`= '$actual' ,
       `date_write` = '$today' 

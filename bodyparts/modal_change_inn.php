@@ -129,6 +129,10 @@ HTML;
       $commentPhone = $phone_cor[0]["comment"];
       $whatsapp = $phone_cor[0]["whatsapp"];
     ($whatsapp == 1)?$whatsapp_="есть":$whatsapp_="нет";  
+
+     $viber = $phone_cor[0]["whatsapp"];
+     ($viber == 1)?$viber_="есть":$viber_="нет";
+
       $contactName = $phone_cor[0]["name"];
       $old_phonу = $phone_cor[0]["old_phone"];
       $date_write = $phone_cor[0]["date_write"];
@@ -184,6 +188,18 @@ echo <<<HTML
         <td> 
                   <select size="1" name="whatsapp">
                       <option selected value = "$whatsapp">$whatsapp_</option>
+                      <option value="1">есть</option>
+                      <option value="0">нет</option>
+                  </select>
+            
+          </td>
+    </tr>
+    <tr>           
+        <td valign="top">Viber</td>
+        <td valign="top">$viber_</td>
+        <td> 
+                  <select size="1" name="viber">
+                      <option selected value = "$viber">$viber</option>
                       <option value="1">есть</option>
                       <option value="0">нет</option>
                   </select>
@@ -289,6 +305,16 @@ echo <<<HTML
         <td valign="top">WhatsApp</td>
            <td> 
                 <select size="1" name="whatsapp">
+                      <option value="1">есть</option>
+                      <option selected value="0">нет</option>
+                 </select>
+            
+          </td>
+    </tr>
+    <tr>           
+        <td valign="top">Viber</td>
+           <td> 
+                <select size="1" name="viber">
                       <option value="1">есть</option>
                       <option selected value="0">нет</option>
                  </select>
@@ -437,7 +463,7 @@ echo <<<HTML
               <div class="dm-modal-phone">
                   <a href="#close" class="close"></a>
       
-      <div class ="center">ДОБАВЛЕНИЕ НОВОГО ТЕЛЕФОННОГО НОМЕРА<br><br></div>
+      <div class ="center">ДОБАВЛЕНИЕ НОВОЙ ЭЛЕКТРОННОЙ ПОЧТЫ<br><br></div>
                   <form  action="changedb/insert_email.php?id=$id&inn=$inn" method="post">
  <table class="modal_tabel" width="100%" cellspacing="0" cellpadding="5">
  <caption>Наименование КОМПАНИИ: $name</caption>
