@@ -36,8 +36,13 @@ if ($handle) {
          echo "ИНН уже существуует <br>";
        }else {
         echo "Такого ИНН нет<br>";
-////// ЕСЛИ ТАКОГО ИНН НЕТ, ТО ЗАГРУЖАЕМ ЕГО В БД                          
-              $sql = "INSERT INTO `inncompany`(`id`, `pp`, `inn`, `name`, `fullName`, `telefon`, `email`, `adress`, `contactFace`, `comment`) VALUES $buffer";
+////// ЕСЛИ ТАКОГО ИНН НЕТ, ТО ЗАГРУЖАЕМ ЕГО В БД   
+              $today = ",'".date("Y-m-d H:i:s")."'";
+              // echo "<br>=====".$buffer."===<br>";
+
+              $buffer = substr_replace($buffer, $today, strlen($buffer)-1, 0);                     
+              // echo "<br>=====".$buffer."===<br>";
+              $sql = "INSERT INTO `inncompany`(`id`, `pp`, `inn`, `name`, `fullName`, `telefon`, `email`, `adress`, `contactFace`, `comment`,`date_write`) VALUES $buffer";
               echo "<br>=".$i."========================================(SQL)===================================<br>".$sql.
               "<br>====================================================(SQL)====================================<br><br>";
               $query = $mysqli->query($sql);

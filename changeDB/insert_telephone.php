@@ -1,12 +1,14 @@
 <?php
 require_once "../connect_db.php";
-// require_once "../functions/telephone_make.php";
+require_once "../functions/telephone_make.php";
  
 $id = $_POST["id"];
 $inn = $_POST["inn"];
 $new_telephone = $_POST["telefon"];
 $new_telephone=htmlspecialchars($new_telephone);
+
 $new_telephone = telephoneMake($new_telephone); // приводит телефон к стандартному виду
+
 $new_telephone =  DeleteFirstSymbol($new_telephone);
 $whatsapp = $_POST["whatsapp"];
 $viber = $_POST["viber"];
@@ -101,24 +103,3 @@ exit();    // прерываем работу скрипта, чтобы заб�
 
 
 
-function telephoneMake($value) {
-  $value = preg_replace('/[^0-9]/', '', $value);
-  $value = preg_replace('/[D]/', '', $value);
-  $value = substr_replace($value, " ", 1, 0);
-  $value = substr_replace($value, "(", 2, 0);
-  $value = substr_replace($value, ")", 6, 0);
-  $value = substr_replace($value, " ", 7, 0);
-  $value = substr_replace($value, "-", 11, 0);
-  $value = substr_replace($value, "-", 14, 0);
-return $value;
-  }
-
-function DeleteFirstSymbol($value) {
- $toDelete = 1; // сколько знаков надо убрать
-mb_internal_encoding("UTF-8");
-$value = mb_substr( $value, $toDelete);
-$value = trim($value);
-$value = "7 ".$value;
-return $value;
-}
-?>
