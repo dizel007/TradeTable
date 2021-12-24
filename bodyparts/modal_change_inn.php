@@ -130,7 +130,7 @@ HTML;
       $whatsapp = $phone_cor[0]["whatsapp"];
     ($whatsapp == 1)?$whatsapp_="есть":$whatsapp_="нет";  
 
-     $viber = $phone_cor[0]["whatsapp"];
+     $viber = $phone_cor[0]["viber"];
      ($viber == 1)?$viber_="есть":$viber_="нет";
 
       $contactName = $phone_cor[0]["name"];

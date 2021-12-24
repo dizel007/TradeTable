@@ -21,7 +21,9 @@ $('document').ready(function(){
    var Adress = sel.value;
        sel = document.getElementById("dateContract");
    var dateContract = sel.value;
-
+   sel = document.getElementById("procent_work");
+   var procent_work = sel.value;
+//    alert ('00 = ' + procent_work);
    $.ajax({  // отправляем запрос на обновление БД
       url: "changedb/update_all_zakup.php",
       method: 'POST',             /* Метод передачи (post или get) */
@@ -35,7 +37,8 @@ $('document').ready(function(){
         KpSum:KpSum,
         FinishContract:FinishContract,
         Adress:Adress,
-        dateContract:dateContract
+        dateContract:dateContract,
+        procent_work:procent_work
       },
       success: function(data){
            // alert ('ОБНОВЛЕНИЕ ПРОШЛО УСПЕШНО  ' + data);
@@ -52,7 +55,9 @@ $('document').ready(function(){
         var FinishContract = String(obj['FinishContract']);
         var Adress = String(obj['Adress']);
         var dateContract = String(obj['dateContract']);
-        // alert (Comment);
+        var procent_work = String(obj['procent_work']);
+        // alert ('01 = ' + procent_work);
+
         ///////////// ОБНОВЛЕНИЕ ДАННЫХ В НАШЕЙ ТАБЛИЦЕ***********************************
         var find= 'js-KpImportance' + id;
         sel = document.getElementById(find);
@@ -103,10 +108,17 @@ $('document').ready(function(){
         sel.innerHTML = Adress;
         sel.style.color="blue";
 
+        find= 'js-procent_work' + id;
+        sel = document.getElementById(find);
+        sel.innerHTML = procent_work;
+        sel.style.color="blue";
+
+
         find= 'js-dateContract' + id;
         sel = document.getElementById(find);
         sel.innerHTML = dateContract;
         sel.style.color="blue";
+
 
       }
    });

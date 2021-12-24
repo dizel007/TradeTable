@@ -22,6 +22,7 @@ echo <<<HTML
             <td>Наименование</td>
             <td>EM</td>
             <td class="hidden_class_column">Важность</td>
+            <td class="hidden_class_column">%</td>
             <td class="hidden_class_column">Ответственный</td>
             <td>Комментарий</td>
             <td>Ред</td>
@@ -73,7 +74,12 @@ $InnCustomer = $arr_name[$i]['InnCustomer'];
 $StatusKp = $arr_name[$i]['StatusKp'];
 $KpImportance = $arr_name[$i]['KpImportance'];
 $Responsible = $arr_name[$i]['Responsible'];
-$Comment = $arr_name[$i]['Comment'];
+$Comment = (string)$arr_name[$i]['Comment'];
+$Comment = substr($Comment,1);
+// $Comment = strip_tags($Comment, "<br><br/><p><strong>");
+
+
+
 $DateNextCall = $arr_name[$i]['DateNextCall'];
 $KpCondition =  $arr_name[$i]['KpCondition'];
 $KpSum = number_format($arr_name[$i]['KpSum']);
@@ -86,7 +92,8 @@ $exist_pdf_file =file_exists($LinkKpPdf); // Проверяем есть ли П
 $exist_excel_file = file_exists($LinkKp);
 $dateContract = $arr_name[$i]['dateContract'];
 $KpConditionTable = ""; // Вводим пустую переченную
-
+$procent_work = $arr_name[$i]['procent_work'];
+$date_write = $arr_name[$i]['date_write'];; // 
 
 
   /// Не выводим перенесенные на следующий год КП
@@ -214,6 +221,9 @@ echo <<<HTML
       <td><a href= "mailer/login_mail.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img class="scale11" style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
  <!-- ********************************** ВАЖНОСТЬ КП ************************************************ -->
       <td id = "js-KpImportance$id" width ="50"class="hidden_class_column">$KpImportance</td>
+
+<!-- ****************************** % выполнения   ********************************************* -->
+      <td id = "js-procent_work$id" width ="20" class="hidden_class_column" title="$date_write"><b>$procent_work</b></td>
  <!-- ********************************** ОТветственный  ************************************************ -->
      <td id= "js-Responsible$id" width="80" class="hidden_class_column">$Responsible</td>
 <!-- ********************************** Комментарий  ************************************************ -->
@@ -231,9 +241,9 @@ echo <<<HTML
 HTML;
 if (($dateContract<>"0000-00-00") and ($dateContract)) {
       // if ($exist_excel_file) {  
-  echo "<td><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/dateContract.png\" title=\"Дата Закл :$dateContract\"></td>";
+  echo "<td id = \"js-dateContract$id\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/dateContract.png\" title=\"Дата Закл :$dateContract\"></td>";
         } else {
-  echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/dateContract.png\" title=\"Нет данных\"></td>";
+  echo "<td id = \"js-dateContract$id\"><img style = \"opacity: 0.2\" src=\"icons/table/dateContract.png\" title=\"Нет данных\"></td>";
        } ;
       // <td id = "js-dateContract$id" >$dateContract</td>
 
@@ -241,7 +251,8 @@ echo <<<HTML
       <td id = "js-FinishContract$id" >$FinishContract</td>
 <!-- ****************************** ССылка на часики   ********************************************* -->
       <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img class="scale11" src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>
-<!-- ****************************** Адрес поставки   ********************************************* -->
+
+      <!-- ****************************** Адрес поставки   ********************************************* -->
       <td id = "js-Adress$id" width ="150" class="hidden_class_column">$Adress</td>
   </tr>
  

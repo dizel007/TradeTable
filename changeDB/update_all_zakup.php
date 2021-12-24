@@ -20,7 +20,7 @@ $KpImportance = $_POST ['KpImportance'] ;
 $Responsible = $_POST['Responsible'];
 
 $Comment = $_POST['Comment'] ; 
- $Comment =  trim ( $Comment , $character_mask = " \t\n\r\0\x0B");  // убипаем все лишние пробелы и переносы
+$Comment =  trim ( $Comment , $character_mask = " \t\n\r\0\x0B");  // убипаем все лишние пробелы и переносы
  if ($Comment !='')  {
       
       $dateForComment = date('Y-m-d')."(".$user_login."): "; // добавление в виде даты и логина пользователя
@@ -39,7 +39,8 @@ $FinishContract =$_POST['FinishContract'] ;
 $Adress = $_POST['Adress'];
 $Adress = htmlspecialchars($Adress);
 $dateContract = $_POST['dateContract'] ;
-
+$procent_work = $_POST['procent_work'] ;
+$today = date("Y-m-d"); 
 
 
 $sql = "UPDATE `reestrkp` SET 
@@ -51,7 +52,9 @@ $sql = "UPDATE `reestrkp` SET
        `KpSum`= '$KpSum',
        `FinishContract`= '$FinishContract',
        `Adress`= '$Adress',
-       `dateContract`='$dateContract'
+       `dateContract`='$dateContract',
+       `date_write` = '$today',
+       `procent_work` = '$procent_work'
         WHERE `id`='$id'";
 
 $backArr = array ("id" => $id, 
@@ -63,22 +66,10 @@ $backArr = array ("id" => $id,
              "KpSum" => $KpSum,
              "FinishContract" => $FinishContract,
              "Adress" => $Adress,
-             "dateContract" => $dateContract            
+             "dateContract" => $dateContract,
+             "procent_work" => $procent_work            
             );
 
-
-
-// $sql = "UPDATE `reestrkp` SET 
-//       `ContactCustomer`= '$ContactCustomer' ,
-//       `KpImportance`= '$KpImportance', 
-//       `Responsible`= '$Responsible' ,
-//       `Comment`= '$Comment' ,
-//       `KpSum`= '$KpSum' ,
-//       `DateNextCall`= '$DateNextCall' ,
-//       `KpCondition`= '$KpCondition' ,
-//       `FinishContract`= '$FinishContract' ,
-//       `Adress`= '$Adress'       
-//       WHERE `id`='$id'";
 
 $query = $mysqli->query($sql);
 

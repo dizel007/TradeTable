@@ -9,7 +9,7 @@ function MakeArrayFromObj ($fQuery) {
          while ($row = $fQuery -> fetch_assoc()) 
          {
          //echo "ID: {$row["id"]}; Название: {$row["m_cat_name"]};<hr>";// вывод категорий
-         for ($k=1; $k<21; $k++) 
+         for ($k=1; $k<25; $k++) 
                {
                $arr_name[$i]['pp'] = $row["pp"];
                $arr_name[$i]['KpNumber'] = $row["KpNumber"];
@@ -33,6 +33,8 @@ function MakeArrayFromObj ($fQuery) {
                $arr_name[$i]['marker'] = $row["marker"];
                $arr_name[$i]['konturLink'] = $row["konturLink"];
                $arr_name[$i]['dateContract'] = $row["dateContract"];
+               $arr_name[$i]['date_write'] = $row["date_write"];
+               $arr_name[$i]['procent_work'] = $row["procent_work"];
                }
           $i++;
        }

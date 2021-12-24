@@ -68,6 +68,7 @@ $Comment = "";
 $TenderSum = "";
 $Adress = "";
 $dateContract="";
+$procent_work="";
 echo <<<HTML
   <div>
     <select id = "js-id" name="id">
@@ -120,6 +121,7 @@ echo <<<HTML
     <p >Дата след.Звонка <input id="DateNextCall" type="date" name="DateNextCall" value ="$DateNextCall"></p>
 </div>
 
+
 <div> 
   <p>Состояние КП
     <select id="KpCondition" size="1" name="KpCondition">
@@ -136,9 +138,15 @@ echo <<<HTML
 <div><p>НМЦК Тендера КП : <span id="js-new-modal-TenderSum">$TenderSum</span></p></div>
 <!-- ************************************************** -->
 <hr>
+
+
+<!-- {{{{{{{{{{{{{{{XXXXXXXXXXXXXXXXXXXXXX  88888 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}}}}}}}}}}}}}}}*** -->
+
 <div> 
-    <p >Дата заключ.Контакта <input id="dateContract" type="date" name="dateContract" value ="$dateContract"></p>
+    <p >Дата заключ.Контакта <input id="dateContract" type="date" name="dateContract" value ="$dateContract">
+    Процент выполнения  <input type="number" id="procent_work" name="procent_work" value ="$procent_work"></p>
 </div>
+<!-- {{{{{{{{{{{{{{{XXXXXXXXXXXXXXXXXXXXXX  88888 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}}}}}}}}}}}}}}}*** -->
 <hr>
 <!-- *************************************************************************** -->
 <div> 

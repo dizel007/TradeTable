@@ -46,6 +46,7 @@ $(document).ready(function($){
                       FinishContract = String(obj[0].FinishContract);
                       Adress = String(obj[0].Adress);
                       dateContract = String(obj[0].dateContract);
+                      procent_work = String(obj[0].procent_work);
 
 
 // alert ('FIRS = '+FinishContract);
@@ -59,7 +60,7 @@ $(document).ready(function($){
       document.getElementById('js-new-modal-Comment').value = Comment; // value  -  коде
       document.getElementById("DateNextCall").innerHTML = DateNextCall; // отображаемое значение
       document.getElementById("DateNextCall").value = DateNextCall; // value  - коде
-     
+      document.getElementById("procent_work").innerHTML = procent_work;
                
      // В зависимости от значения KpImportance выбираем какой опшинс сделать активным
   select = document.getElementById('KpCondition').getElementsByTagName('option');
@@ -80,6 +81,9 @@ $(document).ready(function($){
       document.getElementById("textarea-Adress").innerHTML = Adress; // отображаемое значение
       document.getElementById('textarea-Adress').value = Adress; // value  -  коде
       
+      document.getElementById("procent_work").innerHTML = procent_work; // отображаемое значение
+      document.getElementById('procent_work').value = procent_work; // value  -  коде
+
       document.getElementById("dateContract").innerHTML = dateContract; // отображаемое значение
       document.getElementById("dateContract").value = dateContract; // value  - коде
       
