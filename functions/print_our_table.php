@@ -75,10 +75,6 @@ $StatusKp = $arr_name[$i]['StatusKp'];
 $KpImportance = $arr_name[$i]['KpImportance'];
 $Responsible = $arr_name[$i]['Responsible'];
 $Comment = (string)$arr_name[$i]['Comment'];
-$Comment = substr($Comment,1);
-// $Comment = strip_tags($Comment, "<br><br/><p><strong>");
-
-
 
 $DateNextCall = $arr_name[$i]['DateNextCall'];
 $KpCondition =  $arr_name[$i]['KpCondition'];

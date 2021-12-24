@@ -64,5 +64,3 @@ $value = "7 ".$value;
 return $value;
 }
 ?>
-
-
