@@ -179,7 +179,25 @@ if ($select_arr[0]['pp'] !='') {
           echo "<div class = \"zagolovok\"> Не нашли таких Наименований<BR></div>";
         }
 }
-// ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ номеру КП
+
+
+// ВЫВОДИМ ТАБЛИЦУ ПО РЕГИОНУ МОСКВА
+elseif ($typeQuery == 12) {
+  // $FinishContract = 1 ; // всегда показываем СКРЫТЫЕ привязанные закупки
+  $region = 'моск';
+  echo "<div class = \"zagolovok\">Выборка по региону Москва  и Мос область<br></div>";
+  
+  $arr_name = selectAllArr($mysqli, $FinishContract);
+  $select_arr = selectArrByRegion($arr_name, $region);
+  
+if ($select_arr[0]['pp'] !='') {
+          
+  printOurTable($select_arr, $FinishContract, $pageNumber, $stringCount) ; 
+        }
+        else {
+          echo "<div class = \"zagolovok\"> Не нашли таких закупок<BR></div>";
+        }
+}
 
 // ЕСЛИ НИ ОДИН ВАРИАНТ НЕ СРАБОТАЛ, ТО ВЫВОДИМ ВСЮ ТАБЛИЦУ  
   else {
@@ -197,8 +215,6 @@ if ($select_arr[0]['pp'] !='') {
 
     printOurTable($arr_name, $FinishContract, $pageNumber, $stringCount) ;
     
-    require("functions/page_numbers.php");
-    
-  }
+}
 
 ?>

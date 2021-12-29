@@ -259,6 +259,7 @@ HTML;
  echo <<<HTML
   </tbody></table></div>
   HTML;
+  require("functions/page_numbers.php");
   return 1;
   }
 

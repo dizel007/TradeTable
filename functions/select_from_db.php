@@ -164,4 +164,31 @@ $arr_comp = MakeArrayFromObjEmail($fQuery) ;
 return $arr_comp;
 }
 
+
+//// Выбираем КП по части названия компании
+
+Function selectArrByRegion ($arr_name, $region) {
+
+  
+  foreach ($arr_name as $key => $value) {
+    foreach ($value as $key1 => $value1) {
+        if ($key1 == 'Adress') {
+
+          $value1 = " ".$value1;
+          $value1 = mb_strtolower($value1);
+          $region = mb_strtolower($region);
+
+          if (stripos($value1, $region)) {
+                $FindKpRegion[] = $value;
+              }
+        }
+      }
+  }
+  if (!isset($FindKpRegion)) {
+    $FindKpRegion[] = 1;
+  }
+
+return $FindKpRegion;
+}
+
   ?>
