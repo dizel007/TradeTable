@@ -184,7 +184,7 @@ if ($select_arr[0]['pp'] !='') {
 // ВЫВОДИМ ТАБЛИЦУ ПО РЕГИОНУ МОСКВА
 elseif ($typeQuery == 12) {
   // $FinishContract = 1 ; // всегда показываем СКРЫТЫЕ привязанные закупки
-  $region = 'моск';
+  $value==""?$region = 'моск': $region = $value;
   echo "<div class = \"zagolovok\">Выборка по региону Москва  и Мос область<br></div>";
   
   $arr_name = selectAllArr($mysqli, $FinishContract);
@@ -216,5 +216,4 @@ if ($select_arr[0]['pp'] !='') {
     printOurTable($arr_name, $FinishContract, $pageNumber, $stringCount) ;
     
 }
-
 ?>
