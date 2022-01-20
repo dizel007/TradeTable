@@ -40,6 +40,7 @@ $Adress = $_POST['Adress'];
 $Adress = htmlspecialchars($Adress);
 $dateContract = $_POST['dateContract'] ;
 $procent_work = $_POST['procent_work'] ;
+$dateFinishContract = $_POST['dateFinishContract'] ;
 $today = date("Y-m-d"); 
 
 
@@ -54,6 +55,7 @@ $sql = "UPDATE `reestrkp` SET
        `Adress`= '$Adress',
        `dateContract`='$dateContract',
        `date_write` = '$today',
+       `dateFinishContract`='$dateFinishContract',
        `procent_work` = '$procent_work'
         WHERE `id`='$id'";
 
@@ -67,7 +69,8 @@ $backArr = array ("id" => $id,
              "FinishContract" => $FinishContract,
              "Adress" => $Adress,
              "dateContract" => $dateContract,
-             "procent_work" => $procent_work            
+             "procent_work" => $procent_work,
+             "dateFinishContract" => $dateFinishContract,            
             );
 
 

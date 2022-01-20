@@ -69,6 +69,7 @@ $TenderSum = "";
 $Adress = "";
 $dateContract="";
 $procent_work="";
+$dateFinishContract="";
 echo <<<HTML
   <div>
     <select id = "js-id" name="id">
@@ -77,13 +78,13 @@ echo <<<HTML
   </div>
 
  <div><b> Номер КП : <span id="js-new-modal-KpNumber">$KpNumber</span></b></div>
- <div>Дата КП :$KpData</div>
+ <!-- <div>Дата КП :$KpData</div> -->
  <div>ИНН Заказчика :<span id="js-new-modal-InnCustomer">$InnCustomer</span></div>
  <div><b>Наименование Заказчика :<span id="js-new-modal-NameCustomer">$NameCustomer</span></b></div>
   <hr>
 <div>ID  закупки :<span id="js-new-modal-idKp">$idKp</span></div>
   <hr>
-<div>Статус КП : <span id="js-new-modal-StatusKp">$StatusKp</span></div>
+<!-- <div>Статус КП : <span id="js-new-modal-StatusKp">$StatusKp</span></div> -->
      
 <div> 
 <p>Важность :
@@ -100,7 +101,7 @@ echo <<<HTML
   <p>Ответственный
     <select id="Responsible" size="1" name="Responsible">
         <option id="js-new-modal-Responsible" selected value = "$Responsible">$Responsible</option>
-        <option value="Мандрыкин">Мандрыкин</option>
+        <!-- <option value="Мандрыкин">Мандрыкин</option> -->
         <option value="Гуц">Гуц</option>
         <option value="Горячев">Горячев</option>
         <option value="Штыбко">Штыбко</option>
@@ -110,7 +111,7 @@ echo <<<HTML
 </div>
    <hr>
 <div> 
-    <p>Комментарий :<br><br><span id="js-new-modal-Comment">$Comment</span></p>
+    <p>Комментарий :<span id="js-new-modal-Comment">$Comment</span></p>
       <p id="Comment">    
          <textarea id="textarea-Comment" name="Comment" rows="2" cols="50"></textarea>
       </p>
@@ -143,8 +144,9 @@ echo <<<HTML
 <!-- {{{{{{{{{{{{{{{XXXXXXXXXXXXXXXXXXXXXX  88888 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}}}}}}}}}}}}}}}*** -->
 
 <div> 
-    <p >Дата заключ.Контакта <input id="dateContract" type="date" name="dateContract" value ="$dateContract">
+    <p>Дата заключения Контакта <input id="dateContract" type="date" name="dateContract" value ="$dateContract">
     Процент выполнения  <input type="number" id="procent_work" name="procent_work" value ="$procent_work"></p>
+    <p>Дата окончания Контакта <input id="dateFinishContract" type="date" name="dateFinishContract" value ="$dateFinishContract"></p>
 </div>
 <!-- {{{{{{{{{{{{{{{XXXXXXXXXXXXXXXXXXXXXX  88888 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}}}}}}}}}}}}}}}*** -->
 <hr>

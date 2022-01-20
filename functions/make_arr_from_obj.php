@@ -35,6 +35,7 @@ function MakeArrayFromObj ($fQuery) {
                $arr_name[$i]['dateContract'] = $row["dateContract"];
                $arr_name[$i]['date_write'] = $row["date_write"];
                $arr_name[$i]['procent_work'] = $row["procent_work"];
+               $arr_name[$i]['dateFinishContract'] = $row["dateFinishContract"];
                }
           $i++;
        }

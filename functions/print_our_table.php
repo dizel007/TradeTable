@@ -33,6 +33,7 @@ echo <<<HTML
             <td>ДКЗ</td>
             <td>КЗ</td>
             <td class="hidden_class_column">Вр</td>
+            <td>Финиш</td>
             <td class="hidden_class_column">Адрес поставки</td>
          </tr>
 
@@ -90,7 +91,7 @@ $dateContract = $arr_name[$i]['dateContract'];
 $KpConditionTable = ""; // Вводим пустую переченную
 $procent_work = $arr_name[$i]['procent_work'];
 $date_write = $arr_name[$i]['date_write'];; // 
-
+$dateFinishContract = $arr_name[$i]['dateFinishContract'];
 
   /// Не выводим перенесенные на следующий год КП
   $KpData_d = strtotime($KpData); // приводим дату КП к типу дата
@@ -248,6 +249,8 @@ echo <<<HTML
 <!-- ****************************** ССылка на часики   ********************************************* -->
       <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img class="scale11" src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>
 
+<!-- ****************************** ССылка на часики   ********************************************* -->
+      <td id = "js-dateFinishContract$id" width="60">$dateFinishContract</td>
       <!-- ****************************** Адрес поставки   ********************************************* -->
       <td id = "js-Adress$id" width ="150" class="hidden_class_column">$Adress</td>
   </tr>

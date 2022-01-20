@@ -23,6 +23,8 @@ $('document').ready(function(){
    var dateContract = sel.value;
    sel = document.getElementById("procent_work");
    var procent_work = sel.value;
+   sel = document.getElementById("dateFinishContract");
+   var dateFinishContract = sel.value;
 //    alert ('00 = ' + procent_work);
    $.ajax({  // отправляем запрос на обновление БД
       url: "changedb/update_all_zakup.php",
@@ -38,7 +40,8 @@ $('document').ready(function(){
         FinishContract:FinishContract,
         Adress:Adress,
         dateContract:dateContract,
-        procent_work:procent_work
+        procent_work:procent_work,
+        dateFinishContract:dateFinishContract,
       },
       success: function(data){
            // alert ('ОБНОВЛЕНИЕ ПРОШЛО УСПЕШНО  ' + data);
@@ -56,6 +59,8 @@ $('document').ready(function(){
         var Adress = String(obj['Adress']);
         var dateContract = String(obj['dateContract']);
         var procent_work = String(obj['procent_work']);
+        var dateFinishContract = String(obj['dateFinishContract']);
+        
         // alert ('01 = ' + procent_work);
 
         ///////////// ОБНОВЛЕНИЕ ДАННЫХ В НАШЕЙ ТАБЛИЦЕ***********************************
@@ -117,6 +122,11 @@ $('document').ready(function(){
         find= 'js-dateContract' + id;
         sel = document.getElementById(find);
         sel.innerHTML = dateContract;
+        sel.style.color="blue";
+
+        find= 'js-dateFinishContract' + id;
+        sel = document.getElementById(find);
+        sel.innerHTML = dateFinishContract;
         sel.style.color="blue";
 
 

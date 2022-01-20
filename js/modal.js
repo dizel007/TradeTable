@@ -47,6 +47,7 @@ $(document).ready(function($){
                       Adress = String(obj[0].Adress);
                       dateContract = String(obj[0].dateContract);
                       procent_work = String(obj[0].procent_work);
+                      dateFinishContract = String(obj[0].dateFinishContract);
 
 
 // alert ('FIRS = '+FinishContract);
@@ -86,6 +87,9 @@ $(document).ready(function($){
 
       document.getElementById("dateContract").innerHTML = dateContract; // отображаемое значение
       document.getElementById("dateContract").value = dateContract; // value  - коде
+
+      document.getElementById("dateFinishContract").innerHTML = dateFinishContract; // отображаемое значение
+      document.getElementById("dateFinishContract").value = dateFinishContract; // value  - коде
       
   // В зависимости от значения Responsible выбираем какой опшинс сделать активным
       select = document.getElementById('Responsible').getElementsByTagName('option');
