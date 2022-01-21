@@ -29,7 +29,8 @@
             $arr_name = selectArrByKpCondition($mysqli, $KpCondition);
                  
             echo "КП которые купили у нас :";
-            $summa =0;
+            $prodano_do_2022 = 36278280 - 51600; // Продано до 01.01.2022
+            $summa =0  - $prodano_do_2022; // 
              // Высчитываем сумму проданных КП
                foreach ($arr_name as $key => $value) {
                  foreach ($value as $key1 => $value1) {

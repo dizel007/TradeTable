@@ -42,7 +42,7 @@ if (!empty($_GET['id'])) {
         printAboutCompany($arr_inn, $id, $mysqli); // выводим на экран инфу о комании
         $name = $arr_inn[0]['name'];
         // echo "Выбран id_закупки :". $id;
-        echo "<div class = \"zagolovok\">Выбрано КП№".$kpNumber.";   id Закупки :".$id."</div>";
+        echo "<div class = \"zagolovok\">Выбрано КП№".$kpNumber.";   id Закупки :".$id." (дата последней корректировки: ".$arr_name[0]["date_write"].")</div>";
         printOurTable($arr_name, $FinishContract,$pageNumber, $stringCount);
     //////// сюда же добавим компании с этим же инн
         $arr_inn_id = FindInnById($mysqli, $id);
@@ -80,7 +80,7 @@ elseif (($typeQuery == 2) and (!empty($value))) {
                       
               printAboutCompany($arr_inn, $id, $mysqli); // выводим на экран инфу о комании
 
-              echo "<div class = \"zagolovok\">Выбрано номер КП№".$kpNumber." <BR></div>";
+              echo "<div class = \"zagolovok\">Выбрано номер КП№".$kpNumber." (дата последней корректировки: ".$arr_name[0]["date_write"].") <BR></div>";
 
               printOurTable($arr_name, $FinishContract,$pageNumber, $stringCount) ;
 
@@ -130,7 +130,7 @@ elseif (($typeQuery == 2) and (!empty($value))) {
         if (!empty($id)) { // проверяем есть ли какой либо ID  закупки             
                       printAboutCompany($arr_inn, $id, $mysqli); // выводим на экран инфу о комании
 
-                      echo "<div class = \"zagolovok\">Выбран ID КП :".$idKp." <BR></div>";
+                      echo "<div class = \"zagolovok\">Выбран ID КП :".$idKp." (дата последней корректировки: ".$arr_name[0]["date_write"].")<BR></div>";
                       
                       printOurTable($arr_name, $FinishContract, $pageNumber, $stringCount) ; 
                   
