@@ -16,6 +16,9 @@ $name="";
   if ($user == "sti") {
     $name = "Штыбко";
   }
+  if ($user == "kul") {
+    $name = "Кулиев";
+  }
   return $name;
 }
 ?>

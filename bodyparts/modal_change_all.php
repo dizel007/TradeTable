@@ -106,6 +106,7 @@ echo <<<HTML
         <option value="Горячев">Горячев</option>
         <option value="Штыбко">Штыбко</option>
         <option value="Зелизко">Зелизко</option>
+        <option value="Кулиев">Кулиев</option>
     </select>
   </p>
 </div>
