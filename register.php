@@ -3,10 +3,24 @@
 
 // Соединямся с БД
 require_once ("connect_db.php");
-//$link=mysqli_connect("localhost", "mysql_user", "mysql_password", "testtable");
+// Проверяем, чтбоы был зарегистрированный пользователь
+if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем зарегистрирован ли пользователь
+    {
+        $sql = "SELECT * FROM users WHERE user_id = '".intval($_COOKIE['id'])."' LIMIT 1";
+        $query = $mysqli->query($sql);
+        $userdata = mysqli_fetch_assoc($query);
 
-
-if(isset($_POST['submit']))
+        if(($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['user_id'] !== $_COOKIE['id']))
+        {
+            setcookie("id", "", time() - 3600*26, "/");
+            setcookie("hash", "", time() - 3600*26, "/", null, null, true); // httponly !!!
+            header("Location: login.php"); exit();
+        }
+        else
+        {
+            $user = $userdata['user_login'];
+            $userType = $userdata['userType'];
+            if(isset($_POST['submit']))
 {
 
     $err = [];
@@ -46,13 +60,18 @@ if(isset($_POST['submit']))
     {
 
         $login = $_POST['login'];
+        $username = $_POST['user_name'];
 
         // Убераем лишние пробелы и делаем двойное хеширование
         $password = md5(md5(trim($_POST['password'])));
 
-        $sql = "INSERT INTO users SET user_login='".$login."', user_password='".$password."'";
+        $sql = "INSERT INTO users SET 
+                user_login='".$login."',
+                user_password='".$password."',
+                user_active=1,
+                user_name='".$username."'";
        
-        //echo "***".$sql."**<br><br>";
+    
         
                $query = $mysqli->query($sql);
 
@@ -61,12 +80,12 @@ if(isset($_POST['submit']))
                 die();
                 printf("Соединение не удалось: ");
                 }
-                else {
-                  echo "WE DO IT MOTHER FUCKER";
-                }
+                // else {
+                //   echo "WE DO IT MOTHER FUCKER";
+                // }
             
     
-       header("Location: login.php"); exit();
+       header("Location: index.php"); exit();
     }
     else
     {
@@ -77,10 +96,64 @@ if(isset($_POST['submit']))
         }
     }
 }
+
+
+
+
+
+
+
+        }
+    }
+else
+{
+
+    header("Location: login.php"); exit();
+}
+
 ?>
 
-<form method="POST">
-Логин <input name="login" type="text" required><br>
-Пароль <input name="password" type="password" required><br>
-<input name="submit" type="submit" value="Зарегистрироваться">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- <title>Инициализация польззователя</title> -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+
+
+    <div class="col-3 w-30 mx-auto shadow-lg loginform">
+        <form method="POST">
+            <br>
+            <label for="exampleFormControlInput1" class="form-label">Логин</label>
+            <input class="form-control"  name="login" type="text" required>
+            
+            <label for="exampleFormControlInput1" class="form-label">Фамилия</label>
+            <input class="form-control"  name="user_name" type="text" required>
+
+            <label for="exampleFormControlInput1" class="form-label">Пароль</label>
+            <input class="form-control"  name="password" type="password" required>
+            <br>
+            <div class = "center">
+               <input class="btn btn-outline-primary" name="submit" type="submit" value="Зарегистрировать">
+            </div>
+            
+
+        </form>
+    </div>
+
+    </div>
+    </div>
+
+</body>
+</html>

@@ -6,6 +6,7 @@ require("functions/page_numbers.php");
 
 // шапка таблицы
 $i=0;
+$j=0;
 echo <<<HTML
      <div class ="our_table"> 
       
@@ -102,9 +103,10 @@ $dateFinishContract = $arr_name[$i]['dateFinishContract'];
   ($KpData_d == $realDate_d))
    { 
     $KpConditionTable = "buy_next_year"; // Красим стутус КП (В оранжевый)
+
      if ($FinContr == 0) { // если не выбран флаг =Э показывать закрытые перенесенные контракты, то не показываем закупку
       continue;
-      
+            
      }
      
   } 
@@ -116,8 +118,12 @@ $dateFinishContract = $arr_name[$i]['dateFinishContract'];
         $KpCondition =="Уже купили")  
           {  //// красим цветом статус КП
                   $statusKpClass = "BlinkColor";
+               
               // Смотрии нужно ли выводит закрытые контракты 
-               if ($FinContr == 0) { continue;}
+               if ($FinContr == 0) {
+                  continue;
+                  
+                }
           }else{
                   $statusKpClass = "";
                 }
@@ -172,12 +178,14 @@ if(($i % 2) == 0) {
 }
 
 //  ******************************  Рисуем саму таблицу  *********************************************** 
-$i1=$i+1;
+// $i1=$i+1;
+$j=($j+1);
+$puncPp = $j + 200*($pageNumber-1);
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass $StringColor">
 <!-- ******************************  AJAX MARKER  ***********************************************  -->
        <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td> -->
-       <td class = "hidden_class_column">$i1</td>
+       <td class = "hidden_class_column">$puncPp</td>
 
 <!-- ******************************  ПАПКА для открытия КП  ***********************************************  -->
        <td><a name="$id" href="?id=$id" target="_blank"><img class="scale11" src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 

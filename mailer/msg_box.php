@@ -31,17 +31,15 @@ $fQuery = $mysqli->query($sql);
 $arr_comp = MakeArrayFromObjINN($fQuery) ;
 $email_from_kp = $arr_comp[0]['email'];
 
+// $emails = str_replace(';', ',', $email_from_kp);
+// $emails = str_replace(' ', '', $email_from_kp);
+// $emails = explode(",", $emails);
+// $email_count = count($emails);
 
-$emails = str_replace(';', ',', $email_from_kp);
-$emails = str_replace(' ', '', $email_from_kp);
-$emails = explode(",", $emails);
-$email_count = count($emails);
-
-
-// echo "<pre>";
-// var_dump($emails);
-// echo "<pre>";
-// echo $email_count;
+//  БЕРЕM ЕМАЙЛЫ ИЗ БАЗЫ ИНН
+$sql = "SELECT * FROM `email` WHERE `inn` = $InnCustomer";
+$fQuery = $mysqli->query($sql);
+$arr_emails = MakeArrayFromObjEmail ($fQuery);
 
 // находим по ID закупки наименование файла, который будем отправлять
 $sql = "SELECT * FROM `reestrkp` WHERE `id` = $id";

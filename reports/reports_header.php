@@ -1,12 +1,5 @@
 <?php
-$pageName = "АНМАКС ОНЛАЙН";
-if (isset($_GET["id"]) && ($_GET["id"]!="")) {
-  $id = $_GET["id"];
-  $sql = "SELECT * FROM `reestrkp` WHERE `id` = $id";
-  $query = $mysqli->query($sql);
-  $item = MakeArrayFromObj($query);
-  $pageName =  "КП№".$item[0]['KpNumber']." от ".$item[0]['KpData'];
-}
+$pageName = "АНАЛИТИКА";
 echo <<<HTML
 <!DOCTYPE html>
 <html lang="ru">
@@ -17,7 +10,7 @@ echo <<<HTML
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>$pageName</title>
     <link rel = "stylesheet" href = "css/bootstrap/css/bootstrap-grid.css">
-    <!-- <link rel = "stylesheet" href = "css/bootstrap/css/bootstrap.css"> -->
+    <link rel = "stylesheet" href = "css/bootstrap/css/bootstrap.css"> 
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
 
@@ -30,7 +23,7 @@ echo <<<HTML
     
     <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
     <!-- скрипт для телефоной маски -->
-    <script src="jquery-3.3.1.maskedinput.min.js" type="text/javascript"></script> 
+    <!-- <script src="jquery-3.3.1.maskedinput.min.js" type="text/javascript"></script>  -->
  </head>
 
 <body>

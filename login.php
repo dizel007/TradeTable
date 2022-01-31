@@ -96,8 +96,8 @@
 
 
 
-    <div class="col-3 w-30 mx-auto shadow-lg loginform">
-        <form method="POST">
+       <div class="col-3 w-30 mx-auto shadow-lg loginform">
+            <form method="POST">
             <br>
             <label for="exampleFormControlInput1" class="form-label">Логин</label>
             <input class="form-control"  name="login" type="text" required>
@@ -110,5 +110,11 @@
             </div>
             
 
-        </form>
+            </form>
+         </div>
+
+        </div>
     </div>
+
+</body>
+</html>

@@ -10,23 +10,22 @@ $sql = "SELECT * FROM inncompany where inn = '$inn'";
   $my_inn_arr = MakeArrayFromObjINN($fQuery) ;
 
   $inn = $_POST['inn'];
-  $telefon = $_POST['telefon'];
-  $email = $_POST['email'];
+//   $telefon = $_POST['telefon'];
+//   $email = $_POST['email'];
   $contactFace = $_POST['contactFace'];
   $contactFace =  trim ( $contactFace , $character_mask = " \t\n\r\0\x0B");  // убипаем все лишние пробелы и переносы
   $comment = $_POST['comment'];
   $comment =  trim ( $comment , $character_mask = " \t\n\r\0\x0B");  // убипаем все лишние пробелы и переносы
 
-$telefon=htmlspecialchars($telefon);
-$email=htmlspecialchars($email);
+// $telefon=htmlspecialchars($telefon);
+// $email=htmlspecialchars($email);
 $contactFace=htmlspecialchars($contactFace);
 $comment=htmlspecialchars($comment);
 
 
 
 $sql = "UPDATE `inncompany` SET 
-      `telefon`= '$telefon' ,
-      `email`= '$email' ,
+      
       `contactFace`= '$contactFace' ,
       `comment`= '$comment' 
 
@@ -57,22 +56,45 @@ while ($row = $user -> fetch_assoc())
       $now_date = date('Y-m-d H:i:s');
       //$temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
 // Форсурием переменную для записи в ЛОГфайл
-      $temp_var = $now_date." Автор: ".$user_login." ID=".$id;
+      // $temp_var = $now_date." Автор: ".$user_login." ID=".$id;
+      $db_comment="";      if ($my_inn_arr[0]['contactFace'] != $contactFace) { $db_comment.="конт.лицо :".$contactFace.";";}
+      if ($my_inn_arr[0]['comment'] != $comment)    { $db_comment.=" комент :".$comment.";";}
+      // if ($my_inn_arr[0]['telefon']== $telefon) { $telefon='';} 
+      //       else { $temp_var.="; Телефон :".$telefon;}
       
-      if ($my_inn_arr[0]['telefon']== $telefon) { $telefon='';} 
-            else { $temp_var.="; Телефон :".$telefon;}
-      
-      if ($my_inn_arr[0]['email']== $email) { $email='';}
-            else { $temp_var.="; Емайл :".$email;}
+      // if ($my_inn_arr[0]['email']== $email) { $email='';}
+      //       else { $temp_var.="; Емайл :".$email;}
 
-      if ($my_inn_arr[0]['contactFace']== $contactFace) { $contactFace='';}
-            else { $temp_var.="; Контактное лицо :".$contactFace;}
+      // if ($my_inn_arr[0]['contactFace']== $contactFace) { $contactFace='';}
+      //       else { $temp_var.="; Контактное лицо :".$contactFace;}
       
-      if ($my_inn_arr[0]['comment']== $comment) { $comment='';}
-            else { $temp_var.="; Комментарий :".$comment;}
+      // if ($my_inn_arr[0]['comment']== $comment) { $comment='';}
+      //       else { $temp_var.="; Комментарий :".$comment;}
 
-      $temp_var.=";\n";
       
+$date_change = $now_date;
+$id_item = $inn;
+$what_change = 2; 
+$comment_change = $db_comment; 
+$author = $user_login;
+//    require "update_reports.php";
+  
+$sql = "INSERT INTO `reports`(`id`, `date_change`, `id_item`, `what_change`, `comment_change`, `author`)
+  VALUES ('', '$date_change', '$id_item', '$what_change', '$comment_change', '$author')";
+// echo $sql_u."<br>";
+
+$query = $mysqli->query($sql);
+
+if (!$query){
+  die();
+  printf("Соединение не удалось: ");
+}
+
+
+$temp_var.=";\n";
+      
+      
+
       // Пишем содержимое в файл,
       // используя флаг FILE_APPEND для дописывания содержимого в конец файла
       // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время

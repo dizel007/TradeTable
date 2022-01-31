@@ -327,10 +327,10 @@ echo <<<HTML
               <td> 
             
                   <select id="js-phone-num" size="1" name="actual_phone">
-                      <option selected value="Актуальный">Актуальный</option>
+                      <option value="Актуальный">Актуальный</option>
                       <option value="Неактуальный">Неактуальный</option>
                       <option value="Не звонить">Не звонить</option>
-                      <option value="Новый">Новый</option>
+                      <option selected value="Новый">Новый</option>
                       <option value=""></option>
                 </select>
             
@@ -416,6 +416,7 @@ echo <<<HTML
                       <option id="js-new-modal-" selected value = "$actual_email">$actual_email</option>
                       <option value="Актуальная">Актуальная</option>
                       <option value="Неактуальная">Неактуальная</option>
+                      <option value="Новая">Новая</option>
                       <option value=""></option>
                 </select>
             
@@ -489,13 +490,14 @@ echo <<<HTML
 	         </td>
       </tr>
       <tr>           
-        <td valign="top">Актуальность номера</td>
+        <td valign="top">Актуальность почты</td>
               <td> 
             
                   <select size="1" name="actual_email">
-                      <option selected value="Актуальная">Актуальная</option>
+                      <option value="Актуальная">Актуальная</option>
                       <option value="Неактуальная">Неактуальная</option>
-                       <option value=""></option>
+                      <option selected value="Новая">Новая</option>
+                      <option value=""></option>
                 </select>
             
           </td>

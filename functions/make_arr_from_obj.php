@@ -2,15 +2,13 @@
 
 
 function MakeArrayFromObj ($fQuery) {
- 
   $i=0;
   // формируем массив с данными по КП 
   if ($fQuery -> num_rows > 0) {
          while ($row = $fQuery -> fetch_assoc()) 
          {
-         //echo "ID: {$row["id"]}; Название: {$row["m_cat_name"]};<hr>";// вывод категорий
-         for ($k=1; $k<25; $k++) 
-               {
+        //  for ($k=1; $k<25; $k++) 
+        //        {
                $arr_name[$i]['pp'] = $row["pp"];
                $arr_name[$i]['KpNumber'] = $row["KpNumber"];
                $arr_name[$i]['KpData'] = $row["KpData"];
@@ -36,7 +34,9 @@ function MakeArrayFromObj ($fQuery) {
                $arr_name[$i]['date_write'] = $row["date_write"];
                $arr_name[$i]['procent_work'] = $row["procent_work"];
                $arr_name[$i]['dateFinishContract'] = $row["dateFinishContract"];
-               }
+               $arr_name[$i]['date_sell'] = $row["date_sell"];
+               $arr_name[$i]['date_close'] = $row["date_close"];
+              //  }
           $i++;
        }
      }
@@ -61,8 +61,8 @@ function MakeArrayFromObjINN ($fQuery) {
   if ($fQuery -> num_rows > 0) {
          while ($row = $fQuery -> fetch_assoc()) 
          {
-         for ($k=1; $k<11; $k++) 
-               {
+        //  for ($k=1; $k<11; $k++) 
+        //        {
                $arr_inn[$i]['id'] = $row["id"];
                $arr_inn[$i]['pp'] = $row["pp"];
                $arr_inn[$i]['inn'] = $row["inn"];
@@ -74,7 +74,7 @@ function MakeArrayFromObjINN ($fQuery) {
                $arr_inn[$i]['contactFace'] = $row["contactFace"];
                $arr_inn[$i]['comment'] = $row["comment"];
  
-               }
+              //  }
           $i++;
        }
      }
@@ -95,8 +95,8 @@ function MakeArrayFromObjTelephone ($fQuery) {
   if ($fQuery -> num_rows > 0) {
          while ($row = $fQuery -> fetch_assoc()) 
          {
-         for ($k=1; $k<11; $k++) 
-               {
+        //  for ($k=1; $k<11; $k++) 
+        //        {
                $arr_phone[$i]['id_phone'] = $row["id"];
                $arr_phone[$i]['inn'] = $row["inn"];
                $arr_phone[$i]['telephone'] = $row["telephone"];
@@ -109,7 +109,7 @@ function MakeArrayFromObjTelephone ($fQuery) {
                $arr_phone[$i]['viber'] = $row["viber"];
 
                 
-               }
+              //  }
           $i++;
        }
      }
@@ -130,8 +130,8 @@ function MakeArrayFromObjEmail ($fQuery) {
   if ($fQuery -> num_rows > 0) {
          while ($row = $fQuery -> fetch_assoc()) 
          {
-         for ($k=1; $k<11; $k++) 
-               {
+        //  for ($k=1; $k<11; $k++) 
+        //        {
                $arr_emails[$i]['id_email'] = $row["id"];
                $arr_emails[$i]['inn'] = $row["inn"];
                $arr_emails[$i]['email'] = $row["email"];
@@ -140,7 +140,7 @@ function MakeArrayFromObjEmail ($fQuery) {
                $arr_emails[$i]['actual'] = $row["actual"];
 
                 
-               }
+              //  }
           $i++;
        }
      }
@@ -153,4 +153,54 @@ if (isset($arr_emails)) {
       }
      
 }
+//  ПОЛУЧАЕм МАССИВ ПОЛЬЗОВАТЕЛЕЙ
+function MakeArrayFromObjUsers ($fQuery) {
+ 
+  $i=0;
+  // формируем массив с данными по КП 
+  if ($fQuery -> num_rows > 0) {
+         while ($row = $fQuery -> fetch_assoc()) 
+         {
+        //  for ($k=1; $k<11; $k++) 
+        //        {
+               $arr_users[$i]['user_id'] = $row["user_id"];
+               $arr_users[$i]['user_login'] = $row["user_login"];
+               $arr_users[$i]['userType'] = $row["userType"];
+               $arr_users[$i]['user_name'] = $row["user_name"];
+               $arr_users[$i]['user_active'] = $row["user_active"];
+               $arr_users[$i]['date_write'] = $row["date_write"];
+                       
+              //  }
+          $i++;
+       }
+     }
+
+if (isset($arr_users)) {
+            return $arr_users;
+      }else {
+        $false_arr[] = 1;
+        return $false_arr;
+      }
+     
+}
+
+/// Формируем массив состояний КП
+function MakeArrayFromObjConditionKp ($fQuery) {
+ $i=0;
+  if ($fQuery -> num_rows > 0) {
+         while ($row = $fQuery -> fetch_assoc()) 
+         {
+               $arr_condition_kp[$i]['id'] = $row["id"];
+               $arr_condition_kp[$i]['conditionkp'] = $row["conditionkp"];
+               $arr_condition_kp[$i]['active'] = $row["active"];
+          $i++;
+       }
+     }
+if (isset($arr_condition_kp)) { return $arr_condition_kp;}
+    else {
+      $false_arr[] = 1;
+      return $false_arr;
+      }
+}
+
 ?>

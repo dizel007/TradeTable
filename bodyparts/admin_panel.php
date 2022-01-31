@@ -1,20 +1,14 @@
 <?php
 require_once ("functions/get_name_user.php");
-$userName = getNameUser($user);
+require_once ("functions/get_condition_kp.php");
 echo <<<HTML
              <div class = "aboutUser">
                   Пользователь :$user
                   (<a href="?date_start=&date_end=&value=$userName&id=&typeQuery=10">$userName</a>)
              <br>
-        
-HTML;
-// *******************  КОСТЫЛЬ для Гуца  **************************
-// if ($userType ==  1) {  // если админ
-        echo <<<HTML
-    </div>
+            </div>
 HTML;
 // }
-// *******************  КОСТЫЛЬ для Гуца  (ОКОНЧАНИЕ)**************************
 
 // Если загружали Файл, то при успешной загрузке появится эта надпись
   if (!empty($_GET['fullload']))  {
@@ -26,12 +20,17 @@ HTML;
      <!-- выборка того, что продали -->
      <div class = "aboutUser">
      <div>
-     <a href="select_what_your_sell.php" target="_blank">Выборка проданных КП</a>
+     <a href="select_what_your_sell.php" target="_blank">Выборка проданных КП  </a>
+      ****
+     <a href="register.php" target="_blank">   Ввод нового пользователя</a>
+     ****
+     <a href="reports.php" target="_blank">   Аналитика</a>
      </div>
        <div class ="adminButton">
                     <a href="changedb/insert_raw_in_bd.php">Ввод данных в БД</a>
                     | |  
                     <a href="changedb/insert_raw_comp_inn.php">Ввод ИНН</a>
+                    
         <br> <br>
    
 <!-- ФОРМА ДЛЯ ЗАГРУЗКИ ФАЙЛОВ НА САЙТ -->

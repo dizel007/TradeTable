@@ -101,13 +101,20 @@ echo <<<HTML
   <p>Ответственный
     <select id="Responsible" size="1" name="Responsible">
         <option id="js-new-modal-Responsible" selected value = "$Responsible">$Responsible</option>
-        <!-- <option value="Мандрыкин">Мандрыкин</option> -->
-        <option value="Гуц">Гуц</option>
-        <option value="Горячев">Горячев</option>
-        <option value="Штыбко">Штыбко</option>
-        <option value="Зелизко">Зелизко</option>
-        <option value="Кулиев">Кулиев</option>
-    </select>
+HTML;
+
+for ($i=0; $i<count($arr_users_active); $i++) {
+  $user_name = $arr_users_active[$i]['user_name'];
+  echo "<option value=\"$user_name\">$user_name</option>";
+  }
+        // <option value="Гуц">Гуц</option>
+        // <option value="Горячев">Горячев</option>
+        // <option value="Штыбко">Штыбко</option>
+        // <option value="Зелизко">Зелизко</option>
+        // <option value="Кулиев">Кулиев</option>
+
+echo <<<HTML
+      </select>
   </p>
 </div>
    <hr>
@@ -128,12 +135,21 @@ echo <<<HTML
   <p>Состояние КП
     <select id="KpCondition" size="1" name="KpCondition">
         <option id="js-new-modal-KpCondition" selected value = "$KpCondition">$KpCondition</option>
-        <option value="В работе">В работе</option>
-        <option value="Не требуется">Не требуется</option>
-        <option value="Купили у нас">Купили у нас</option>
-        <option value="Уже купили">Уже купили</option>
-        <option value="Перенос на сл.год">Перенос на сл.год</option>
-  </select>
+HTML;
+
+for ($i=0; $i<count($arr_condition_kp); $i++) {
+  $conditionkp = $arr_condition_kp[$i]['conditionkp'];
+  echo "<option value=\"$conditionkp\">$conditionkp</option>";
+  }
+        // <option value="В работе">В работе</option>
+        // <option value="Не требуется">Не требуется</option>
+        // <option value="Купили у нас">Купили у нас</option>
+        // <option value="Уже купили">Уже купили</option>
+        // <option value="Перенос на сл.год">Перенос на сл.год</option>
+
+echo <<<HTML
+
+        </select>
   </p>
 </div>
 <div><p>Сумма КП  <input type="number" id="KpSum" name="KpSum" value ="$KpSum"></p></div>

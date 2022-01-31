@@ -6,37 +6,32 @@ if (isset($_GET['FinishContract'])) {
 }
 
 echo <<<HTML
+<div class="container-fluid">
+<div class="row">
+
+
+<div class ="col-11 up_form" >
 <form>
-<table class ="up_form_n" width="100%">
-<tr>
-<td width="16%">
-<div class="mobile_web">
+   <div class ="up_form">
+    
+                <div class="mobile_web">
                     <label for="date_start">Дата начала : </label>
                     <input type="date" id="date_start" name="date_start"/>
                 </div>
-</td>
-
-
-
-
-<td width="18%">
-<div class="mobile_web">
+                <div class="mobile_web">
                     <label for="date_end">Дата окончания : </label>
                     <input type="date" id="date_end" name="date_end"/>
-                </div>   
-</td>
+                </div>
+        
 
-
-<td>
     
-<div class="mobile_web">
+        <div class="mobile_web">
             <label for="param">Поиск : </label>
             <input type="text" id="value" name="value"/>
             <input type="hidden" id="id" name="id"/>
-        </div> 
-</td>
-<td>
-<div class="mobile_web">
+        </div>
+
+        <div class="mobile_web">
             <select size="1" name="typeQuery">
             <option disabled>Выберите параметр поиска</option>
             <option selected value="2">Номер КП</option>
@@ -45,12 +40,12 @@ echo <<<HTML
             <option value="7">ID КП</option>
             <option value="10">Ответственный</option>
             <option value="8">Наименование Заказчика</option>
+            <option value="12">Москва и МО</option>
             </select>
         </div>
-</td>
 
-<td>
-<div class="mobile_web">
+        
+        <div class="mobile_web">
             <label for="FinishContract">Закр.Перенос Контр : </label>
 HTML;
 if ($FinishContract == 1) {            
@@ -61,24 +56,19 @@ echo "<input type=\"checkbox\" name=\"FinishContract\" value=\"1\" checked>";
 
 echo <<<HTML
         </div>
-</td>
-<td>
-<button  type="submit">ОБНОВИТЬ</button>
-</td>
-</tr>
-</table>
+
+        <button  type="submit">ОБНОВИТЬ</button>
+   
+        </div>
 </form>
-<td width="15%">
-<div class ="up-button">
+
+
+</div>
+        <div class ="col-1 up-button">
             <button onclick="window.location='logout.php'">Выйти</button>
         </div>
-</td>
+</div>
 
-
-
-
-<!-- ******************************************************************************** -->
-
+</div>
 HTML;
-
 ?>
