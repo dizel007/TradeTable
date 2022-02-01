@@ -112,12 +112,12 @@ for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
 $yesturday_date = date('Y-m-d', strtotime('yesterday'));
 echo <<<HTML
 <p class="center">Начало периода: $date_start | Конец периода : $date_end</p>
-<h2 class="center">Статистика текущих работ за
+<h2 class="center">
 <a href="reports.php?some_days=0">СЕГОДНЯ</a> |
 <a href="reports.php?date_start=$yesturday_date&date_end=$yesturday_date">ВЧЕРА</a> |
 <a href="reports.php?some_days=-7">НЕДЕЛЮ</a> |
 <a href="reports.php?some_days=-30">МЕСЯЦ</a>
-</h2> 
+<h2 class="center">Статистика текущих работ</h2> 
 <p>Количество нераспределенных <a href="reports_show_table.php?typeQuery=2&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">Заявок</a> : $not_obrabot_kp</p>
 <div class="card-body">
   <div class="table-responsive">
@@ -129,8 +129,10 @@ echo <<<HTML
                   <th>Нов. заявок ожидает</th>
                   <th>Заявок в работе</th>
                   <th>КП продано</th>
-                  <th>Просроченные КП</th>
+                  
                   <th>Сумма продаж за период</th>
+                  <th>Просроченные КП</th>
+                  <th>Закрытые КП</th>
               </tr>
           </thead>
           <tbody>
@@ -152,8 +154,10 @@ for ($i=0; $i<count($arr_users_active); $i++) {
                   <td><a href="reports_show_table.php?typeQuery=2&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$count_new_kp</a></td>
                   <td><a href="reports_show_table.php?typeQuery=21&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$kp_in_work</a></td>
                   <td><a href="reports_show_table.php?typeQuery=3&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_buy</a></td>
-                  <td><a href="reports_show_table.php?typeQuery=4&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$overdue_kp</a></td>
+                  
                   <td id="summa_kp">$kp_summa</td>
+                  <td><a href="reports_show_table.php?typeQuery=4&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$overdue_kp</a></td>
+                  <td><a href="#">###</a></td>
               </tr>
 HTML;
 }
@@ -173,15 +177,113 @@ echo <<<HTML
                 <td><a href="reports_show_table.php?typeQuery=6&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_kpcond_new_kp</a></td>
                 <td><a href="reports_show_table.php?typeQuery=7&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$sum_kpcond_in_work</a></td>
                 <td><a href="reports_show_table.php?typeQuery=8&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$sum_kpcond_buy</a></td>
-                <td><a href="reports_show_table.php?typeQuery=9&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_overdue_kp</a></td>
+               
                 <td id="summa_kp">$sum_kp_summa</td>
+
+                <td><a href="reports_show_table.php?typeQuery=9&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_overdue_kp</a></td>
+                <td><a href="#">###</a></td>
               
             </tr>
 HTML;
 echo <<<HTML
           </tbody>                                
 </table>
-                            </div>
+
+
+<h2 class="center">Таблица изменений</h2>
+HTML;
+// ********************************* ТАБЛИЦА ИЗМЕНЕНИЙ ЗА ПЕРИОД
+$sql_plus =""; // формируем пустую строку для SQL запроса
+
+if ((isset($date_start) or (isset($date_end)))) {
+    if (($date_start <> "") and ($date_end == "")) { 
+      $sql_plus = " AND date_change >= '$date_start'  ORDER BY date_change DESC";
+    }  elseif (($date_start == "") and ($date_end <> "")) {
+      $sql_plus = " AND date_change <= '$date_end'  ORDER BY date_change DESC";
+    } else {
+      $sql_plus = " AND (date_change >= '$date_start' AND date_change <= '$date_end')  ORDER BY date_change DESC";
+    }
+}
+
+$sum_all_changes = 0;
+$sql = "SELECT * FROM `reports` WHERE `id`<>''  $sql_plus";
+// echo "<br>***".$sql."<br>";
+$query = $mysqli->query($sql);
+// && ($arr_info_user[$j]["FinishContract"] <>1
+$arr_items_changes = MakeArrayFromReportsData($query);
+
+if (isset($arr_items_changes[0]["id"])) {$sum_all_changes = count($arr_items_changes);}
+// echo "<pre>";
+// var_dump($arr_items_changes);
+// echo "<pre>";
+
+echo <<<HTML
+
+<table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+              <tr>
+                  <th>Фамилия</th>
+                  <th>кол-во изменений</th>
+
+              </tr>
+          </thead>
+          <tbody>
+HTML;
+
+
+$sql= "SELECT * FROM `users`";
+$query = $mysqli->query($sql);
+$arr_users = MakeArrayFromObjUsers($query);
+
+$i=0;
+$arr_users_items_changes[]="";
+foreach ($arr_users as $value){
+  $kolvo_change=0;
+    foreach ($arr_items_changes as $key => $value1 ){
+          // var_dump ($value);
+        if ($value["user_login"] == $value1["author"]) {
+          $author =$value1["author"];
+          $arr_users_items_changes[$author][$i] = $value1;
+          $kolvo_change = count($arr_users_items_changes[$author]);
+          $i++;
+          // echo $value1["author"]. "<br>";
+        }
+   }
+$user_name=$value["user_name"];
+$user_login=$value["user_login"];
+// reports_show_changes.php
+ echo <<<HTML
+  <tr>
+                  <td>$user_name($user_login)</td>
+                  <td><a href="reports_show_changes.php?typeQuery=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_change</a></td>
+        
+              </tr>
+HTML;
+}
+
+echo <<<HTML
+<tr class="fs-4">
+             
+                <td >Итого</td>
+                <td><a href="reports_show_changes.php?typeQuery=2&date_start=$date_start&date_end=$date_end">$sum_all_changes</a></td>
+ 
+              
+            </tr>
+HTML;
+
+
+// echo "<pre>";
+// var_dump($arr_users_items_changes["guts"]);
+// echo "<pre>";
+
+
+echo <<<HTML
+          </tbody>                                
+</table>
+
+
+
+   </div>
 </div>
 
 

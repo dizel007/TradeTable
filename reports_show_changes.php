@@ -23,7 +23,7 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем з�
             require_once ("reports/reports_header.php"); // header HTML
             require_once ("reports/reports_admin_panel.php"); // панель Администратора
             // require_once ("reports/reports_top_part_page.php"); // шапка файила
-            require_once ("reports/show_select_items.php"); // панель Администратора
+            require_once ("reports/show_select_changes.php"); // панель Администратора
             // require_once ("bodyparts/main_table.php"); // вывод главной таблицы
 
             // // require_once ("bodyparts/modal.php"); // всплывающие окна

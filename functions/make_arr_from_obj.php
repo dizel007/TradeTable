@@ -203,4 +203,30 @@ if (isset($arr_condition_kp)) { return $arr_condition_kp;}
       }
 }
 
+/// Формируем массив реестра изменений КП
+function MakeArrayFromReportsData ($fQuery) {
+  $i=0;
+   if ($fQuery -> num_rows > 0) {
+          while ($row = $fQuery -> fetch_assoc()) 
+          {
+                $arr_condition_kp[$i]['id'] = $row["id"];
+                $arr_condition_kp[$i]['date_change'] = $row["date_change"];
+                $arr_condition_kp[$i]['author'] = $row["author"];
+                $arr_condition_kp[$i]['what_change'] = $row["what_change"];
+                $arr_condition_kp[$i]['id_item'] = $row["id_item"];
+                $arr_condition_kp[$i]['comment_change'] = $row["comment_change"];
+           $i++;
+        }
+      }
+ if (isset($arr_condition_kp)) { return $arr_condition_kp;}
+     else {
+       $false_arr[] = 1;
+       return $false_arr;
+       }
+ }
+
+
+
+
+
 ?>

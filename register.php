@@ -70,13 +70,13 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем з�
                 user_password='".$password."',
                 user_active=1,
                 user_name='".$username."'";
-       
+       echo "<br>---".$sql."<br>---";
     
         
                $query = $mysqli->query($sql);
 
                if (!$query){
-                 echo "WE ARE DIE";
+                 echo "WE ARE DIE22";
                 die();
                 printf("Соединение не удалось: ");
                 }

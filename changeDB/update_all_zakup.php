@@ -54,7 +54,9 @@ if ($KpCondition == "Купили у нас")
     } else {$date_sell = "";}
 
 if ($KpCondition == "В работе") { $FinishContract = 0; $date_sell = ""; $date_close = "";}
-if ($KpCondition == "")         { $FinishContract = 0; $date_sell = ""; $date_close = "";}
+if (($KpCondition == "") && ($FinishContract == 0)) { $FinishContract = 0; $date_sell = ""; $date_close = "";}
+if (($KpCondition == "") && ($FinishContract == 1)) { $FinishContract = 1;$date_sell = "";$date_close = date('Y-m-d');}
+
 // Формируем АПдейт в БД
 $sql = "UPDATE `reestrkp` SET 
        `KpImportance`= '$KpImportance', 
