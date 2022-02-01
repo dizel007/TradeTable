@@ -7,6 +7,7 @@ $value="";
 $FinishContract=0;
 $pageNumber=0;
 $stringCount=200; // максимальное количество строк в таблице на одной странице
+$date_now=date('Y-m-d');
 
 if (!empty($_GET['date_start']))  {
   $date_start = $_GET['date_start'];
@@ -26,6 +27,25 @@ if (!empty($_GET['FinishContract'])) {
 if (!empty($_GET['pageNumber'])) {
   $pageNumber=$_GET['pageNumber'];
 }
+// ************************
+// ************************
+if (isset($_GET["KpCondition"])) {
+  $KpCondition= $_GET['KpCondition'];
+} else {
+  $KpCondition= "";
+}
+if (isset($_GET["Responsible"])) {
+  $Responsible= $_GET['Responsible'];
+ } else {
+  $Responsible= "";
+}
+
+
+
+
+// ************************
+// ************************
+
 
 /// если есть какая либо выбранная закупка по скрытому id
 if (!empty($_GET['id'])) {
@@ -100,15 +120,7 @@ elseif (($typeQuery == 2) and (!empty($value))) {
          echo "<div class = \"zagolovok\"> КП с таким номером отсутствует<BR></div>";
         }
 
-
-
   } 
-
-
-
-
-
-
 
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННой дате
   elseif ($typeQuery == 3 and (isset($date_start) or (isset($date_end)))) {
@@ -202,6 +214,92 @@ if ($select_arr[0]['pp'] !='') {
           echo "<div class = \"zagolovok\"> Не нашли таких закупок<BR></div>";
         }
 }
+// *******************************************************
+// *******************************************************
+elseif ($typeQuery == 551) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpData` >= '$date_start' AND
+  `KpData` <= '$date_end'";
+  $query= $mysqli->query($sql);
+  $arr_items = MakeArrayFromObj($query);
+     printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 552) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpData` >= '$date_start' AND
+  `KpData` <= '$date_end'";
+  $query= $mysqli->query($sql);
+  $arr_items = MakeArrayFromObj($query);
+     printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 521) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `KpData` >= '$date_start' AND `KpData` <= '$date_end' AND `FinishContract` = '$FinishContract'";
+  $query= $mysqli->query($sql);
+  $arr_items = MakeArrayFromObj($query);
+     printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 553) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `date_sell` >= '$date_start' AND
+  `date_sell` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract'";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 554) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `DateNextCall` <= '$date_now'
+     AND `DateNextCall` <> '' AND `FinishContract` <>1";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 555) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `KpData` >= '$date_start' AND
+  `KpData` <= '$date_end'";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 556) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `KpData` >= '$date_start' AND
+  `KpData` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract'";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 557) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `KpData` >= '$date_start' AND
+  `KpData` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract'";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 558) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `date_sell` >= '$date_start' AND
+  `date_sell` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract'";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 559) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `DateNextCall` <= '$date_now'
+     AND `DateNextCall` <> '' AND `FinishContract` <>1";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, 1, 200) ;
+}
+// echo "<br>***".$sql."<br>";
+
+
+   
+
+
+
+
+// *******************************************************
+// *******************************************************
+
+
+
+
+
 
 // ЕСЛИ НИ ОДИН ВАРИАНТ НЕ СРАБОТАЛ, ТО ВЫВОДИМ ВСЮ ТАБЛИЦУ  
   else {

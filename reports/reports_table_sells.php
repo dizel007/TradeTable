@@ -147,16 +147,22 @@ for ($i=0; $i<count($arr_users_active); $i++) {
  $count_buy = $arr_kpcond_buy[$i];
  $overdue_kp = $arr_overdue_kp[$i];
  $kp_summa = number_format($arr_kp_summa[$i], 0, ',', ' '); 
+
+//  <td><a href="reports_show_table.php?typeQuery=1&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$count_all_new_kp</a></td>
+
  echo <<<HTML
   <tr>
                   <td>$user_name</td>
-                  <td><a href="reports_show_table.php?typeQuery=1&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$count_all_new_kp</a></td>
-                  <td><a href="reports_show_table.php?typeQuery=2&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$count_new_kp</a></td>
-                  <td><a href="reports_show_table.php?typeQuery=21&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$kp_in_work</a></td>
-                  <td><a href="reports_show_table.php?typeQuery=3&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_buy</a></td>
+                  <td><a href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$count_all_new_kp</a></td>
+                  
+                  
+         
+                  <td><a href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$count_new_kp</a></td>
+                  <td><a href="index.php?typeQuery=521&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$kp_in_work</a></td>
+                  <td><a href="index.php?typeQuery=553&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_buy</a></td>
                   
                   <td id="summa_kp">$kp_summa</td>
-                  <td><a href="reports_show_table.php?typeQuery=4&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$overdue_kp</a></td>
+                  <td><a href="index.php?typeQuery=554&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$overdue_kp</a></td>
                   <td><a href="#">###</a></td>
               </tr>
 HTML;
@@ -173,14 +179,14 @@ echo <<<HTML
 <tr class="fs-4">
              
                 <td >Итого</td>
-                <td><a href="reports_show_table.php?typeQuery=5&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$sum_all_new_kp</a></td>
-                <td><a href="reports_show_table.php?typeQuery=6&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_kpcond_new_kp</a></td>
-                <td><a href="reports_show_table.php?typeQuery=7&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$sum_kpcond_in_work</a></td>
-                <td><a href="reports_show_table.php?typeQuery=8&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$sum_kpcond_buy</a></td>
+                <td><a href="index.php?typeQuery=555&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$sum_all_new_kp</a></td>
+                <td><a href="index.php?typeQuery=556&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_kpcond_new_kp</a></td>
+                <td><a href="index.php?typeQuery=557&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$sum_kpcond_in_work</a></td>
+                <td><a href="index.php?typeQuery=558&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$sum_kpcond_buy</a></td>
                
                 <td id="summa_kp">$sum_kp_summa</td>
 
-                <td><a href="reports_show_table.php?typeQuery=9&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_overdue_kp</a></td>
+                <td><a href="index.php?typeQuery=559&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_overdue_kp</a></td>
                 <td><a href="#">###</a></td>
               
             </tr>
