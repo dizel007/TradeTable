@@ -16,11 +16,9 @@ HTML;
      echo <<<HTML
      <!-- выборка того, что продали -->
      <div class = "aboutUser">
-     <div>
-     <a href="register.php" target="_blank">   Ввод нового пользователя</a>
-     ****
-     <a href="reports.php" target="_blank">   Аналитика</a>
-     </div>
+ 
+     <a href="reports.php" target="_blank">Аналитика</a>
+ 
      </div>
 HTML;
 }

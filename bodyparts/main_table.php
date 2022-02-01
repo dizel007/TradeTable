@@ -118,7 +118,7 @@ elseif (($typeQuery == 2) and (!empty($value))) {
     $arr_name = selectArrByDate($mysqli, $date_start, $date_end);
     printOurTable($arr_name, $FinishContract, $pageNumber, $stringCount) ;
   } 
-// ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ ИНН
+// ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ по ИД_КР Контура
   elseif ($typeQuery == 7 and $value <> "") {
     $FinishContract = 1 ; // всегда показываем СКРЫТЫЕ привязанные закупки
     $idKp = $_GET['value'];

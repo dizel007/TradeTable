@@ -27,7 +27,7 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем з�
             // require_once ("bodyparts/main_table.php"); // вывод главной таблицы
 
             // // require_once ("bodyparts/modal.php"); // всплывающие окна
-            require_once "bodyparts/modal_change_all.php";
+            // require_once "bodyparts/modal_change_all.php";
             // require_once ("bodyparts/modal_change_inn.php"); // всплывающие окна
             require_once ("bodyparts/footer.php"); // подвал страниы
         }

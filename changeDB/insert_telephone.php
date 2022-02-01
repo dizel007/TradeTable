@@ -54,49 +54,36 @@ if (isset($phone_db)) {
     die("ТАКОЙ НОМЕР УЖЕ СУЩЕСТВУЕТ");
   }
 
-// $sql = "SELECT * FROM users WHERE user_hash = '$_COOKIE[hash]'";
-
-// $user = $mysqli->query($sql);
-
-// while ($row = $user -> fetch_assoc()) 
-// {
-//        $user_login = $row["user_login"];
-//    }
-
-   //printf($user_login);
-      // $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
-      
-      // $file = "../logs/inn/"."ИНН_".$fileLogName.".txt";
-      // $fileAll = '../logs/inn/log.txt';
-      // $now_date = date('Y-m-d H:i:s');
-      //$temp_var = $now_date." ID=".$id." Столбец: ".$changeColumn."; Изменения :".$newPerem.";\n";
-// Форсурием переменную для записи в ЛОГфайл
-      // $temp_var = $now_date." Автор: ".$user_login." ID=".$id;
-      
-      // if ($my_inn_arr[0]['telefon']== $telefon) { $telefon='';} 
-      //       else { $temp_var.="; Телефон :".$telefon;}
-      
-      // if ($my_inn_arr[0]['email']== $email) { $email='';}
-      //       else { $temp_var.="; Емайл :".$email;}
-
-      // if ($my_inn_arr[0]['contactFace']== $contactFace) { $contactFace='';}
-      //       else { $temp_var.="; Контактное лицо :".$contactFace;}
-      
-      // if ($my_inn_arr[0]['comment']== $comment) { $comment='';}
-      //       else { $temp_var.="; Комментарий :".$comment;}
-
-      // $temp_var.=";\n";
-      
-      // Пишем содержимое в файл,
-      // используя флаг FILE_APPEND для дописывания содержимого в конец файла
-      // и флаг LOCK_EX для предотвращения записи данного файла кем-нибудь другим в данное время
-
-      // file_put_contents($file, $temp_var, FILE_APPEND | LOCK_EX); // логи по датам
-
-      // file_put_contents($fileAll, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
+  $sql = "SELECT * FROM users WHERE user_hash = '$_COOKIE[hash]'";
+  $user = $mysqli->query($sql);
+  while ($row = $user -> fetch_assoc()) 
+  {
+         $user_login = $row["user_login"];
+     }
 
 
-//echo "UPDATE COMMENT <br>";
+  $now_date = date('Y-m-d');
+   
+$db_comment="Нов. тел. :$new_telephone :";
+$db_comment.="контакт :".$contactName.";";
+$db_comment.=" коммент :".$commentPhone.";";
+$db_comment.=" актуал :".$actual.";";
+ 
+
+  $date_change = $now_date;
+  $id_item = $inn;
+  $what_change = 4; 
+  $comment_change = $db_comment; 
+  $author = $user_login;
+  //    require "update_reports.php";
+    
+  $sql = "INSERT INTO `reports`(`id`, `date_change`, `id_item`, `what_change`, `comment_change`, `author`)
+    VALUES ('', '$date_change', '$id_item', '$what_change', '$comment_change', '$author')";
+  $query = $mysqli->query($sql);
+  if (!$query){
+   die("Соединение не удалось: (Добавление в реестр изменений) ");
+  }
+
 header ("Location: ..?id=".$id);  // перенаправление на нужную страницу
 exit();    // прерываем работу скрипта, чтобы забыл о прошлом
 

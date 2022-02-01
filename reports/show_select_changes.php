@@ -68,31 +68,96 @@ HTML;
 $i=0;      
 foreach ($arr_user_reports as $value) {
   $i++;
+
+
+    $what_change = $value["what_change"];
     $date_change = $value["date_change"];
     $comment_change = $value["comment_change"];
     $id_item = $value["id_item"];
-    $author = $value["author"];  
-    
-
-    foreach ($arr_users as $user) {
-      if ($author == $user["user_login"]) {$user_name = $user["user_name"];}
-    }
-
-
-
+    $author = $value["author"]; 
+    // Подбираем пользователя
+  foreach ($arr_users as $user) {
+    if ($author == $user["user_login"]) {$user_name = $user["user_name"];}
+  }
+//  смотрим тип изменения 
+if ($what_change == 1) {
 $sql = "SELECT * from `reestrkp` WHERE id = $id_item";
 $query= $mysqli->query($sql);
 $arr_for_kp_num = MakeArrayFromObj($query);
 $kp_num = $arr_for_kp_num[0]["KpNumber"];
 $kp_date = $arr_for_kp_num[0]["KpData"];
-
-
+$link = $kp_num." от ".$kp_date;
+$get_link = "index.php?id=$id_item";
+}
+elseif ($what_change == 2){
+  $sql = "SELECT * from `inncompany` WHERE inn = $id_item";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObjINN($query);
+  $link = $arr_for_inn[0]["inn"];
+  $sql = "SELECT * from `reestrkp` WHERE InnCustomer = $link LIMIT 1";
+  $query= $mysqli->query($sql);
+  // echo "<br> ---- ".$sql."<br> ---- ";
+  $arr_for_inn = MakeArrayFromObj($query);
+  $id_inn_comp = $arr_for_inn[0]["id"];
+  // echo "<br> ---- ".$id_inn_comp."<br> ---- ";
+  $get_link = "index.php?id=$id_inn_comp";
+  $link = "ИНН:".$link;
+  // $name_comp = $arr_for_inn[0]["name"];
+}
+elseif ($what_change == 3){
+  $sql = "SELECT * from `inncompany` WHERE inn = $id_item";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObjINN($query);
+  $link = $arr_for_inn[0]["inn"];
+  $sql = "SELECT * from `reestrkp` WHERE InnCustomer = $link LIMIT 1";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObj($query);
+  $id_inn_comp = $arr_for_inn[0]["id"];
+  $get_link = "index.php?id=$id_inn_comp";
+  $link = "Изм. телеф. ИНН:".$link;
+}
+elseif ($what_change == 4){
+  $sql = "SELECT * from `inncompany` WHERE inn = $id_item";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObjINN($query);
+  $link = $arr_for_inn[0]["inn"];
+  $sql = "SELECT * from `reestrkp` WHERE InnCustomer = $link LIMIT 1";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObj($query);
+  $id_inn_comp = $arr_for_inn[0]["id"];
+   $get_link = "index.php?id=$id_inn_comp";
+  $link = "Нов. телеф. ИНН:".$link;
+}
+elseif ($what_change == 5){
+  $sql = "SELECT * from `inncompany` WHERE inn = $id_item";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObjINN($query);
+  $link = $arr_for_inn[0]["inn"];
+  $sql = "SELECT * from `reestrkp` WHERE InnCustomer = $link LIMIT 1";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObj($query);
+  $id_inn_comp = $arr_for_inn[0]["id"];
+   $get_link = "index.php?id=$id_inn_comp";
+  $link = "Изм. почты ИНН:".$link;
+}
+elseif ($what_change == 6){
+  $sql = "SELECT * from `inncompany` WHERE inn = $id_item";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObjINN($query);
+  $link = $arr_for_inn[0]["inn"];
+  $sql = "SELECT * from `reestrkp` WHERE InnCustomer = $link LIMIT 1";
+  $query= $mysqli->query($sql);
+  $arr_for_inn = MakeArrayFromObj($query);
+  $id_inn_comp = $arr_for_inn[0]["id"];
+   $get_link = "index.php?id=$id_inn_comp";
+  $link = "Нов. почта ИНН:".$link;
+}
 echo <<<HTML
      <tr>
           <td>$i</td>
           <td>$user_name</td>
           <td>$date_change</td>
-          <th><a href="index.php?id=$id_item">$kp_num от $kp_date</a></th>
+          <th><a href="$get_link">$link</a></th>
           <td>$comment_change</td>
      </tr>
 HTML;
