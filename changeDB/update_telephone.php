@@ -51,26 +51,26 @@ while ($row = $user -> fetch_assoc())
        $user_login = $row["user_login"];
    }
 
-      $now_date = date('Y-m-d');
-   
-      $db_comment="Изм. тел. :$tel_phone :";
+  
+$db_comment="Изм. тел. :$tel_phone :";
 $db_comment.="контакт :".$contactName.";";
 $db_comment.=" коммент :".$commentPhone.";";
 $db_comment.=" актуал :".$actual.";";
      
-      $date_change = $now_date;
-      $id_item = $inn;
-      $what_change = 3; 
-      $comment_change = $db_comment; 
-      $author = $user_login;
-      //    require "update_reports.php";
+
+$id_item = $inn;
+$what_change = 3; 
+$comment_change = $db_comment; 
+$author = $user_login;
+  
+require "update_reports.php";
         
-      $sql = "INSERT INTO `reports`(`id`, `date_change`, `id_item`, `what_change`, `comment_change`, `author`)
-        VALUES ('', '$date_change', '$id_item', '$what_change', '$comment_change', '$author')";
-      $query = $mysqli->query($sql);
-      if (!$query){
-       die("Соединение не удалось: (Добавление в реестр изменений) ");
-      }      
+      // $sql = "INSERT INTO `reports`(`id`, `date_change`, `id_item`, `what_change`, `comment_change`, `author`)
+      //   VALUES ('', '$date_change', '$id_item', '$what_change', '$comment_change', '$author')";
+      // $query = $mysqli->query($sql);
+      // if (!$query){
+      //  die("Соединение не удалось: (Добавление в реестр изменений) ");
+      // }      
 header ("Location: ..?id=".$id);  // перенаправление на нужную страницу
 exit();    // прерываем работу скрипта, чтобы забыл о прошлом
 

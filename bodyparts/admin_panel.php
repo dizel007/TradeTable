@@ -1,6 +1,7 @@
 <?php
 require_once ("functions/get_name_user.php");
 require_once ("functions/get_condition_kp.php");
+
 echo <<<HTML
              <div class = "aboutUser">
                   Пользователь :$user

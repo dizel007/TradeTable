@@ -5,6 +5,8 @@ if (isset($_GET['FinishContract'])) {
     $FinishContract=0;
 }
 
+
+
 echo <<<HTML
 <div class="container-fluid">
 <div class="row">

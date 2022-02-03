@@ -144,25 +144,12 @@ if ($my_id_arr[0]['FinishContract']  != $FinishContract)     { $db_comment.=" З
 if ($my_id_arr[0]['Adress']  != $Adress)     { $db_comment.=" Адрес :".$Adress.";";}
 
 
-
-
-
-
-$date_change = $now_date;
 $id_item = $id;
 $what_change = 1; 
 $comment_change = $db_comment; 
 $author = $user_login;
-//    require "update_reports.php";
-  
-$sql = "INSERT INTO `reports`(`id`, `date_change`, `id_item`, `what_change`, `comment_change`, `author`)
-  VALUES ('', '$date_change', '$id_item', '$what_change', '$comment_change', '$author')";
-$query = $mysqli->query($sql);
-if (!$query){
-printf("Соединение не удалось: ");
-die();
-} 
-
+require "update_reports.php";
+ 
 // header ("Location: ..?id=".$id);  // перенаправление на нужную страницу
 // exit();    // прерываем работу скрипта, чтобы забыл о прошлом
 echo json_encode($backArr, JSON_UNESCAPED_UNICODE);

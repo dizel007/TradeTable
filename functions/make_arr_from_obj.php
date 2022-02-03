@@ -215,6 +215,7 @@ function MakeArrayFromReportsData ($fQuery) {
                 $arr_condition_kp[$i]['what_change'] = $row["what_change"];
                 $arr_condition_kp[$i]['id_item'] = $row["id_item"];
                 $arr_condition_kp[$i]['comment_change'] = $row["comment_change"];
+                $arr_condition_kp[$i]['time_change'] = $row["time_change"];
            $i++;
         }
       }

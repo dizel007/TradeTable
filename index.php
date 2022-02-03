@@ -16,6 +16,7 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем з�
         }
         else
         {
+            date_default_timezone_set('Europe/Moscow');
             $user = $userdata['user_login'];
             $userType = $userdata['userType'];
             

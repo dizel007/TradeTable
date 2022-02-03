@@ -71,7 +71,16 @@ $mail->Body    = $body_post;
             echo "ОШИБКА ОТПРАВКИ";
             $status ="$mail->ErrorInfo";
         }
+  
+  
+    
+  
         require_once ("modul/mail_logger.php"); // логирование отправки
+
+
+
+
+        
 }
  catch (Exception $e) {
     $result = "error";

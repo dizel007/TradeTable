@@ -144,7 +144,7 @@ echo <<<HTML
 
 <h4>Предмет письма</h4>
 <p>
-<input type="text"  name="subject_theme"  size="150" value = "КП от ТД АНМКАКС" placeholder="КП от ТД АНМКАКС">
+<input type="text"  name="subject_theme"  size="150" value = "КП от ТД АНМАКС" placeholder="КП от ТД АНМАКС">
 </p>
 <h5>ТЕКСТ ПИСЬМА (Можно править все, что угодно, только следить за стилистическими тэгами)</h5>
 

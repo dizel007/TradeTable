@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Europe/Moscow');
+
 $sql= "SELECT * FROM `users`";
 $query = $mysqli->query($sql);
 $arr_users = MakeArrayFromObjUsers($query);
@@ -72,6 +74,7 @@ foreach ($arr_user_reports as $value) {
 
     $what_change = $value["what_change"];
     $date_change = $value["date_change"];
+    $time_change = $value["time_change"];
     $comment_change = $value["comment_change"];
     $id_item = $value["id_item"];
     $author = $value["author"]; 
@@ -156,8 +159,8 @@ echo <<<HTML
      <tr>
           <td>$i</td>
           <td>$user_name</td>
-          <td>$date_change</td>
-          <th><a href="$get_link">$link</a></th>
+          <td>$time_change</td>
+          <td><a href="$get_link">$link</a></td>
           <td>$comment_change</td>
      </tr>
 HTML;
