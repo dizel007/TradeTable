@@ -39,6 +39,17 @@ if (isset($_GET["Responsible"])) {
  } else {
   $Responsible= "";
 }
+if (isset($_GET["min_sum"])) {
+  $min_sum= $_GET['min_sum'];
+ } else {
+  $min_sum= "";
+}
+if (isset($_GET["max_sum"])) {
+  $max_sum= $_GET['max_sum'];
+ } else {
+  $max_sum= "";
+}
+
 
 
 
@@ -284,6 +295,56 @@ elseif ($typeQuery == 559) {
        $arr_items = MakeArrayFromObj($query);
           printOurTable($arr_items, 1, 1, 200) ;
 }
+elseif ($typeQuery == 560) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `FinishContract` <>1 ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 561) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `KpCondition` = '$KpCondition' AND `FinishContract` <> 1 ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, 1, 200) ;
+}
+/// Выборка всех закрытых КП за заданный период по определенному ответственному
+elseif ($typeQuery == 562) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` ='$Responsible'  AND `date_close` >= '$date_start' AND
+  `date_close` <= '$date_end' AND `KpCondition` <> '$KpCondition' AND `FinishContract` = 1 ORDER BY KpData DESC , KpNumber DESC";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+/// Выборка всех закрытых КП за заданный период
+elseif ($typeQuery == 563) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `date_close` >= '$date_start' AND   `date_close` <= '$date_end' AND `KpCondition` <> '$KpCondition' AND `FinishContract` = 1 ORDER BY KpData DESC , KpNumber DESC";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+/// Выборка всех закрытых КП за заданный весь период по определенному ответственному
+elseif ($typeQuery == 564) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` ='$Responsible' AND `KpCondition` <> '$KpCondition' AND `FinishContract` = 1 ORDER BY KpData DESC , KpNumber DESC";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+elseif ($typeQuery == 565) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `KpCondition` <> '$KpCondition' AND `FinishContract` = 1 ORDER BY KpData DESC , KpNumber DESC";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+
+elseif ($typeQuery == 601) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `KpSum` >= '$min_sum'  AND `KpSum` <= '$max_sum'
+  AND `FinishContract` = 0 ORDER BY KpData DESC , KpNumber DESC";
+    $query= $mysqli->query($sql);
+    $arr_items = MakeArrayFromObj($query);
+
+       printOurTable($arr_items, 1, 1, 200) ;
+}
+
 // echo "<br>***".$sql."<br>";
 
 

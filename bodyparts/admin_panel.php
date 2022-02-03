@@ -5,6 +5,7 @@ echo <<<HTML
              <div class = "aboutUser">
                   Пользователь :$user
                   (<a href="?date_start=&date_end=&value=$userName&id=&typeQuery=10">$userName</a>)
+                  (<a href="?min_sum=0&max_sum=100000&id=&typeQuery=601"> ВСЕ КП до 100 000 руб</a>)
              <br>
             </div>
 HTML;
