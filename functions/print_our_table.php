@@ -78,8 +78,8 @@ $KpImportance = $arr_name[$i]['KpImportance'];
 $Responsible = $arr_name[$i]['Responsible'];
 $Comment = (string)$arr_name[$i]['Comment'];
 
-$Comment = substr($Comment, 2, strlen($Comment)); 
-$Comment  = str_replace( "@!", "<br>" , $Comment);
+$Comment = substr($Comment, 2, strlen($Comment)); // удаляем первые два символа комментария
+$Comment  = str_replace( "@!", "<br><hr>" , $Comment); // 
 $Comment  = str_replace( "||+", ";" , $Comment);
 
 
