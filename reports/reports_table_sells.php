@@ -13,7 +13,7 @@ if (isset($_GET['date_end']))
     {
       if (($_GET['date_end']==""))  {$date_end = $date_now;}
     }
-// echo "Start date:".$date_start." End_date: ".$date_end;
+
 $sql_plus =""; // формируем пустую строку для SQL запроса
 
 if ((isset($date_start) or (isset($date_end)))) {
@@ -66,7 +66,6 @@ for ($i=0; $i<count($arr_users_active); $i++) {
     if ((isset($arr_info_user[0]["KpCondition"])) && ($arr_info_user[$j]["KpCondition"] == "") && ($arr_info_user[$j]["FinishContract"] <>1 ))  {$count_new_kp++;} 
 // количество взятых в работы  
     if (($arr_info_user[$j]["KpCondition"] == "В работе" ) && ($arr_info_user[$j]["FinishContract"] <>1 )) {$count_work++;} 
-// количество и сумма купленных КП
   }
    $arr_kpcond_new_kp[$i] = $count_new_kp;  // массив с данными по КП новым КП
    $arr_kpcond_in_work[$i] = $count_work;  // массив с данными по КП которые в работе
@@ -122,13 +121,7 @@ for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
   else  {$arr_overdue_kp[$i] = 0;}// полное количество поступивших Заявок
   ;  // массив с данными по КП которые в работе
  // ******************************************************* ПРОДАЖИ КОНЕЦ **************************
-// ************************ ПРОСРОЧЕННЫЕ КП *********************************
 
-
-
-
-
-// ************************ КОНЕЦ ПРОСРОЧЕННЫЕ КП *********************************
 }
 // echo "<pre>";
 // var_dump($arr_kpcond_new_kp);
@@ -136,8 +129,14 @@ for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
 
 
 $yesturday_date = date('Y-m-d', strtotime('yesterday'));
+
+
+
+
+require_once ("change_date_format.php");
+
 echo <<<HTML
-<p class="center">Начало периода: $date_start | Конец периода : $date_end</p>
+<p class="center">Начало периода: <u>$date_start1</u> | Конец периода : <u>$date_end1</u></p>
 <h2 class="center">
 <a href="reports.php?some_days=0">СЕГОДНЯ</a> |
 <a href="reports.php?date_start=$yesturday_date&date_end=$yesturday_date">ВЧЕРА</a> |
@@ -352,6 +351,13 @@ echo <<<HTML
 
 
 HTML;
+//УНИЧТОЖАЕМ ВСЕ МАССИВЫ
+
+
+
+
+
+
 
 
 ?>

@@ -4,6 +4,8 @@ require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
 require 'phpmailer/Exception.php';
 require_once("modul/get_data.php"); // Заполняем наши переменные
+require_once("../connect_db.php"); // Заполняем наши переменные
+
 
 $Files_count = 0;
 $i=0;
@@ -51,7 +53,7 @@ if ($_FILES['upload_file']['name'][0] <> "") {
         $mail->addAttachment($link_pppdf[$i]);         // Add attachments
         }
     } else { // если файл уже был на сервере
-        $mail->addAttachment($link_pdf);
+        if (isset($link_pdf)) {$mail->addAttachment($link_pdf);}
     }
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
@@ -66,21 +68,37 @@ $mail->Body    = $body_post;
             $result = "НОРМА";
             echo "СООБЩЕНИЕ ОТПРАВЛЕНО на адрес : ". $email_from_kp;
             $status ="OK";
+
+
+            $id_item = $id;
+            $what_change = 7;  // 7 - значит отправка почты
+            $comment_change = "Отправлено сообщение с сайта на адрес : ". $email_from_kp; 
+            $author = $user_mail;
+              
+            require "../changedb/update_reports.php";
+
         } else {
             $result = "ОШИБКА!!!!";
             echo "ОШИБКА ОТПРАВКИ";
             $status ="$mail->ErrorInfo";
+
+            $id_item = $id;
+            $what_change = 7;  // 7 - значит отправка почты
+            $comment_change = "ОШИБКА отправки на адрес : ". $email_from_kp; 
+            $author = $user_mail;
+              
+            require "../changedb/update_reports.php";
         }
   
-  
+
     
   
-        require_once ("modul/mail_logger.php"); // логирование отправки
+        // require_once ("modul/mail_logger.php"); // логирование отправки
 
 
 
 
-        
+
 }
  catch (Exception $e) {
     $result = "error";

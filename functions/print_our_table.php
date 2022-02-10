@@ -78,6 +78,12 @@ $KpImportance = $arr_name[$i]['KpImportance'];
 $Responsible = $arr_name[$i]['Responsible'];
 $Comment = (string)$arr_name[$i]['Comment'];
 
+$Comment = substr($Comment, 2, strlen($Comment)); 
+$Comment  = str_replace( "@!", "<br>" , $Comment);
+$Comment  = str_replace( "||+", ";" , $Comment);
+
+
+
 $DateNextCall = $arr_name[$i]['DateNextCall'];
 $KpCondition =  $arr_name[$i]['KpCondition'];
 $KpSum = number_format($arr_name[$i]['KpSum']);
@@ -232,7 +238,7 @@ echo <<<HTML
  <!-- ********************************** ОТветственный  ************************************************ -->
      <td id= "js-Responsible$id" width="80" class="hidden_class_column">$Responsible</td>
 <!-- ********************************** Комментарий  ************************************************ -->
-      <td  id = "js-comment$id" class ="limit_width">$Comment</td>
+      <td id = "js-comment$id" class ="limit_width text_left">$Comment</td>
 <!-- ********************************** Редактирование  ************************************************ -->
 <td  class= "hidden_class_column"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass scale11" src="icons/table/change.png" alt="addCooment"></td> 
       <!-- <td  class= "hidden_class_column"  id="markerLink $id"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td>  -->

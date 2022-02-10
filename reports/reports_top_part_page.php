@@ -6,7 +6,6 @@ if (isset($_GET['FinishContract'])) {
 }
 
 
-
 echo <<<HTML
 <div class="container-fluid">
 <div class="row">
@@ -18,7 +17,7 @@ echo <<<HTML
     
                 <div class="mobile_web">
                     <label for="date_start">Дата начала : </label>
-                    <input type="date" id="date_start" name="date_start"/>
+                    <input type="date" id="date_start" name="date_start"  />
                 </div>
                 <div class="mobile_web">
                     <label for="date_end">Дата окончания : </label>
