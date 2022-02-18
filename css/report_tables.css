@@ -10,3 +10,10 @@
   margin-right: 5px;
 
 }
+.link_all_td {
+  width:100%; 
+  display:inline-block; 
+  height:100%; 
+  box-shadow: 0 0 0.8px;
+  
+}

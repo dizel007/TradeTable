@@ -138,21 +138,19 @@ require_once ("change_date_format.php");
 
 echo <<<HTML
 <p class="date_label">Начало периода: <u>$date_start1</u> | Конец периода : <u>$date_end1</u></p>
-<h2 class="center">
-<a href="reports.php?some_days=0">СЕГОДНЯ</a> |
-<a href="reports.php?date_start=$yesturday_date&date_end=$yesturday_date">ВЧЕРА</a> |
-<a href="reports.php?some_days=-7">НЕДЕЛЮ</a> |
-<a href="reports.php?some_days=-30">МЕСЯЦ</a>
-<h2 class="center">Статистика текущих работ</h2> 
+<div class="center">
+    <a class="btn btn-outline-primary btn-sm m-1" href="reports.php?some_days=0">СЕГОДНЯ</a> 
+    <a class="btn btn-outline-primary btn-sm m-1" href="reports.php?date_start=$yesturday_date&date_end=$yesturday_date">ВЧЕРА</a> 
+    <a class="btn btn-outline-primary btn-sm m-1"  href="reports.php?some_days=-7">НЕДЕЛЮ</a>
+    <a class="btn btn-outline-primary btn-sm m-1"  href="reports.php?some_days=-30">МЕСЯЦ</a>
+    <div class="center">Статистика текущих работ</div> 
+</div>
 
 
 
 
-
-
-
-<div class="btn btn-outline-danger">
-НЕРАЗОБРАННЫЕ КП :<a href="index.php?typeQuery=552&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$not_obrabot_kp </a>
+<div class="btn btn-warning btn-sm ms-3">
+<a href="index.php?typeQuery=552&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">НЕРАЗОБРАННЫЕ КП :<b>$not_obrabot_kp</b> </a>
 </div>
 <div class="card-body">
   <div class="table-responsive">
@@ -168,10 +166,10 @@ echo <<<HTML
                   <th class="text-center">КП "в работе"<br>за период</th>
                   <th class="text-center">КП "в работе"<br>всего</th>
                   <th class="text-center">КП проданы<br>за период</th>
-                  
                   <th class="text-center">Сумма продаж<br>за период</th>
                   <th class="text-center">Просроченные КП<br>за период</th>
-                  <th class="text-center">Закрытые КП<br>за период / всего</th>
+                  <th class="text-center">Закрытые КП<br>за период</th>
+                  <th class="text-center">Закрытые КП<br>всего</th>
               </tr>
           </thead>
           <tbody>
@@ -188,7 +186,7 @@ for ($i=0; $i<count($arr_users_active); $i++) {
  $kp_summa = number_format($arr_kp_summa[$i], 0, ',', ' '); 
  $count_all_work = $arr_kp_work[$i];
  $count_close_kp = $arr_kp_close_period[$i];
- $count_all_close_kp = $arr_all_kp_close_period[$i];
+ $count_all_close_kp_ = $arr_all_kp_close_period[$i];
  // сумммы
  $sum_all_new_kp = array_sum($arr_all_new_kp) + $not_obrabot_kp;
 $sum_kpcond_new_kp = array_sum($arr_kpcond_new_kp);
@@ -198,8 +196,6 @@ $sum_kpcond_buy = array_sum($arr_kpcond_buy);
 $sum_overdue_kp = array_sum($arr_overdue_kp);
 $sum_close_period_kp = array_sum($arr_kp_close_period);
 $count_all_close_kp = array_sum($arr_all_kp_close_period);
-
-
 $sum_kp_summa = array_sum($arr_kp_summa);
 $sum_kp_summa = number_format($sum_kp_summa,0, ',', ' ');
  echo <<<HTML
@@ -207,7 +203,7 @@ $sum_kp_summa = number_format($sum_kp_summa,0, ',', ' ');
                   <td>$user_name</td>
                   <td >
 <!-- всего новых КП за период получил -->
-                    <a href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=">$count_all_new_kp</a>
+                    <a class="link_all_td" href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=">$count_all_new_kp</a>
                   </td>
                   <td >
  <!-- КП за период которые нужно взять в работу -->
@@ -231,10 +227,12 @@ $sum_kp_summa = number_format($sum_kp_summa,0, ',', ' ');
                     <a href="index.php?typeQuery=554&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$overdue_kp</a>
                   </td>
                   <td>
-    
-                    <a href="index.php?typeQuery=562&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_close_kp</a>
-                    /
-                    <a href="index.php?typeQuery=564&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_all_close_kp</a>
+ <!-- КП за период, которые были Закрыты, кроме которых КУПИЛИ У НАС -->   
+                    <a href="index.php?typeQuery=562&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinContr=1">$count_close_kp</a>
+                    </td>
+                    <td>
+ <!-- КП за все время, которые были Закрыты, кроме которых КУПИЛИ У НАС -->  
+                    <a href="index.php?typeQuery=564&Responsible=$user_name&KpCondition=Купили у нас&FinContr=1">$count_all_close_kp_</a>
                     
                   </td>
               </tr>
@@ -249,13 +247,15 @@ echo <<<HTML
                 <td>Итого</td>
                 <td>
                   <a href="index.php?typeQuery=555&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$sum_all_new_kp</a>
-                  /
+                  </td>
+                  <td>
                   <a href="index.php?typeQuery=556&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_kpcond_new_kp</a>    
                  </td>
                 
                 <td>
                   <a href="index.php?typeQuery=557&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$sum_kpcond_in_work</a>
-                  /
+                </td>
+                <td>
                   <a href="index.php?typeQuery=561&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$sum_kpcond_all_in_work</a>
                  
                 </td>
@@ -266,9 +266,9 @@ echo <<<HTML
                 <td><a href="index.php?typeQuery=559&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$sum_overdue_kp</a></td>
                 <td>
                   <a href="index.php?typeQuery=563&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$sum_close_period_kp</a>
-                  /
+                </td>
+                <td>
                   <a href="index.php?typeQuery=565&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_all_close_kp</a>
-                  
                 </td>
               
             </tr>
