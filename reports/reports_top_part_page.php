@@ -5,71 +5,33 @@ if (isset($_GET['FinishContract'])) {
     $FinishContract=0;
 }
 
-
 echo <<<HTML
 <div class="container-fluid">
-<div class="row">
+    <div class="row">
+        <div class ="col-12 up_form" >
+        <form>
+            <div class ="up_form">
+                    <!-- <div class="mobile_web"> -->
+                        <label for="date_start">Дата начала : </label>
+                        <input class="date_input" type="date" id="date_start" name="date_start">
+                    <!-- </div> -->
+                    <!-- <div class="mobile_web"> -->
+                        <label for="date_end">Дата окончания : </label>
+                        <input type="date" id="date_end" name="date_end"/>
+                   <!-- </div> -->
+                    <!-- <div class="mobile_web"> -->
+                            <button  class="btn btn-secondary btn-sm ms-5"  type="submit">ОБНОВИТЬ</button>
+                    <!-- </div> -->
+            </div>
+        </form>
 
 
-<div class ="col-12 up_form" >
-<form>
-   <div class ="up_form">
-    
-                <div class="mobile_web">
-                    <label for="date_start">Дата начала : </label>
-                    <input type="date" id="date_start" name="date_start"  />
-                </div>
-                <div class="mobile_web">
-                    <label for="date_end">Дата окончания : </label>
-                    <input type="date" id="date_end" name="date_end"/>
-                </div>
-        
-
-    
-        <!-- <div class="mobile_web">
-            <label for="param">Поиск : </label>
-            <input type="text" id="value" name="value"/>
-            <input type="hidden" id="id" name="id"/>
-        </div> -->
-
-        <!-- <div class="mobile_web">
-            <select size="1" name="typeQuery">
-            <option disabled>Выберите параметр поиска</option>
-            <option value="2">Номер КП</option>
-            <option selected value="3">По Дате</option>
-            <option value="4">ИНН</option>
-            <option value="7">ID КП</option>
-            <option value="10">Ответственный</option>
-            <option value="8">Наименование Заказчика</option>
-            <option value="12">Москва и МО</option>
-            </select>
-        </div> -->
-
-        
-        <div class="mobile_web">
-            <!-- <label for="FinishContract">Закр.Перенос Контр : </label>
-HTML;
-if ($FinishContract == 1) {            
-echo "<input type=\"checkbox\" name=\"FinishContract\" value=\"1\" checked>";
-} else {
-    echo "<input type=\"checkbox\" name=\"FinishContract\" value=\"1\">";
-}
-
-echo <<<HTML
-        </div> -->
-
-        <button  type="submit">ОБНОВИТЬ</button>
-   
-        </div>
-</form>
-
-
-</div>
+  </div>
         <!-- <div class ="col-1 up-button">
             <button onclick="window.location='logout.php'">Выйти</button>
         </div> -->
 </div>
 
-</div>
+
 HTML;
 ?>

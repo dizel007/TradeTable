@@ -4,7 +4,7 @@ require_once ("functions/get_condition_kp.php");
 echo <<<HTML
              <div class = "aboutUser">
                   Пользователь :$user
-                  (<a href="index.php?date_start=&date_end=&value=$userName&id=&typeQuery=10">$userName</a>)
+                  ($userName)
              <br>
             </div>
 HTML;
@@ -16,10 +16,8 @@ HTML;
      echo <<<HTML
      <!-- выборка того, что продали -->
      <div class = "aboutUser">
- 
-     <a href="reports.php" target="_blank">Аналитика</a>
- 
-     </div>
+           <a href="reports.php" target="_blank">Аналитика</a>
+      </div>
 HTML;
 }
 ?>

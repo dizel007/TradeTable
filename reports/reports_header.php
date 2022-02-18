@@ -20,6 +20,8 @@ echo <<<HTML
     <link rel = "stylesheet" href = "css/modal.css"> 
     <link rel = "stylesheet" href = "css/mobile.css">
     <link rel = "stylesheet" href = "css/phone_tab.css">
+    <link rel = "stylesheet" href = "css/report_tables.css">
+
     
     <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
     <!-- скрипт для телефоной маски -->
