@@ -5,6 +5,7 @@ $username = "Dmitriy";
 $typeQuery ="";
 $value="";
 $FinishContract=0;
+$FinContr=0;
 $pageNumber=0;
 $stringCount=200; // максимальное количество строк в таблице на одной странице
 $date_now=date('Y-m-d');
@@ -24,6 +25,11 @@ if (!empty($_GET['value'])) {
 if (!empty($_GET['FinishContract'])) {
   $FinishContract=$_GET['FinishContract'];
 }
+
+if (!empty($_GET['FinContr'])) {
+  $FinContr=$_GET['FinContr'];
+  }
+
 if (!empty($_GET['pageNumber'])) {
   $pageNumber=$_GET['pageNumber'];
 }
@@ -227,6 +233,7 @@ if ($select_arr[0]['pp'] !='') {
 }
 // *******************************************************
 // *******************************************************
+/// ЗАПРОС ПО ВСЕМ НОВЫМ КП ЗА ПЕРИОД
 elseif ($typeQuery == 551) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpData` >= '$date_start' AND
   `KpData` <= '$date_end' ORDER BY KpData DESC , KpNumber DESC";
@@ -234,29 +241,25 @@ elseif ($typeQuery == 551) {
   $arr_items = MakeArrayFromObj($query);
      printOurTable($arr_items, 1, 1, 200) ;
 }
+/// ЗАПРОС ПО НОВЫМ КП ЗА ПЕРИОД, Которые еще не взяты в работу
 elseif ($typeQuery == 552) {
-  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpData` >= '$date_start' AND
-  `KpData` <= '$date_end' ORDER BY KpData DESC , KpNumber DESC";
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `KpData` >= '$date_start' AND `KpData` <= '$date_end' ORDER BY KpData DESC , KpNumber DESC";
   $query= $mysqli->query($sql);
   $arr_items = MakeArrayFromObj($query);
-     printOurTable($arr_items, 1, 1, 200) ;
+     printOurTable($arr_items, 0, 1, 200) ;
 }
-elseif ($typeQuery == 521) {
-  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `KpData` >= '$date_start' AND `KpData` <= '$date_end' AND `FinishContract` = '$FinishContract' ORDER BY KpData DESC , KpNumber DESC";
-  $query= $mysqli->query($sql);
-  $arr_items = MakeArrayFromObj($query);
-     printOurTable($arr_items, 1, 1, 200) ;
-}
+
 elseif ($typeQuery == 553) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `date_sell` >= '$date_start' AND
-  `date_sell` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract' ORDER BY KpData DESC , KpNumber DESC";
+  `date_sell` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
        printOurTable($arr_items, 1, 1, 200) ;
 }
+//   <!-- КП за все время, которые ПРосроченные -->  
 elseif ($typeQuery == 554) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `DateNextCall` <= '$date_now'
-     AND `DateNextCall` <> '' AND `FinishContract` <>1 ORDER BY KpData DESC , KpNumber DESC";
+     AND `DateNextCall` <> '' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
           printOurTable($arr_items, 1, 1, 200) ;
@@ -295,8 +298,9 @@ elseif ($typeQuery == 559) {
        $arr_items = MakeArrayFromObj($query);
           printOurTable($arr_items, 1, 1, 200) ;
 }
+// <!-- КП за все время, которые были взяты в работу --> 
 elseif ($typeQuery == 560) {
-  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `FinishContract` <>1 ORDER BY KpData DESC , KpNumber DESC";
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
           printOurTable($arr_items, 1, 1, 200) ;
@@ -335,6 +339,8 @@ elseif ($typeQuery == 565) {
     $arr_items = MakeArrayFromObj($query);
        printOurTable($arr_items, 1, 1, 200) ;
 }
+
+
 
 elseif ($typeQuery == 601) {
   $sql = "SELECT * FROM `reestrkp` WHERE `KpSum` >= '$min_sum'  AND `KpSum` <= '$max_sum'

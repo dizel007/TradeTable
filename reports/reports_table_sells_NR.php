@@ -159,18 +159,21 @@ echo <<<HTML
 
   <!-- *************************Y START  N******************************************************** -->
 
-  <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+
+
+
+
+<table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
               <tr>
                   <th class="text-center">Фамилия</th>
-                  <th class="text-center">Новых КП<br>назначено</th>
-                  <th class="text-center">Новых КП<br>ожидает</th>
-                  <th class="text-center">КП "в работе"<br>за период</th>
-                  <th class="text-center">КП "в работе"<br>всего</th>
-                  <th class="text-center">КП проданы<br>за период</th>
-                  
+                  <th class="text-center">Новых заявок<br>поступило</th>
+                  <th class="text-center">Заявок в работе<br>за период</th>
+                  <th class="text-center">Заявок ожидают</th>
+                  <th class="text-center">КП продано</th>
                   <th class="text-center">Сумма продаж<br>за период</th>
-                  <th class="text-center">Просроченные КП<br>за период</th>
+                  <th class="text-center">Просроченные КП</th>
                   <th class="text-center">Закрытые КП<br>за период / всего</th>
               </tr>
           </thead>
@@ -189,8 +192,39 @@ for ($i=0; $i<count($arr_users_active); $i++) {
  $count_all_work = $arr_kp_work[$i];
  $count_close_kp = $arr_kp_close_period[$i];
  $count_all_close_kp = $arr_all_kp_close_period[$i];
- // сумммы
- $sum_all_new_kp = array_sum($arr_all_new_kp) + $not_obrabot_kp;
+ echo <<<HTML
+  <tr class="text-center">
+                  <td>$user_name</td>
+                  <td >
+                    <a class="btn btn-danger" href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">$count_all_new_kp</a>
+                  </td>
+                               
+                  <td>
+                    <a href="index.php?typeQuery=521&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$kp_in_work</a>
+                  </td>
+                  <td>
+                  <a href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$count_new_kp</a></td>
+                  </td>
+                  <td>
+                    <a href="index.php?typeQuery=560&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">$count_all_work</a>
+                  </td>
+
+
+
+                  <td><a href="index.php?typeQuery=553&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_buy</a></td>
+                  
+                  <td class="text-end">$kp_summa</td>
+                  <td><a href="index.php?typeQuery=554&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">$overdue_kp</a></td>
+                  <td>
+                    <a href="index.php?typeQuery=562&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_close_kp</a>
+                    /
+                    <a href="index.php?typeQuery=564&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_all_close_kp</a>
+                    
+                  </td>
+              </tr>
+HTML;
+}
+$sum_all_new_kp = array_sum($arr_all_new_kp) + $not_obrabot_kp;
 $sum_kpcond_new_kp = array_sum($arr_kpcond_new_kp);
 $sum_kpcond_in_work = array_sum($arr_kpcond_in_work);
 $sum_kpcond_all_in_work = array_sum($arr_kp_work);
@@ -202,45 +236,6 @@ $count_all_close_kp = array_sum($arr_all_kp_close_period);
 
 $sum_kp_summa = array_sum($arr_kp_summa);
 $sum_kp_summa = number_format($sum_kp_summa,0, ',', ' ');
- echo <<<HTML
-  <tr class="text-center">
-                  <td>$user_name</td>
-                  <td >
-<!-- всего новых КП за период получил -->
-                    <a href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=">$count_all_new_kp</a>
-                  </td>
-                  <td >
- <!-- КП за период которые нужно взять в работу -->
-                    <a href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$count_new_kp</a>
-                  </td>
-                  <td>
-<!-- КП за период, которые были взяты в работу -->
-                    <a href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinContr=0">$kp_in_work</a>
-                  </td>
-                  <td>
-<!-- КП за все время, которые были взяты в работу -->                    
-                    <a href="index.php?typeQuery=560&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinContr=0">$count_all_work</a>
-                  </td>
-                  <td>
-  <!-- КП за период, которые КУПИЛИ У НАС --> 
-                    <a href="index.php?typeQuery=553&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinContr=1">$count_buy</a></td>
-  <!--Сумма КП за период, которые КУПИЛИ У НАС --> 
-                  <td class="text-end">$kp_summa</td>
-                  <td>
-  <!-- КП за все время, которые ПРосроченные -->                    
-                    <a href="index.php?typeQuery=554&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$overdue_kp</a>
-                  </td>
-                  <td>
-    
-                    <a href="index.php?typeQuery=562&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_close_kp</a>
-                    /
-                    <a href="index.php?typeQuery=564&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">$count_all_close_kp</a>
-                    
-                  </td>
-              </tr>
-HTML;
-}
-
 
 
 echo <<<HTML
@@ -276,8 +271,6 @@ HTML;
 echo <<<HTML
           </tbody>                                
 </table>
-
-
 
 
 
