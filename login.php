@@ -41,6 +41,7 @@
                     // Ставим куки
                     setcookie("id", $data['user_id'], time() + 60 * 60 * 24, "/");
                     setcookie("hash", $hash, time() + 60 * 60 * 24, "/", null, null, true); // httponly !!!
+                    setcookie("user_name", $data['user_login'], time() + 60 * 60 * 24, "/", null, null, true); // httponly !!!
 
                     /// запись в логи, что пользователь зашел на сайт
                     $fileLogName = date('Y-m-d'); // создаем имя фаила куда будем писать логи ... каждый день новый файил
