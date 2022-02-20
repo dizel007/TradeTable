@@ -9,6 +9,7 @@ $FinContr=0;
 $pageNumber=0;
 $stringCount=200; // максимальное количество строк в таблице на одной странице
 $date_now=date('Y-m-d');
+$KpImportance="";
 
 if (!empty($_GET['date_start']))  {
   $date_start = $_GET['date_start'];
@@ -40,6 +41,12 @@ if (isset($_GET["KpCondition"])) {
 } else {
   $KpCondition= "";
 }
+if (isset($_GET["KpImportance"])) {
+  $KpImportance= $_GET['KpImportance'];
+} else {
+  $KpImportance= "";
+}
+
 if (isset($_GET["Responsible"])) {
   $Responsible= $_GET['Responsible'];
  } else {
@@ -339,7 +346,20 @@ elseif ($typeQuery == 565) {
     $arr_items = MakeArrayFromObj($query);
        printOurTable($arr_items, 1, 1, 200) ;
 }
-
+// КП которые в работе и значимость ВАЖНо или Очень важно
+elseif ($typeQuery == 566) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `KpImportance`='$KpImportance' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, 1, 200) ;
+}
+// КП которые в работе и значимость Нейтрально или без значимости
+elseif ($typeQuery == 567) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND (`KpImportance`='$KpImportance' OR `KpImportance`='') AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, 1, 200) ;
+}
 
 
 elseif ($typeQuery == 601) {

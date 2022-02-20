@@ -61,7 +61,9 @@ for ($i=0; $i<count($arr_users_active); $i++) {
   $overdue_kp=0;
   $count_close_kp=0;
   $count_all_close_kp=0;
-  
+  $count_all_work_neutral=0;
+  $count_all_work_important=0;  
+  $count_all_work_very_important=0;  
 //   echo "<pre>";
 // var_dump($arr_info_user);
 // echo "<pre>";
@@ -109,7 +111,17 @@ for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
       
 // Ищем Все КП которые в Работе**********************
       if (($arr_info_user_for_sell[$j]["KpCondition"] == "В работе")  && ($arr_info_user_for_sell[$j]["FinishContract"] == 0 ))
-          {$count_all_work++;}
+          {
+            $count_all_work++; // количество взятых в работу
+ // Если в работе и статус Кп "НЕЙТРАЛЬН"
+            if ($arr_info_user_for_sell[$j]["KpImportance"] == "Нейтрально") {$count_all_work_neutral++;}
+            if ($arr_info_user_for_sell[$j]["KpImportance"] == "") {$count_all_work_neutral++;}
+ // Если в работе и статус Кп "ВАЖНО"
+            if ($arr_info_user_for_sell[$j]["KpImportance"] == "Важно") {$count_all_work_important++;}
+// Если в работе и статус Кп "VERY ВАЖНО"
+            if ($arr_info_user_for_sell[$j]["KpImportance"] == "Очень важно") {$count_all_work_very_important++;}
+              
+          }
  // Ищем Все КП которые Просрoчены**********************         
       if (($arr_info_user_for_sell[$j]["DateNextCall"] < $date_now) && ($arr_info_user_for_sell[$j]["DateNextCall"] <>'0000-00-00') && ($arr_info_user_for_sell[$j]["FinishContract"] <>1)  ) 
       { 
@@ -119,6 +131,9 @@ for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
   $arr_kpcond_buy[$i] = $count_buy;  // массив с данными по КП которые проланы
   $arr_kp_summa[$i] = $kp_summa; // сумма продаж за период
   $arr_kp_work[$i] = $count_all_work;  // массив с данными по КП которые в работе
+  $arr_kp_work_neutral[$i] = $count_all_work_neutral;  // массив с данными по КП которые в работе НЕЙТРАЛЬН
+  $arr_kp_work_important[$i] = $count_all_work_important;  // массив с данными по КП которые в работе ВАЖНО
+  $arr_kp_work_very_important[$i] = $count_all_work_very_important;  // массив с данными по КП которые в работе ОЧЕНЬ ВАЖНО
   $arr_kp_close_period[$i] = $count_close_kp; // // массив с данными по КП которые закрыты
   $arr_all_kp_close_period[$i] = $count_all_close_kp; // // массив с данными по КП которые закрыты за весь период
   if (isset($arr_info_user_for_sell[0]["KpCondition"])) {$arr_overdue_kp[$i] = $overdue_kp;}
@@ -187,6 +202,9 @@ for ($i=0; $i<count($arr_users_active); $i++) {
  $count_all_work = $arr_kp_work[$i];
  $count_close_kp = $arr_kp_close_period[$i];
  $count_all_close_kp_ = $arr_all_kp_close_period[$i];
+ $count_all_work_neutral = $arr_kp_work_neutral[$i];
+ $count_all_work_important = $arr_kp_work_important[$i];
+ $count_all_work_very_important = $arr_kp_work_very_important[$i];
  // сумммы
  $sum_all_new_kp = array_sum($arr_all_new_kp) + $not_obrabot_kp;
 $sum_kpcond_new_kp = array_sum($arr_kpcond_new_kp);
@@ -203,36 +221,53 @@ $sum_kp_summa = number_format($sum_kp_summa,0, ',', ' ');
                   <td>$user_name</td>
                   <td >
 <!-- всего новых КП за период получил -->
-                    <a class="link_all_td" href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=">$count_all_new_kp</a>
+                    <a class="btn btn-outline-primary btn-sm" href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=">$count_all_new_kp</a>
+                    <!-- <a class="link_all_td" href="index.php?typeQuery=551&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=">$count_all_new_kp</a> -->
                   </td>
                   <td >
  <!-- КП за период которые нужно взять в работу -->
-                    <a href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$count_new_kp</a>
+                    <a class="btn btn-outline-primary btn-sm" href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$count_new_kp</a>
                   </td>
                   <td>
 <!-- КП за период, которые были взяты в работу -->
-                    <a href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinContr=0">$kp_in_work</a>
+                    <a class="btn btn-outline-primary btn-sm" href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinContr=0">$kp_in_work</a>
                   </td>
-                  <td>
+                  <td class="">
 <!-- КП за все время, которые были взяты в работу -->                    
-                    <a href="index.php?typeQuery=560&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinContr=0">$count_all_work</a>
+                    <a class ="btn btn-success btn-sm" href="index.php?typeQuery=560&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе& FinContr=0">$count_all_work</a>
+                    &nbsp
+                    <!-- НЕЙТРАЛЬНО -->
+                    <a class ="btn btn-outline-primary btn-sm" href="index.php?typeQuery=567&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&KpImportance=Нейтрально&FinContr=0">
+                       $count_all_work_neutral
+                    </a>
+                    &nbsp
+                    <!-- ВАЖНО -->
+                    <a class ="btn btn-outline-warning btn-sm" href="index.php?typeQuery=566&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&KpImportance=Важно&FinContr=0">
+                       $count_all_work_important
+                    </a>
+                    &nbsp
+                    <!-- ОЧЕНЬ ВАЖНО -->
+                    <a class ="btn btn-outline-danger btn-sm" href="index.php?typeQuery=566&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&KpImportance=Очень важно&FinContr=0">
+                       $count_all_work_very_important
+                    </a>
+
                   </td>
                   <td>
   <!-- КП за период, которые КУПИЛИ У НАС --> 
-                    <a href="index.php?typeQuery=553&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinContr=1">$count_buy</a></td>
+                    <a class="btn btn-outline-primary btn-sm" href="index.php?typeQuery=553&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinContr=1">$count_buy</a></td>
   <!--Сумма КП за период, которые КУПИЛИ У НАС --> 
                   <td class="text-end">$kp_summa</td>
                   <td>
   <!-- КП за все время, которые ПРосроченные -->                    
-                    <a href="index.php?typeQuery=554&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$overdue_kp</a>
+                    <a class="btn btn-outline-danger btn-sm" href="index.php?typeQuery=554&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$overdue_kp</a>
                   </td>
                   <td>
  <!-- КП за период, которые были Закрыты, кроме которых КУПИЛИ У НАС -->   
-                    <a href="index.php?typeQuery=562&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinContr=1">$count_close_kp</a>
+                    <a class="btn btn-outline-secondary btn-sm" href="index.php?typeQuery=562&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinContr=1">$count_close_kp</a>
                     </td>
                     <td>
  <!-- КП за все время, которые были Закрыты, кроме которых КУПИЛИ У НАС -->  
-                    <a href="index.php?typeQuery=564&Responsible=$user_name&KpCondition=Купили у нас&FinContr=1">$count_all_close_kp_</a>
+                    <a class="btn btn-outline-secondary btn-sm" href="index.php?typeQuery=564&Responsible=$user_name&KpCondition=Купили у нас&FinContr=1">$count_all_close_kp_</a>
                     
                   </td>
               </tr>
