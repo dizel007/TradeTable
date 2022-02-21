@@ -30,6 +30,15 @@ if ((isset($date_start) or (isset($date_end)))) {
     }
 }
 
+
+// Получаем количество нераспределенных Заявок за все время 
+$sql="SELECT * FROM `reestrkp` WHERE `Responsible`='' AND `FinishContract`= 0";
+$query = $mysqli->query($sql);
+$arr_info_user = MakeArrayFromObj($query);
+$not_obrabot_kp_all=0;
+if (isset($arr_info_user[0]["Responsible"])) {$not_obrabot_kp_all = count($arr_info_user);}
+
+
 $sql="SELECT * FROM `reestrkp` WHERE `Responsible` = '' $sql_plus";
 $query = $mysqli->query($sql);
 $arr_info_user = MakeArrayFromObj($query);
@@ -54,6 +63,7 @@ for ($i=0; $i<count($arr_users_active); $i++) {
 // Находим количество Заявок в работе
   $count_new_kp=0;
   $count_work=0;
+  $count_all_not_work=0;
   $count_all_work=0;
   $count_buy=0;
   $kp_summa=0;
@@ -70,6 +80,11 @@ for ($i=0; $i<count($arr_users_active); $i++) {
   for ($j=0; $j<count($arr_info_user); $j++) {
 // кол-во новых КП 
     if ((isset($arr_info_user[0]["KpCondition"])) && ($arr_info_user[$j]["KpCondition"] == "") && ($arr_info_user[$j]["FinishContract"] <>1 ))  {$count_new_kp++;} 
+
+
+
+
+
 // количество взятых в работы  
     if (($arr_info_user[$j]["KpCondition"] == "В работе" ) && ($arr_info_user[$j]["FinishContract"] <>1 )) {$count_work++;} 
   }
@@ -87,7 +102,8 @@ $query = $mysqli->query($sql);
 
 $arr_info_user_for_sell = MakeArrayFromObj($query);
 for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
-
+    // кол-во невзятых в работу КП за все время 
+    if (($arr_info_user_for_sell[$j]["Responsible"] ==$user_name)&& ($arr_info_user_for_sell[$j]["KpCondition"] <> "В работе") && ($arr_info_user_for_sell[$j]["FinishContract"] == 0) )  {$count_all_not_work++;} 
   // Ищем Все КП которые Продали  **********************
      if (($arr_info_user_for_sell[$j]["KpCondition"] == "Купили у нас")  && 
           ( $date_end >= $arr_info_user_for_sell[$j]["date_sell"] )  &&
@@ -130,6 +146,7 @@ for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
   }
   $arr_kpcond_buy[$i] = $count_buy;  // массив с данными по КП которые проланы
   $arr_kp_summa[$i] = $kp_summa; // сумма продаж за период
+  $arr_kp_not_work[$i] = $count_all_not_work;
   $arr_kp_work[$i] = $count_all_work;  // массив с данными по КП которые в работе
   $arr_kp_work_neutral[$i] = $count_all_work_neutral;  // массив с данными по КП которые в работе НЕЙТРАЛЬН
   $arr_kp_work_important[$i] = $count_all_work_important;  // массив с данными по КП которые в работе ВАЖНО
@@ -164,9 +181,12 @@ echo <<<HTML
 
 
 
-
-<div class="btn btn-warning btn-sm ms-3">
-<a href="index.php?typeQuery=552&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">НЕРАЗОБРАННЫЕ КП :<b>$not_obrabot_kp</b> </a>
+<div class="ms-3">
+<a class="btn btn-outline-danger btn-sm " href="index.php?typeQuery=568&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">Неразобранные КП : <b>$not_obrabot_kp_all</b> за все время </a>
+</div>
+<br>
+<div class="ms-3">
+<a class="btn btn-outline-warning btn-sm" href="index.php?typeQuery=552&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=">Неразобранные КП : <b>$not_obrabot_kp</b> за выбранный период </a>
 </div>
 <div class="card-body">
   <div class="table-responsive">
@@ -179,6 +199,7 @@ echo <<<HTML
                   <th class="text-center">Фамилия</th>
                   <th class="text-center">Новых КП<br>назначено</th>
                   <th class="text-center">Новых КП<br>ожидает</th>
+                  <th class="text-center">КП "НЕ в работе"<br>всего</th>
                   <th class="text-center">КП "в работе"<br>за период</th>
                   <th class="text-center">КП "в работе"<br>всего</th>
                   <th class="text-center">КП проданы<br>за период</th>
@@ -195,6 +216,7 @@ for ($i=0; $i<count($arr_users_active); $i++) {
 
  $count_all_new_kp = $arr_all_new_kp[$i];
  $count_new_kp = $arr_kpcond_new_kp[$i];
+ $count_all_not_work = $arr_kp_not_work[$i]; 
  $user_name = $arr_users_active[$i]['user_name'];
  $kp_in_work = $arr_kpcond_in_work[$i];
  $count_buy = $arr_kpcond_buy[$i];
@@ -207,8 +229,9 @@ for ($i=0; $i<count($arr_users_active); $i++) {
  $count_all_work_important = $arr_kp_work_important[$i];
  $count_all_work_very_important = $arr_kp_work_very_important[$i];
  // сумммы
- $sum_all_new_kp = array_sum($arr_all_new_kp) + $not_obrabot_kp;
+$sum_all_new_kp = array_sum($arr_all_new_kp) + $not_obrabot_kp;
 $sum_kpcond_new_kp = array_sum($arr_kpcond_new_kp);
+$sum_kp_not_work = array_sum($arr_kp_not_work);
 $sum_kpcond_in_work = array_sum($arr_kpcond_in_work);
 $sum_kpcond_all_in_work = array_sum($arr_kp_work);
 $sum_kpcond_buy = array_sum($arr_kpcond_buy);
@@ -229,6 +252,12 @@ $sum_kp_summa = number_format($sum_kp_summa,0, ',', ' ');
  <!-- КП за период которые нужно взять в работу -->
                     <a class="btn btn-outline-primary btn-sm" href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=&FinContr=0">$count_new_kp</a>
                   </td>
+                  <td >
+ <!-- ******************************************************************** -->
+  <!-- КП за все время которые нужно взять в работу -->
+                    <a class="btn btn-primary btn-sm" href="index.php?typeQuery=569&Responsible=$user_name&date_start=&date_end=&KpCondition=В работе&FinContr=0">$count_all_not_work</a>
+                  </td>
+  <!-- ******************************************************************** -->
                   <td>
 <!-- КП за период, которые были взяты в работу -->
                     <a class="btn btn-outline-primary btn-sm" href="index.php?typeQuery=552&Responsible=$user_name&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinContr=0">$kp_in_work</a>
@@ -287,7 +316,11 @@ echo <<<HTML
                   <td>
                   <a class="btn btn-outline-primary" href="index.php?typeQuery=556&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0"><b>$sum_kpcond_new_kp</b></a>    
                  </td>
-                
+<!--  ***КП НЕ В РАБОТЕ ЗА ВСЕ ВРЕМЯ **********************************************-->
+                <td>
+                  <a class="btn btn-primary" href="index.php?typeQuery=570&Responsible=&date_start=&date_end=&KpCondition=В работе&FinishContract=0"><b>$sum_kp_not_work</b></a>    
+                 </td>
+<!--  *************************************************-->
                 <td>
                   <a class="btn btn-outline-primary" href="index.php?typeQuery=557&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=В работе&FinishContract=0">
                     <b>$sum_kpcond_in_work</b></a>
@@ -390,13 +423,15 @@ foreach ($arr_users as $value){
 $user_name=$value["user_name"];
 $user_login=$value["user_login"];
 // reports_show_changes.php
+
+ if ($kolvo_change>0) { //показываем только тех, кто делал изменения
  echo <<<HTML
-  <tr>
-                  <td>$user_name($user_login)</td>
-                  <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_change</a></td>
-        
+            <tr>
+              <td>$user_name($user_login)</td>
+              <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_change</a></td>
               </tr>
 HTML;
+ }
 }
 
 echo <<<HTML

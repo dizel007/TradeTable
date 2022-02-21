@@ -246,14 +246,14 @@ elseif ($typeQuery == 551) {
   `KpData` <= '$date_end' ORDER BY KpData DESC , KpNumber DESC";
   $query= $mysqli->query($sql);
   $arr_items = MakeArrayFromObj($query);
-     printOurTable($arr_items, 1, 1, 200) ;
+     printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 /// ЗАПРОС ПО НОВЫМ КП ЗА ПЕРИОД, Которые еще не взяты в работу
 elseif ($typeQuery == 552) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `KpData` >= '$date_start' AND `KpData` <= '$date_end' ORDER BY KpData DESC , KpNumber DESC";
   $query= $mysqli->query($sql);
   $arr_items = MakeArrayFromObj($query);
-     printOurTable($arr_items, 0, 1, 200) ;
+     printOurTable($arr_items, 0, $pageNumber, 200) ;
 }
 
 elseif ($typeQuery == 553) {
@@ -261,7 +261,7 @@ elseif ($typeQuery == 553) {
   `date_sell` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 //   <!-- КП за все время, которые ПРосроченные -->  
 elseif ($typeQuery == 554) {
@@ -269,54 +269,54 @@ elseif ($typeQuery == 554) {
      AND `DateNextCall` <> '' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
-          printOurTable($arr_items, 1, 1, 200) ;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 elseif ($typeQuery == 555) {
   $sql = "SELECT * FROM `reestrkp` WHERE `KpData` >= '$date_start' AND`KpData` <= '$date_end' ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 elseif ($typeQuery == 556) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `KpData` >= '$date_start' AND
   `KpData` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract' ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 elseif ($typeQuery == 557) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `KpData` >= '$date_start' AND
   `KpData` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract' ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 elseif ($typeQuery == 558) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `date_sell` >= '$date_start' AND
   `date_sell` <= '$date_end' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinishContract' ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 elseif ($typeQuery == 559) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` <> '' AND `DateNextCall` <= '$date_now'
      AND `DateNextCall` <> '' AND `FinishContract` <>1 ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
-          printOurTable($arr_items, 1, 1, 200) ;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 // <!-- КП за все время, которые были взяты в работу --> 
 elseif ($typeQuery == 560) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
-          printOurTable($arr_items, 1, 1, 200) ;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 elseif ($typeQuery == 561) {
   $sql = "SELECT * FROM `reestrkp` WHERE `KpCondition` = '$KpCondition' AND `FinishContract` <> 1 ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
-          printOurTable($arr_items, 1, 1, 200) ;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 // <!-- КП за период, которые были Закрыты, кроме которых КУПИЛИ У НАС -->   
 elseif ($typeQuery == 562) {
@@ -324,41 +324,65 @@ elseif ($typeQuery == 562) {
   `date_close` <= '$date_end' AND `KpCondition` <> '$KpCondition' AND `FinishContract` = 1 ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 /// Выборка всех закрытых КП за заданный период
 elseif ($typeQuery == 563) {
   $sql = "SELECT * FROM `reestrkp` WHERE `date_close` >= '$date_start' AND   `date_close` <= '$date_end' AND `KpCondition` <> '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-    printOurTable($arr_items, 1, 1, 200) ;
+    printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 ///  <!-- КП за все время, которые были Закрыты, кроме которых КУПИЛИ У НАС --> 
 elseif ($typeQuery == 564) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` ='$Responsible' AND `KpCondition` <> '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
   $query= $mysqli->query($sql);
   $arr_items = MakeArrayFromObj($query);
-   printOurTable($arr_items, 1, 1, 200) ;
+   printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 elseif ($typeQuery == 565) {
   $sql = "SELECT * FROM `reestrkp` WHERE `KpCondition` <> '$KpCondition' AND `FinishContract` = 1 ORDER BY KpData DESC , KpNumber DESC";
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 // КП которые в работе и значимость ВАЖНо или Очень важно
 elseif ($typeQuery == 566) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND `KpImportance`='$KpImportance' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
-          printOurTable($arr_items, 1, 1, 200) ;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 // КП которые в работе и значимость Нейтрально или без значимости
 elseif ($typeQuery == 567) {
   $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` = '$KpCondition' AND (`KpImportance`='$KpImportance' OR `KpImportance`='') AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
-          printOurTable($arr_items, 1, 1, 200) ;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
+}
+
+// КП без ответственного за Все время
+elseif ($typeQuery == 568) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
+}
+// КП без ответственного за Все время
+elseif ($typeQuery == 569) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `KpCondition` <> '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+      //  echo "typeQuery=".$typeQuery;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
+}
+// КП без ответственного за Все время
+elseif ($typeQuery == 570) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `KpCondition` <> '$KpCondition' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+      //  echo "typeQuery=".$typeQuery;
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 
 
@@ -368,7 +392,7 @@ elseif ($typeQuery == 601) {
     $query= $mysqli->query($sql);
     $arr_items = MakeArrayFromObj($query);
 
-       printOurTable($arr_items, 1, 1, 200) ;
+       printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
 
 // echo "<br>***".$sql."<br>";
