@@ -89,7 +89,7 @@ echo <<<HTML
          </td>
          <!-- WhatsApp -->
           <td width ="20"> 
-          <a rel="nofollow" href="https://api.whatsapp.com/send?phone=$phone" target="_blank">
+          <a rel="nofollow" href="https://web.whatsapp.com/send?phone=$phone" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" opacity ="$whatsapp_o" viewBox="0 0 20 20"
                             fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd"
