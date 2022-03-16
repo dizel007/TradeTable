@@ -394,8 +394,10 @@ echo <<<HTML
           <thead>
               <tr>
                   <th>Фамилия</th>
-                  <th>кол-во изменений</th>
-
+                  <th>изменений в КП</th>
+                  <th>отправленных email</th>
+                  <th>изменений в данных о компании</th>
+                  <th>всего изменений</th>
               </tr>
           </thead>
           <tbody>
@@ -407,28 +409,66 @@ $query = $mysqli->query($sql);
 $arr_users = MakeArrayFromObjUsers($query);
 
 $i=0;
+$j=0;
 $arr_users_items_changes[]="";
 foreach ($arr_users as $value){
   $kolvo_change=0;
+  $kolvo_kp_change = 0;
+  $kolvo_send_emails = 0;
+  $kolvo_change_about_company=0;
+  // перебираем все изменения и при совпадении пользователя формируем массив изменений по пользователю
     foreach ($arr_items_changes as $key => $value1 ){
-          // var_dump ($value);
-        if ($value["user_login"] == $value1["author"]) {
+         if ($value["user_login"] == $value1["author"]) {
           $author =$value1["author"];
+          //ищем только изменения в КП и делаем массив этих изменений
+          if ($value1['what_change'] == 1) {
+              $arr_user_change_kp[$author][$j] = $value1;
+              $kolvo_kp_change = count($arr_user_change_kp[$author]);
+              $j++;
+           }
+          //ищем количество отправленных писем
+          if ($value1['what_change'] == 7) {
+            $arr_user_send_email[$author][$j] = $value1;
+            $kolvo_send_emails = count($arr_user_send_email[$author]);
+            $j++;
+         }
+          //ищем количество изменений в данных о компании
+          if (($value1['what_change'] == 3) OR ($value1['what_change'] == 2) OR 
+              ($value1['what_change'] == 5) OR ($value1['what_change'] == 4) OR
+              ($value1['what_change'] == 6)) {
+          $arr_change_about_company[$author][$j] = $value1;
+          $kolvo_change_about_company = count($arr_change_about_company[$author]);
+          $j++;
+        }
+
+          
           $arr_users_items_changes[$author][$i] = $value1;
           $kolvo_change = count($arr_users_items_changes[$author]);
           $i++;
-          // echo $value1["author"]. "<br>";
+        
         }
    }
 $user_name=$value["user_name"];
 $user_login=$value["user_login"];
+$whatChange=$value1['what_change'];
 // reports_show_changes.php
 
  if ($kolvo_change>0) { //показываем только тех, кто делал изменения
  echo <<<HTML
             <tr>
               <td>$user_name($user_login)</td>
+             <!--количество изменений в КП -->
+              <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=3&whatChange=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_kp_change</a></td>
+             <!--количество отправленных email -->
+             <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=3&whatChange=7&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_send_emails</a></td>
+             <!--количество изменений данных о компании -->
+             <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=4&user_login=$user_login&date_start=$date_start&date_end=$date_end"> $kolvo_change_about_company</a></td>
+
               <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_change</a></td>
+
+
+
+
               </tr>
 HTML;
  }
@@ -438,6 +478,9 @@ echo <<<HTML
 <tr class="fs-4">
              
                 <td >Итого</td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
                 <td><a class="btn btn-outline-primary"href="reports_show_changes.php?typeQuery=2&date_start=$date_start&date_end=$date_end"><b>$sum_all_changes</b></a></td>
  
               
@@ -461,13 +504,5 @@ echo <<<HTML
 
 
 HTML;
-//УНИЧТОЖАЕМ ВСЕ МАССИВЫ
-
-
-
-
-
-
-
 
 ?>

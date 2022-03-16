@@ -10,6 +10,11 @@ if (isset($_GET["typeQuery"])) {
 } else {
   $typeQuery = "";
 }
+if (isset($_GET["whatChange"])) {
+  $whatChange = $_GET['whatChange'];
+} else {
+  $whatChange = "";
+}
 
 if (isset($_GET["user_login"])) {
   $user_login = $_GET['user_login'];
@@ -29,15 +34,28 @@ if (isset($_GET["date_end"])) {
 }
 
 $date_now = date('Y-m-d');
-
+// выбираем все изменения по выбранному пользователю
 if ($typeQuery == 1) {
   $sql = "SELECT * FROM `reports` WHERE `author` = '$user_login' AND `date_change` >= '$date_start' AND
-  `date_change` <= '$date_end' ORDER BY `date_change`";
+  `date_change` <= '$date_end' ORDER BY `time_change` ASC";
 }
+// выбираем все изменения 
 if ($typeQuery == 2) {
   $sql = "SELECT * FROM `reports` WHERE `date_change` >= '$date_start' AND
-  `date_change` <= '$date_end' ORDER BY `date_change`";
+  `date_change` <= '$date_end' ORDER BY `time_change` ASC";
 }
+// выбираем все изменения по выбранному пользователю, где были изменения в КП / отправленные ЕМАЙЛы
+if ($typeQuery == 3) {
+  $sql = "SELECT * FROM `reports` WHERE `author` = '$user_login' AND `what_change`='$whatChange'  AND `date_change` >= '$date_start' AND `date_change` <= '$date_end' ORDER BY `time_change` ASC";
+}
+// выбираем все изменения по выбранному пользователю, где были изменения по данным компании
+if ($typeQuery == 4) {
+  $sql = "SELECT * FROM `reports` WHERE `author` = '$user_login' AND 
+  (`what_change`='2' OR `what_change`='3' OR `what_change`='4' OR `what_change`='5' OR `what_change`='6')  
+  AND `date_change` >= '$date_start' AND
+  `date_change` <= '$date_end' ORDER BY `time_change` ASC";
+}
+
 $query = $mysqli->query($sql);
 $arr_user_reports = MakeArrayFromReportsData($query);
 //   echo "<pre>";
