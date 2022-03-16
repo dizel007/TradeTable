@@ -10,6 +10,11 @@ if (isset($_GET["typeQuery"])) {
 } else {
   $typeQuery = "";
 }
+if (isset($_GET["id_kp"])) {
+  $id_kp = $_GET['id_kp'];
+} else {
+  $id_kp = "";
+}
 if (isset($_GET["whatChange"])) {
   $whatChange = $_GET['whatChange'];
 } else {
@@ -55,6 +60,10 @@ if ($typeQuery == 4) {
   AND `date_change` >= '$date_start' AND
   `date_change` <= '$date_end' ORDER BY `time_change` ASC";
 }
+// выбираем все изменения по выбранному КП
+if ($typeQuery == 5) {
+  $sql = "SELECT * FROM `reports` WHERE `id_item` = '$id_kp' ORDER BY `time_change` DESC";
+}
 
 $query = $mysqli->query($sql);
 $arr_user_reports = MakeArrayFromReportsData($query);
@@ -79,6 +88,7 @@ echo <<<HTML
                   <th>Дата изменения</th>
                   <th>Ссылка на изменения</th>
                   <th>Изменения</th>
+                  <th>История КП</th>
 
               </tr>
           </thead>
@@ -109,14 +119,17 @@ foreach ($arr_user_reports as $value) {
   }
   //  смотрим тип изменения 
   // Меняем данные в КП
+  $cor_kp=0;
   if ($what_change == 1) {
     $sql = "SELECT * from `reestrkp` WHERE id = $id_item";
     $query = $mysqli->query($sql);
     $arr_for_kp_num = MakeArrayFromObj($query);
+    $id_kp = $arr_for_kp_num[0]["id"];
     $kp_num = $arr_for_kp_num[0]["KpNumber"];
     $kp_date = $arr_for_kp_num[0]["KpData"];
     $link = $kp_num . " от " . $kp_date;
     $get_link = "index.php?id=$id_item";
+    $cor_kp=1;
 // Меняем данные к компании из КП
   } elseif ($what_change == 2) {
     $sql = "SELECT * from `inncompany` WHERE inn = $id_item";
@@ -199,6 +212,16 @@ foreach ($arr_user_reports as $value) {
           <td width="180" class="text-center">$time_change</td>
           <td width="240" class="text-center"><a href="$get_link">$link</a></td>
           <td>$comment_change</td>
+HTML;
+if ($cor_kp==1) {
+ echo  "<td class=\"text-center\"><a href=\"reports_show_changes.php?typeQuery=5&id_kp=$id_kp\">$kp_num</a></td>";
+}else {
+  echo  "<td></td>";
+}
+
+
+echo <<<HTML
+          
      </tr>
 HTML;
 }
