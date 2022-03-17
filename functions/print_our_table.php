@@ -14,7 +14,7 @@ echo <<<HTML
       <tbody>
           <tr class="DrawDark">
             <td>пп</td>
-            <td class="hidden_class_column">id</td>
+            
             <td>№КП</td>
             <td>Ex</td> 
             <td>Дата КП</td>
@@ -25,6 +25,7 @@ echo <<<HTML
             <td class="hidden_class_column">Важность</td>
             <td class="hidden_class_column">%</td>
             <td class="hidden_class_column">Ответственный</td>
+            <td class="hidden_class_column">id</td>
             <td>Комментарий</td>
             <td>Ред</td>
             <td>Сл.звонок</td>
@@ -193,8 +194,7 @@ echo <<<HTML
        <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td> -->
        <td class = "hidden_class_column">$puncPp</td>
 
-<!-- ******************************  ПАПКА для открытия КП  ***********************************************  -->
-       <td><a name="$id" href="?id=$id" target="_blank"><img class="scale11" src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
+
 <!-- *************  ССЫлка для скачивания КП в формате EXCEL  *********************************  -->
        <td><a href= "$LinkKp">$KpNumber</a></td> 
 HTML;
@@ -237,8 +237,14 @@ echo <<<HTML
       <td id = "js-procent_work$id" width ="20" class="hidden_class_column" title="$date_write"><b>$procent_work</b></td>
  <!-- ********************************** ОТветственный  ************************************************ -->
      <td id= "js-Responsible$id" width="80" class="hidden_class_column">$Responsible</td>
+
+<!-- ******************************  ПАПКА для открытия КП  *************************************  -->
+     <td><a name="$id" href="?id=$id" target="_blank"><img class="scale11" src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
+
 <!-- ********************************** Комментарий  ************************************************ -->
       <td id = "js-comment$id" class ="limit_width text_left">$Comment</td>
+
+
 <!-- ********************************** Редактирование  ************************************************ -->
 <td  class= "hidden_class_column"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass scale11" src="icons/table/change.png" alt="addCooment"></td> 
       <!-- <td  class= "hidden_class_column"  id="markerLink $id"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td>  -->
