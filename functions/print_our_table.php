@@ -83,9 +83,8 @@ $Comment = substr($Comment, 2, strlen($Comment)); // удаляем первые
 $Comment  = str_replace( "@!", "<br><hr>" , $Comment); // 
 $Comment  = str_replace( "||+", ";" , $Comment);
 
-
-
 $DateNextCall = $arr_name[$i]['DateNextCall'];
+if ($DateNextCall =="0000-00-00") {$DateNextCall='';}  // ничего не выводим, если дата звонка не задана
 $KpCondition =  $arr_name[$i]['KpCondition'];
 $KpSum = number_format($arr_name[$i]['KpSum']);
 $TenderSum = number_format($arr_name[$i]['TenderSum']);
@@ -98,8 +97,16 @@ $exist_excel_file = file_exists($LinkKp);
 $dateContract = $arr_name[$i]['dateContract'];
 $KpConditionTable = ""; // Вводим пустую переченную
 $procent_work = $arr_name[$i]['procent_work'];
-$date_write = $arr_name[$i]['date_write'];; // 
+if ($procent_work == 0) {$procent_work="";}
+$date_write = $arr_name[$i]['date_write']; // 
 $dateFinishContract = $arr_name[$i]['dateFinishContract'];
+if ($dateFinishContract =="0000-00-00") {$dateFinishContract='';}  // ничего не выводим, если дата окончания не задана
+$second_sell = $arr_name[$i]['second_sell'];
+
+
+
+
+
 
   /// Не выводим перенесенные на следующий год КП
   $KpData_d = strtotime($KpData); // приводим дату КП к типу дата
@@ -145,6 +152,14 @@ $dateFinishContract = $arr_name[$i]['dateFinishContract'];
             $KpImportanceTable = "";
           }
 
+
+// Подсвечиваем компании которым раньше продавали
+if ($second_sell == 1 ) {
+ $second_sell_cl = 'sell_comp';  
+} else {
+  $second_sell_cl = '';  
+}
+
 //// Проверяем дату следующего звонка ... Если пора звонить, то красим в Красный (если КП актуально)
           $tempDate = ($arr_name[$i]['DateNextCall']);
           $tempDate=strtotime($tempDate);
@@ -158,12 +173,12 @@ $dateFinishContract = $arr_name[$i]['dateFinishContract'];
              }  else 
                   {   $DateNextCallTable = "";  }
 //// Выбираем цвет Фонаря
-        if ($arr_name[$i]['marker'] == 1) {
-          $marker='icons/table/lamp.jpg';
-        } else {
-          $marker='icons/table/nolamp.jpg';
-        }
-$konturLinkOn = 0;
+        // if ($arr_name[$i]['marker'] == 1) {
+        //   $marker='icons/table/lamp.jpg';
+        // } else {
+        //   $marker='icons/table/nolamp.jpg';
+        // }
+$konturLinkOn = 0; // признак наличия ссылки у закупки (Лкгаси - уже везде ссылка есть)
 $realKonturLink = $arr_name[$i]['konturLink'];
 if ($realKonturLink != "") {
   $konturLinkOn=1;
@@ -191,7 +206,7 @@ $puncPp = $j + 200*($pageNumber-1);
 echo <<<HTML
        <tr class ="$KpImportanceTable  $statusKpClass $StringColor">
 <!-- ******************************  AJAX MARKER  ***********************************************  -->
-       <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="$marker"></td> -->
+       <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="marker"></td> -->
        <td class = "hidden_class_column">$puncPp</td>
 
 
@@ -210,7 +225,7 @@ if ($exist_excel_file) {
 
 echo <<<HTML
        <td width="60">$KpData</td>
-       <td width ="70" class="hidden_class_column">$InnCustomer</td>
+       <td width ="70" class="$second_sell_cl hidden_class_column">$InnCustomer</td>
      HTML;
 
 // Проверяем есть ли ПДФ файл, то рисуем Иконку и цепляем ссылку на него        
@@ -248,8 +263,9 @@ echo <<<HTML
 <!-- ********************************** Редактирование  ************************************************ -->
 <td  class= "hidden_class_column"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass scale11" src="icons/table/change.png" alt="addCooment"></td> 
       <!-- <td  class= "hidden_class_column"  id="markerLink $id"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td>  -->
-<!-- ********************************** Дата следующего звонка  ********************************************* -->
+<!-- ********************************** Дата следующего звонка  ********************************** -->
       <td id = "js-DateNextCall$id" width="60" class ="$DateNextCallTable">$DateNextCall</td>
+<!-- ********************************** СОСТОЯНИЕ КП ********************************** -->
       <td > <div id = "js-KpCondition$id" class = "$KpConditionTable">$KpCondition</div></td>
       <td id = "js-KpSum$id" >$KpSum</td>
       <td class="hidden_class_column">$TenderSum</td>

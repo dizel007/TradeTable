@@ -2,7 +2,7 @@
 // Формируем аналитика по Пользователям
 $date_now=date('Y-m-d');
 $date_end=date('Y-m-d');
-$some_days=0;
+if (!isset($some_days)) {$some_days=0;}
 if (isset($_GET['some_days'])) {$some_days = $_GET['some_days'];}
 $days_after_new  = strtotime("$some_days days");
 $date_start = date('Y-m-d', $days_after_new);
@@ -165,7 +165,6 @@ for ($j=0; $j<count($arr_info_user_for_sell); $j++) {
 
 
 $yesturday_date = date('Y-m-d', strtotime('yesterday'));
-
 require_once ("change_date_format.php");
 
 echo <<<HTML
@@ -338,7 +337,7 @@ echo <<<HTML
                 <td><a class="btn btn-outline-danger" href="index.php?typeQuery=559&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=&FinishContract=0">
                   <b>$sum_overdue_kp</b></a></td>
                 <td>
-                  <a class="btn btn-outline-secondary"href="index.php?typeQuery=563&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinishContract=1">
+                  <a class="btn btn-outline-secondary"href="index.php?typeQuery=563&Responsible=&date_start=$date_start&date_end=$date_end&KpCondition=Купили у нас&FinContr=1">
                     <b>$sum_close_period_kp</b></a>
                 </td>
                 <td>
@@ -455,21 +454,48 @@ $whatChange=$value1['what_change'];
 
  if ($kolvo_change>0) { //показываем только тех, кто делал изменения
  echo <<<HTML
-            <tr>
+          <tr>
               <td>$user_name($user_login)</td>
-             <!--количество изменений в КП -->
-              <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=3&whatChange=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_kp_change</a></td>
-             <!--количество отправленных email -->
-             <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=3&whatChange=7&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_send_emails</a></td>
-             <!--количество изменений данных о компании -->
-             <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=4&user_login=$user_login&date_start=$date_start&date_end=$date_end"> $kolvo_change_about_company</a></td>
+HTML;             
 
-              <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_change</a></td>
+if ($kolvo_kp_change>0) {
+echo <<<HTML
+<!--количество изменений в КП -->
+             <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=3&whatChange=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_kp_change</a></td>
+HTML;
+} else {
+  echo <<<HTML
+  <td><i class="btn btn-outline-primary btn-sm">$kolvo_kp_change</i></td>
+  HTML;
+}
+
+if ($kolvo_send_emails>0) {
+echo <<<HTML
+              <!--количество отправленных email -->
+              <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=3&whatChange=7&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_send_emails</a></td>
+  HTML;
+  } else {
+    echo <<<HTML
+    <td><i class="btn btn-outline-primary btn-sm">$kolvo_send_emails</i></td>
+    HTML;
+  }
+
+  if ($kolvo_change_about_company>0) {
+    echo <<<HTML
+                <!--количество изменений данных о компании -->
+                  <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=4&user_login=$user_login&date_start=$date_start&date_end=$date_end"> $kolvo_change_about_company</a></td>
+      HTML;
+      } else {
+        echo <<<HTML
+        <td><i class="btn btn-outline-primary btn-sm">$kolvo_change_about_company</i></td>
+        HTML;
+      }
 
 
-
-
-              </tr>
+echo <<<HTML
+<!-- общее количество изменений-->
+<td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_change</a></td>
+           </tr>
 HTML;
  }
 }

@@ -88,6 +88,7 @@ echo <<<HTML
                   <th>Дата изменения</th>
                   <th>Ссылка на изменения</th>
                   <th>Изменения</th>
+                  <th>Сумма КП</th>
                   <th>История КП</th>
 
               </tr>
@@ -111,6 +112,7 @@ foreach ($arr_user_reports as $value) {
 
   $id_item = $value["id_item"];
   $author = $value["author"];
+  
   // Подбираем пользователя
   foreach ($arr_users as $user) {
     if ($author == $user["user_login"]) {
@@ -128,8 +130,10 @@ foreach ($arr_user_reports as $value) {
     $kp_num = $arr_for_kp_num[0]["KpNumber"];
     $kp_date = $arr_for_kp_num[0]["KpData"];
     $link = $kp_num . " от " . $kp_date;
+    $kp_summa =$TenderSum = number_format($arr_for_kp_num[0]["KpSum"]);
     $get_link = "index.php?id=$id_item";
     $cor_kp=1;
+
 // Меняем данные к компании из КП
   } elseif ($what_change == 2) {
     $sql = "SELECT * from `inncompany` WHERE inn = $id_item";
@@ -203,6 +207,7 @@ foreach ($arr_user_reports as $value) {
     $kp_date = $arr_for_kp_num[0]["KpData"];
     $link = $kp_num . " от " . $kp_date . "( E-MAIL)";
     $get_link = "index.php?id=$id_item";
+    $kp_summa =$TenderSum = number_format($arr_for_kp_num[0]["KpSum"]);
   }
 
   echo <<<HTML
@@ -212,7 +217,17 @@ foreach ($arr_user_reports as $value) {
           <td width="180" class="text-center">$time_change</td>
           <td width="240" class="text-center"><a href="$get_link">$link</a></td>
           <td>$comment_change</td>
+
+
 HTML;
+// eсли нет суммы КП то выводим пустую ячейку
+if (isset($kp_summa)) 
+{
+  echo "<td class =\"text-center\"><b>$kp_summa</b></td>";
+} else {
+  echo "<td></td>";
+}
+
 if ($cor_kp==1) {
  echo  "<td class=\"text-center\"><a href=\"reports_show_changes.php?typeQuery=5&id_kp=$id_kp\">$kp_num</a></td>";
 }else {
