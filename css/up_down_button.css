@@ -1,0 +1,24 @@
+/* .topNubex {
+	position: fixed;
+	right: 25px;
+	bottom: 25px;
+   } */
+.button_upoo {
+
+	position: fixed;
+	right: 25px;
+	bottom: 25px;
+  background: linear-gradient(orange, red);
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  text-align: center;
+  margin: 5px 20px;
+  font-size: 15px;
+  padding: 15px;
+  display: flex;
+  height: 20px;
+  width: 20px;
+  color: #fff;
+	opacity: .5;
+}
