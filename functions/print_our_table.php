@@ -13,7 +13,7 @@ echo <<<HTML
       <table width="100%" class="drawtable employee_table">
       <tbody>
           <tr class="DrawDark">
-            <td>пп</td>
+            <td class="hidden_class_column">пп</td>
             
             <td>№КП</td>
             <td>Ex</td> 
@@ -25,18 +25,18 @@ echo <<<HTML
             <td class="hidden_class_column">Важность</td>
             <td class="hidden_class_column">%</td>
             <td class="hidden_class_column">Ответственный</td>
-            <td class="hidden_class_column">id</td>
+            <td>id</td>
             <td>Комментарий</td>
             <td>Ред</td>
-            <td>Сл.звонок</td>
-            <td class="">Состояние</td>
+            <td class="hidden_class_column">Сл.звонок</td>
+            <td class="hidden_class_column">Состояние</td>
             <td>Сумма КП</td>
             <td class="hidden_class_column">НМЦК Закупки</td>
-            <td>ДКЗ</td>
-            <td>КЗ</td>
+            <td class="hidden_class_column">ДКЗ</td>
+            <td class="hidden_class_column">КЗ</td>
             <td class="hidden_class_column">Вр</td>
-            <td>Финиш</td>
-            <td class="hidden_class_column">Ист</td>
+            <td class="hidden_class_column">Финиш</td>
+            <td>Ист</td>
             <td class="hidden_class_column">Адрес поставки</td>
          </tr>
 
@@ -247,10 +247,10 @@ echo <<<HTML
 <!-- ******************************  Icons Email  *********************************************** -->
       <td><a href= "mailer/login_mail.php?id=$id&InnCustomer=$InnCustomer" target="_blank"><img class="scale11" style = "opacity: 0.8" src="icons/table/email.png" alt="SeeKp"></a> </a></td> 
  <!-- ********************************** ВАЖНОСТЬ КП ************************************************ -->
-      <td id = "js-KpImportance$id" width ="50"class="hidden_class_column">$KpImportance</td>
+      <td  class="hidden_class_column" id = "js-KpImportance$id" width ="50"class="hidden_class_column">$KpImportance</td>
 
 <!-- ****************************** % выполнения   ********************************************* -->
-      <td id = "js-procent_work$id" width ="20" class="hidden_class_column" title="$date_write"><b>$procent_work</b></td>
+      <td class="hidden_class_column" id = "js-procent_work$id" width ="20" class="hidden_class_column" title="$date_write"><b>$procent_work</b></td>
  <!-- ********************************** ОТветственный  ************************************************ -->
      <td id= "js-Responsible$id" width="80" class="hidden_class_column">$Responsible</td>
 
@@ -262,12 +262,12 @@ echo <<<HTML
 
 
 <!-- ********************************** Редактирование  ************************************************ -->
-<td  class= "hidden_class_column"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass scale11" src="icons/table/change.png" alt="addCooment"></td> 
+<td><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass scale11" src="icons/table/change.png" alt="addCooment"></td> 
       <!-- <td  class= "hidden_class_column"  id="markerLink $id"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td>  -->
 <!-- ********************************** Дата следующего звонка  ********************************** -->
-      <td id = "js-DateNextCall$id" width="60" class ="$DateNextCallTable">$DateNextCall</td>
+      <td class="hidden_class_column" id = "js-DateNextCall$id" width="60" class ="$DateNextCallTable">$DateNextCall</td>
 <!-- ********************************** СОСТОЯНИЕ КП ********************************** -->
-      <td > <div id = "js-KpCondition$id" class = "$KpConditionTable">$KpCondition</div></td>
+      <td class="hidden_class_column"> <div id = "js-KpCondition$id" class = "$KpConditionTable">$KpCondition</div></td>
       <td id = "js-KpSum$id" >$KpSum</td>
       <td class="hidden_class_column">$TenderSum</td>
 
@@ -275,25 +275,25 @@ echo <<<HTML
 HTML;
 if (($dateContract<>"0000-00-00") and ($dateContract)) {
       // if ($exist_excel_file) {  
-  echo "<td id = \"js-dateContract$id\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/dateContract.png\" title=\"Дата Закл :$dateContract\"></td>";
+  echo "<td class=\"hidden_class_column\" id = \"js-dateContract$id\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/dateContract.png\" title=\"Дата Закл :$dateContract\"></td>";
         } else {
-  echo "<td id = \"js-dateContract$id\"><img style = \"opacity: 0.2\" src=\"icons/table/dateContract.png\" title=\"Нет данных\"></td>";
+  echo "<td class=\"hidden_class_column\" id = \"js-dateContract$id\"><img style = \"opacity: 0.2\" src=\"icons/table/dateContract.png\" title=\"Нет данных\"></td>";
        } ;
       // <td id = "js-dateContract$id" >$dateContract</td>
 
 echo <<<HTML
-      <td id = "js-FinishContract$id" >$FinishContract</td>
+      <td class="hidden_class_column" id = "js-FinishContract$id" >$FinishContract</td>
 <!-- ****************************** ССылка на часики   ********************************************* -->
       <td width ="25" class="hidden_class_column"><a href = "https://xmlsearch.yandex.ru/search/?text=местное+время+time100+$Adress" target="_blank"><img class="scale11" src="icons/table/clocks.png" style = "opacity: 0.7" alt="Time" title="Время по адресу доставки"></a></td>
 
-<!-- ****************************** ССылка на часики   ********************************************* -->
-      <td id = "js-dateFinishContract$id" width="60">$dateFinishContract</td>
+<!-- ******************************  ФИНИШ Контракта   ********************************************* -->
+      <td class="hidden_class_column" id = "js-dateFinishContract$id" width="60">$dateFinishContract</td>
 
       <!-- ******************************  ПАПКА для открытия КП  *************************************  -->
      <td><a name="$id" href="reports_show_history_kp.php?typeQuery=5&id_kp=$id" target="_blank"><img class="scale11" src="icons/table/history_kp.png" style = "opacity: 0.6" alt="История КП" title="История КП"></a></td> 
 
       <!-- ****************************** Адрес поставки   ********************************************* -->
-      <td id = "js-Adress$id" width ="150" class="hidden_class_column">$Adress</td>
+      <td class="hidden_class_column" id = "js-Adress$id" width ="150" class="hidden_class_column">$Adress</td>
   </tr>
  
 HTML;

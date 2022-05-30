@@ -104,10 +104,15 @@ if (!empty($_GET['id'])) {
   elseif ($typeQuery == 4 and $value <> "") {
       $FinishContract = 1 ; // всегда показываем СКРЫТЫЕ привязанные закупки
       $inn = $_GET['value'];
+      $arr_inn= selectInnFromDB($mysqli,$inn); 
+if (isset($arr_inn[0]['inn'])){
+      printAboutCompany($arr_inn,  "", $mysqli); // выводим на экран инфу о комании
       echo "<div class = \"zagolovok\">Выбран ИНН : $inn<BR></div>";
-      
       $arr_name = selectArrByInn($mysqli,$inn);
       printOurTable($arr_name, $FinishContract,$pageNumber, $stringCount) ; 
+} else {
+  echo "<div class = \"zagolovok\">ИНН : $inn отсуствует в Базе<BR></div>";
+}
   }
 // ВЫВОДИМ ТАБЛИЦУ ПО ВЫБРАННОМУ номеру КП
   
@@ -116,32 +121,13 @@ elseif (($typeQuery == 2) and (!empty($value))) {
       $FinishContract = 1 ; // всегда показываем СКРЫТЫЕ привязанные закупки
 
       $arr_name = selectArrByKpNumber($mysqli,$kpNumber);
-
-      $inn = $arr_name[0]['InnCustomer']; // берем ИНН компании
       $id = $arr_name[0]['id'];  // Берем ID закупки
     if (!empty($id)) { // проверяем есть ли какой либо ID  закупки
-              $arr_inn= selectInnFromDB($mysqli,$inn); // делаем запрос в БД, чтобы получить массив с данными о компании
-                      
-              printAboutCompany($arr_inn, $id, $mysqli); // выводим на экран инфу о комании
-
-              echo "<div class = \"zagolovok\">Выбрано номер КП№".$kpNumber." (дата последней корректировки: ".$arr_name[0]["date_write"].") <BR></div>";
-
+        echo "<div class = \"zagolovok\">Выбрано номер КП№".$kpNumber." (дата последней корректировки: ".  $arr_name[0]["date_write"].") <BR></div>";
               printOurTable($arr_name, $FinishContract,$pageNumber, $stringCount) ;
 
-            //////// сюда же добавим компании с этим же инн
-              $arr_inn_id = FindInnById($mysqli, $id);
-              // $str_count = count($arr_inn_id) ; // фактическое количество строк в массиве, включая исключенный ID 
-              // echo "Количество Дополнительных строк = ". $str_count;
-              if ($arr_inn_id[0]['pp'] !='')
-                  {  // чтобы условия чтобы не выводить пустой массив 
-                      echo "<div class = \"zagolovok\">Остальные КП, которые были высланы в эту компанию <BR></div>";
-                      printOurTable($arr_inn_id, $FinishContract,$pageNumber, $stringCount) ; 
-                  } else {
-                    echo "<div class = \"zagolovok\">Больше КП в данную компанию не высылали ... <BR></div>";
-                  }
-      
         } else {
-         echo "<div class = \"zagolovok\"> КП с таким номером отсутствует<BR></div>";
+         echo "<div class = \"zagolovok\"> КП с номером №$kpNumber отсутствует<BR></div>";
         }
 
   } 
