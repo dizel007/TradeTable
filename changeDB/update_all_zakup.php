@@ -48,11 +48,13 @@ if (($KpCondition == "Не требуется") || ($KpCondition == "Уже ку
 }
 
 if ($KpCondition == "Купили у нас") {
-  $date_sell = date('Y-m-d');
+  $date_sell = date('Y-m-d'); // дата продажи
   $date_close = date('Y-m-d');
   $FinishContract = 1;
+  $second_sell = 1; // признак, что купили у нас
 } else {
-  $date_sell = "";
+  $date_sell = ""; // дата продажи
+  $second_sell = 0; // признак, что купили у нас
 }
 
 if ($KpCondition == "В работе") {
@@ -86,7 +88,9 @@ $sql = "UPDATE `reestrkp` SET
        `date_close`='$date_close',
        `date_write` = '$today',
        `dateFinishContract`='$dateFinishContract',
-       `procent_work` = '$procent_work'
+       `procent_work` = '$procent_work',
+       `second_sell` = '$second_sell'
+       
         WHERE `id`='$id'";
 
 $query = $mysqli->query($sql);
@@ -117,20 +121,21 @@ $backArr = array(
 //  file_put_contents($fileUser, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
 //// Формируем комментарий в таблицу reports
 $db_comment = "";
-if ($my_id_arr[0]['KpImportance'] != $KpImportance) {
-  $db_comment .= "важность :" . $KpImportance . ";";
-}
-if ($my_id_arr[0]['Responsible']  != $Responsible) {
-  $db_comment .= " ответств :" . $Responsible . ";";
-}
 if ($my_id_arr[0]['Comment']  != $Comment) {
   $db_comment .= " коммент :" . $Comment . ";";
 }
+if ($my_id_arr[0]['KpImportance'] != $KpImportance) {
+  $db_comment .= "@! важность :" . $KpImportance . "||+";
+}
+if ($my_id_arr[0]['Responsible']  != $Responsible) {
+  $db_comment .= "@! ответств :" . $Responsible . "||+";
+}
+
 if (($my_id_arr[0]['DateNextCall']  != $DateNextCall) && $DateNextCall != "") {
-  $db_comment .= " дата сл.зв. :" . $DateNextCall . ";";
+  $db_comment .= "@! дата сл.зв. :" . $DateNextCall . "||+";
 }
 if ($my_id_arr[0]['KpCondition']  != $KpCondition) {
-  $db_comment .= " сост. КП :" . $KpCondition . ";";
+  $db_comment .= "@! сост. КП :" . $KpCondition . "||+";
 }
 if ($my_id_arr[0]['KpSum']  != $KpSum) {
   $db_comment .= " Сумма КП :" . $KpSum . ";";
@@ -145,18 +150,23 @@ if (($my_id_arr[0]['dateFinishContract']  != $dateFinishContract) && $dateFinish
   $db_comment .= " дата окон. конт. :" . $dateFinishContract . ";";
 }
 if ($my_id_arr[0]['FinishContract']  != $FinishContract) {
-  $db_comment .= " Закр. КП :" . $FinishContract . ";";
+  $db_comment .= "@! Закр. КП :" . $FinishContract . "||+";
 }
 if ($my_id_arr[0]['Adress']  != $Adress) {
   $db_comment .= " Адрес :" . $Adress . ";";
 }
 
-
+/// добавляем запись в реестр изменени КП
 $id_item = $id;
 $what_change = 1;
-$comment_change = $db_comment;
+$comment_change = $db_comment; 
 $author = $user_login;
 require "update_reports.php";
+/// ТУТ БУДЕТ ПРОВЕРКА КОМПАНИЙ, которые у нас покупали ранне,
+// если признак купили у нас снимается, то и ранее подсвеченне 
+$InnCustomer = $my_id_arr[0]['InnCustomer'];
+
+require "check_by_sell.php";
 
 unset($my_id_arr);
 // header ("Location: ..?id=".$id);  // перенаправление на нужную страницу

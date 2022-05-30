@@ -36,6 +36,7 @@ function MakeArrayFromObj ($fQuery) {
                $arr_name[$i]['dateFinishContract'] = $row["dateFinishContract"];
                $arr_name[$i]['date_sell'] = $row["date_sell"];
                $arr_name[$i]['date_close'] = $row["date_close"];
+               $arr_name[$i]['second_sell'] = $row["second_sell"];
               //  }
           $i++;
        }
@@ -130,17 +131,12 @@ function MakeArrayFromObjEmail ($fQuery) {
   if ($fQuery -> num_rows > 0) {
          while ($row = $fQuery -> fetch_assoc()) 
          {
-        //  for ($k=1; $k<11; $k++) 
-        //        {
                $arr_emails[$i]['id_email'] = $row["id"];
                $arr_emails[$i]['inn'] = $row["inn"];
                $arr_emails[$i]['email'] = $row["email"];
                $arr_emails[$i]['comment'] = $row["comment"];
                $arr_emails[$i]['date_write'] = $row["date_write"];
                $arr_emails[$i]['actual'] = $row["actual"];
-
-                
-              //  }
           $i++;
        }
      }

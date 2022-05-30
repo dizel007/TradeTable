@@ -159,3 +159,9 @@ hr {
    margin-left: 2px;
    margin-right: 2px;
 }
+.sell_comp {
+  background-color:greenyellow;
+  
+  opacity: 0.9;
+  border-radius: solid 5px;
+ }

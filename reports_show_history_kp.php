@@ -16,22 +16,15 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем з�
         }
         else
         {
-            date_default_timezone_set('Europe/Moscow');
             $user = $userdata['user_login'];
             $userType = $userdata['userType'];
             
             require_once ("bodyparts/include_functions.php"); // подлючаем файл, которые цепляет все функции
-            require_once ("bodyparts/header.php"); // header HTML
-            require_once ("bodyparts/admin_panel.php"); // панель Администратора
-            require_once ("bodyparts/input_part_page_new.php"); // шапка файила
+            require_once ("reports/reports_header.php"); // header HTML
+            require_once ("reports/reports_admin_panel.php"); // панель Администратора
+            
+            require_once ("reports/show_history_kp.php"); // панель Администратора
 
-            // require_once ("bodyparts/input_part_page.php"); // шапка файила
-            require_once ("bodyparts/main_table.php"); // вывод главной таблицы
-
-
-            // require_once ("bodyparts/modal.php"); // всплывающие окна
-            require_once "bodyparts/modal_change_all.php";
-            require_once ("bodyparts/modal_change_inn.php"); // всплывающие окна
             require_once ("bodyparts/footer.php"); // подвал страниы
         }
     }

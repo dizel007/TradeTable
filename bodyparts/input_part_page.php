@@ -64,9 +64,14 @@ echo <<<HTML
 
 
 </div>
-        <div class ="col-1 up-button">
-            <button onclick="window.location='logout.php'">Выйти</button>
+HTML;
+echo <<<HTML
+        <div class ="col-1 up-button"> 
+            
+        <button onclick="window.location='logout.php'">Выйти</button>
         </div>
+HTML;
+echo <<<HTML
 </div>
 
 </div>
