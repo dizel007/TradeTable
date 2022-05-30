@@ -26,40 +26,8 @@ if (isset($_GET["user_login"])) {
 } else {
   $user_login = "";
 }
-if (isset($_GET["date_start"])) {
-  $date_start = $_GET['date_start'];
-} else {
-  $date_start = "";
-}
 
-if (isset($_GET["date_end"])) {
-  $date_end = $_GET['date_end'];
-} else {
-  $date_end = "";
-}
 
-$date_now = date('Y-m-d');
-// выбираем все изменения по выбранному пользователю
-if ($typeQuery == 1) {
-  $sql = "SELECT * FROM `reports` WHERE `author` = '$user_login' AND `date_change` >= '$date_start' AND
-  `date_change` <= '$date_end' ORDER BY `time_change` DESC";
-}
-// выбираем все изменения 
-if ($typeQuery == 2) {
-  $sql = "SELECT * FROM `reports` WHERE `date_change` >= '$date_start' AND
-  `date_change` <= '$date_end' ORDER BY `time_change` DESC";
-}
-// выбираем все изменения по выбранному пользователю, где были изменения в КП / отправленные ЕМАЙЛы
-if ($typeQuery == 3) {
-  $sql = "SELECT * FROM `reports` WHERE `author` = '$user_login' AND `what_change`='$whatChange'  AND `date_change` >= '$date_start' AND `date_change` <= '$date_end' ORDER BY `time_change` DESC";
-}
-// выбираем все изменения по выбранному пользователю, где были изменения по данным компании
-if ($typeQuery == 4) {
-  $sql = "SELECT * FROM `reports` WHERE `author` = '$user_login' AND 
-  (`what_change`='2' OR `what_change`='3' OR `what_change`='4' OR `what_change`='5' OR `what_change`='6')  
-  AND `date_change` >= '$date_start' AND
-  `date_change` <= '$date_end' ORDER BY `time_change` DESC";
-}
 // выбираем все изменения по выбранному КП
 if ($typeQuery == 5) {
   $sql = "SELECT * FROM `reports` WHERE `id_item` = '$id_kp' ORDER BY `time_change` DESC";
@@ -71,13 +39,10 @@ $arr_user_reports = MakeArrayFromReportsData($query);
 // var_dump($arr_user_reports);
 //   echo "<pre>";
 
-require_once("change_date_format.php");
-
 
 echo <<<HTML
- <p class="center">Начало периода: <u>$date_start1</u> | Конец периода : <u>$date_end1</u></p>
-<h2 class="center">
-<h2 class="center">Статистика текущих работ</h2> 
+
+<h2 class="center">История КП</h2> 
 <div class="card-body">
   <div class="table-responsive">
       <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -89,7 +54,7 @@ echo <<<HTML
                   <th>Ссылка на изменения</th>
                   <th>Изменения</th>
                   <th>Сумма КП</th>
-                  <th>История КП</th>
+          
 
               </tr>
           </thead>
@@ -210,7 +175,8 @@ foreach ($arr_user_reports as $value) {
     $kp_summa =$TenderSum = number_format($arr_for_kp_num[0]["KpSum"]);
   }
 
-  echo <<<HTML
+if (isset($user_name)) {
+echo <<<HTML
      <tr>
           <td width="20">$i</td>
           <td>$user_name</td>
@@ -220,6 +186,10 @@ foreach ($arr_user_reports as $value) {
 
 
 HTML;
+} else {
+
+  echo "<h2>История отсутствует</h2>";
+}
 // eсли нет суммы КП то выводим пустую ячейку
 if (isset($kp_summa)) 
 {
@@ -228,11 +198,7 @@ if (isset($kp_summa))
   echo "<td></td>";
 }
 
-if ($cor_kp==1) {
- echo  "<td class=\"text-center\"><a href=\"reports_show_changes.php?typeQuery=5&id_kp=$id_kp\">$kp_num</a></td>";
-}else {
-  echo  "<td></td>";
-}
+
 
 
 echo <<<HTML
@@ -247,4 +213,5 @@ echo <<<HTML
 </table>
 </div>
 </div>
+<h3 class="center"><a href="index.php?id=$id_kp">перейти к КП</a></h3> 
 HTML;

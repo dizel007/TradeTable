@@ -36,6 +36,7 @@ echo <<<HTML
             <td>КЗ</td>
             <td class="hidden_class_column">Вр</td>
             <td>Финиш</td>
+            <td class="hidden_class_column">Ист</td>
             <td class="hidden_class_column">Адрес поставки</td>
          </tr>
 
@@ -287,6 +288,10 @@ echo <<<HTML
 
 <!-- ****************************** ССылка на часики   ********************************************* -->
       <td id = "js-dateFinishContract$id" width="60">$dateFinishContract</td>
+
+      <!-- ******************************  ПАПКА для открытия КП  *************************************  -->
+     <td><a name="$id" href="reports_show_history_kp.php?typeQuery=5&id_kp=$id" target="_blank"><img class="scale11" src="icons/table/history_kp.png" style = "opacity: 0.6" alt="История КП" title="История КП"></a></td> 
+
       <!-- ****************************** Адрес поставки   ********************************************* -->
       <td id = "js-Adress$id" width ="150" class="hidden_class_column">$Adress</td>
   </tr>

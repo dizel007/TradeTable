@@ -121,20 +121,21 @@ $backArr = array(
 //  file_put_contents($fileUser, $temp_var, FILE_APPEND | LOCK_EX); // Все логи подряд
 //// Формируем комментарий в таблицу reports
 $db_comment = "";
-if ($my_id_arr[0]['KpImportance'] != $KpImportance) {
-  $db_comment .= "важность :" . $KpImportance . ";";
-}
-if ($my_id_arr[0]['Responsible']  != $Responsible) {
-  $db_comment .= " ответств :" . $Responsible . ";";
-}
 if ($my_id_arr[0]['Comment']  != $Comment) {
   $db_comment .= " коммент :" . $Comment . ";";
 }
+if ($my_id_arr[0]['KpImportance'] != $KpImportance) {
+  $db_comment .= "@! важность :" . $KpImportance . "||+";
+}
+if ($my_id_arr[0]['Responsible']  != $Responsible) {
+  $db_comment .= "@! ответств :" . $Responsible . "||+";
+}
+
 if (($my_id_arr[0]['DateNextCall']  != $DateNextCall) && $DateNextCall != "") {
-  $db_comment .= " дата сл.зв. :" . $DateNextCall . ";";
+  $db_comment .= "@! дата сл.зв. :" . $DateNextCall . "||+";
 }
 if ($my_id_arr[0]['KpCondition']  != $KpCondition) {
-  $db_comment .= " сост. КП :" . $KpCondition . ";";
+  $db_comment .= "@! сост. КП :" . $KpCondition . "||+";
 }
 if ($my_id_arr[0]['KpSum']  != $KpSum) {
   $db_comment .= " Сумма КП :" . $KpSum . ";";
@@ -149,7 +150,7 @@ if (($my_id_arr[0]['dateFinishContract']  != $dateFinishContract) && $dateFinish
   $db_comment .= " дата окон. конт. :" . $dateFinishContract . ";";
 }
 if ($my_id_arr[0]['FinishContract']  != $FinishContract) {
-  $db_comment .= " Закр. КП :" . $FinishContract . ";";
+  $db_comment .= "@! Закр. КП :" . $FinishContract . "||+";
 }
 if ($my_id_arr[0]['Adress']  != $Adress) {
   $db_comment .= " Адрес :" . $Adress . ";";
