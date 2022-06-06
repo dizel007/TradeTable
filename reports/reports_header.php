@@ -15,6 +15,7 @@ echo <<<HTML
 
 
     <link rel = "stylesheet" href = "css/for_all_class.css">
+    <link rel = "stylesheet" href = "css/admin_panel.css">
     <link rel = "stylesheet" href = "css/drawtable.css">
     <link rel = "stylesheet" href = "css/info_company.css">
     <link rel = "stylesheet" href = "css/modal.css"> 

@@ -251,7 +251,7 @@ elseif ($typeQuery == 553) {
 }
 //   <!-- КП за все время, которые ПРосроченные -->  
 elseif ($typeQuery == 554) {
-  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `DateNextCall` <= '$date_now'
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `DateNextCall` < '$date_now'
      AND `DateNextCall` <> '' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
        $query= $mysqli->query($sql);
        $arr_items = MakeArrayFromObj($query);
@@ -388,6 +388,20 @@ elseif ($typeQuery == 601) {
 
        printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
+// выводим перечень КП из переданного списка id КП переданного в GET запросе
+elseif ($typeQuery == 602) {
+$arr_by_kp = explode(";",$_GET['idKP']);
+$author = $_GET['author'];
+$sql = "SELECT * FROM `users` WHERE `user_login` = '$author'";
+$query= $mysqli->query($sql);
+$arr = MakeArrayFromObjUsers($query);
+$author = $arr[0]['user_name'];
+$arr_by_kp_num= SelectAllChangeKPByUser ($arr_by_kp,$mysqli);
+echo "<div class = \"zagolovok\">Выбраны изменения по КП, которые сделал: ".$author."</div>";
+
+  printOurTable($arr_by_kp_num, 1, $pageNumber, 200) ;
+}
+
 
 // echo "<br>***".$sql."<br>";
 

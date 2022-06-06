@@ -362,16 +362,21 @@ echo <<<HTML
 
 <h2 class="center">Таблица изменений</h2>
 HTML;
+
+
 // ********************************* ТАБЛИЦА ИЗМЕНЕНИЙ ЗА ПЕРИОД
+
+
 $sql_plus =""; // формируем пустую строку для SQL запроса
+
 
 if ((isset($date_start) or (isset($date_end)))) {
     if (($date_start <> "") and ($date_end == "")) { 
-      $sql_plus = " AND date_change >= '$date_start'  ORDER BY date_change DESC";
+      $sql_plus = " AND date_change >= '$date_start'  ORDER BY time_change DESC";
     }  elseif (($date_start == "") and ($date_end <> "")) {
-      $sql_plus = " AND date_change <= '$date_end'  ORDER BY date_change DESC";
+      $sql_plus = " AND date_change <= '$date_end'  ORDER BY time_change DESC";
     } else {
-      $sql_plus = " AND (date_change >= '$date_start' AND date_change <= '$date_end')  ORDER BY date_change DESC";
+      $sql_plus = " AND (date_change >= '$date_start' AND date_change <= '$date_end')  ORDER BY time_change DESC";
     }
 }
 
@@ -397,6 +402,7 @@ echo <<<HTML
                   <th>отправленных email</th>
                   <th>изменений в данных о компании</th>
                   <th>всего изменений</th>
+                  <th>КП с изменениями</th>
               </tr>
           </thead>
           <tbody>
@@ -409,20 +415,32 @@ $arr_users = MakeArrayFromObjUsers($query);
 
 $i=0;
 $j=0;
+
 $arr_users_items_changes[]="";
+$arr_users_id_kp[]="";
+
 foreach ($arr_users as $value){
+  $j1=0;
   $kolvo_change=0;
   $kolvo_kp_change = 0;
   $kolvo_send_emails = 0;
   $kolvo_change_about_company=0;
-  // перебираем все изменения и при совпадении пользователя формируем массив изменений по пользователю
+  $kp_with_change =0;  // КП в которых были изменения за период
+  $arr_users_id_kp = null;
+  $author="";
+
+    // перебираем все изменения и при совпадении пользователя формируем массив изменений по пользователю
     foreach ($arr_items_changes as $key => $value1 ){
+    
          if ($value["user_login"] == $value1["author"]) {
           $author =$value1["author"];
+          
           //ищем только изменения в КП и делаем массив этих изменений
           if ($value1['what_change'] == 1) {
               $arr_user_change_kp[$author][$j] = $value1;
               $kolvo_kp_change = count($arr_user_change_kp[$author]);
+         // будем формировать массив с id по всем КП (только уникальные значения)
+             $arr_users_id_kp[$author][$j] = $value1['id_item'];
               $j++;
            }
           //ищем количество отправленных писем
@@ -446,10 +464,23 @@ foreach ($arr_users as $value){
           $i++;
         
         }
+      
    }
+
 $user_name=$value["user_name"];
 $user_login=$value["user_login"];
 $whatChange=$value1['what_change'];
+    // echo "<pre>";
+    // var_dump($arr_users_id_kp);
+    // echo "<pre>";
+if ($arr_users_id_kp[$author]>0) {
+  // оставляем только уникальные значения id
+$arr_users_id_kp[$author] = array_unique($arr_users_id_kp[$author], SORT_REGULAR);
+$kp_with_change = count($arr_users_id_kp[$author]);
+
+
+$get_string_changeKp=(string)(implode(";", $arr_users_id_kp[$author]));
+}
 // reports_show_changes.php
 
  if ($kolvo_change>0) { //показываем только тех, кто делал изменения
@@ -495,8 +526,15 @@ echo <<<HTML
 echo <<<HTML
 <!-- общее количество изменений-->
 <td><a class="btn btn-outline-primary btn-sm" href="reports_show_changes.php?typeQuery=1&user_login=$user_login&date_start=$date_start&date_end=$date_end">$kolvo_change</a></td>
+           
+HTML;
+
+echo <<<HTML
+<!-- выаодим КП в которых были изменения-->
+<td><a class="btn btn-outline-primary btn-sm" href="index.php?typeQuery=602&author=$author&idKP=$get_string_changeKp">$kp_with_change</a></td>
            </tr>
 HTML;
+
  }
 }
 
@@ -513,22 +551,11 @@ echo <<<HTML
             </tr>
 HTML;
 
-
-// echo "<pre>";
-// var_dump($arr_users_items_changes["guts"]);
-// echo "<pre>";
-
-
 echo <<<HTML
-          </tbody>                                
+     </tbody>                                
 </table>
-
-
 
    </div>
 </div>
-
-
 HTML;
-
 ?>
