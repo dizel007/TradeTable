@@ -265,7 +265,7 @@ echo <<<HTML
 <td><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass scale11" src="icons/table/change.png" alt="addCooment"></td> 
       <!-- <td  class= "hidden_class_column"  id="markerLink $id"><img id = "$id" data-modal = "write_comment" class="js-open-modal commentClass" src="icons/table/change.png" alt="addCooment"></td>  -->
 <!-- ********************************** Дата следующего звонка  ********************************** -->
-      <td class="hidden_class_column" id = "js-DateNextCall$id" width="60" class ="$DateNextCallTable">$DateNextCall</td>
+      <td id = "js-DateNextCall$id" width="60" class ="$DateNextCallTable hidden_class_column">$DateNextCall</td>
 <!-- ********************************** СОСТОЯНИЕ КП ********************************** -->
       <td class="hidden_class_column"> <div id = "js-KpCondition$id" class = "$KpConditionTable">$KpCondition</div></td>
       <td id = "js-KpSum$id" >$KpSum</td>

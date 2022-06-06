@@ -52,6 +52,7 @@
   color: red;
   font-weight: 900;
 }
+
 .limit_width {
   min-width: 400px;
   max-width: 400px;

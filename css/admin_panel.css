@@ -1,0 +1,31 @@
+.aboutUser{
+  
+  display: block;
+  background-color: rgb(236, 180, 180);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+
+}
+.admin_box  {
+  display: inline-block;
+  padding: 5px;
+  margin: 2px;
+  height:16px;
+  background-color:rgb(231, 193, 193);
+  box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid;
+
+} 
+.admin_box a {
+  text-decoration: none;
+
+}.admin_box_alarm  {
+color: red;
+}
+.admin_box_alarm a {
+  text-decoration: none;
+  color: red;
+}

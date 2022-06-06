@@ -370,6 +370,14 @@ elseif ($typeQuery == 570) {
       //  echo "typeQuery=".$typeQuery;
           printOurTable($arr_items, 1, $pageNumber, 200) ;
 }
+//   <!-- КП за все время, куда сегодня нужно позвонить -->  
+elseif ($typeQuery == 571) {
+  $sql = "SELECT * FROM `reestrkp` WHERE `Responsible` = '$Responsible' AND `DateNextCall` = '$date_now'
+     AND `DateNextCall` <> '' AND `FinishContract` = '$FinContr' ORDER BY KpData DESC , KpNumber DESC";
+       $query= $mysqli->query($sql);
+       $arr_items = MakeArrayFromObj($query);
+          printOurTable($arr_items, 1, $pageNumber, 200) ;
+}
 
 
 elseif ($typeQuery == 601) {
