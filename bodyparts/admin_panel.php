@@ -29,6 +29,9 @@ echo <<<HTML
                         <a href="?date_start=&date_end=&value=$userName&id=&typeQuery=10">($userName)</a>
                     </div>
                     <div class="admin_box" >
+     <a href="reports.php" target="_blank">Аналитика</a>
+     </div>
+                    <div class="admin_box" >
                         <a href="?min_sum=0&max_sum=100000&id=&typeQuery=601"> ВСЕ КП до 100 000 руб</a>
                     </div>
 HTML;
@@ -64,9 +67,7 @@ HTML;
      <div class="admin_box" >
      <a href="register.php" target="_blank">Ввод нового пользователя</a>
      </div>
-     <div class="admin_box" >
-     <a href="reports.php" target="_blank">Аналитика</a>
-     </div>
+
        <div class ="adminButton">
                     <a href="changedb/insert_raw_in_bd.php">Ввод данных в БД</a>
                     | |  
