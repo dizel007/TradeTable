@@ -10,7 +10,7 @@ $sql = "INSERT INTO `reports`(`id`, `date_change`, `id_item`, `what_change`, `co
 $query = $mysqli->query($sql);
 
 if (!$query){
-printf("Соединение не удалось: ");
+printf("Какой то облом, с записью в таблицу reports(): ". $sql);
 die();
 }
 }

@@ -255,7 +255,7 @@ echo <<<HTML
      <td id= "js-Responsible$id" width="80" class="hidden_class_column">$Responsible</td>
 
 <!-- ******************************  ПАПКА для открытия КП  *************************************  -->
-     <td><a name="$id" href="?id=$id" target="_blank"><img class="scale11" src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
+     <td><a name="$id" href="index.php?id=$id" target="_blank"><img class="scale11" src="icons/table/open_dir.png" style = "opacity: 0.6" alt="OPEN" title="Открыть КП id=$id"></a></td> 
 
 <!-- ********************************** Комментарий  ************************************************ -->
       <td id = "js-comment$id" class ="limit_width text_left">$Comment</td>

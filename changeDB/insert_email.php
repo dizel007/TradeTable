@@ -3,14 +3,14 @@
 require_once "../connect_db.php";
 // require_once "../functions/telephone_make.php";
  
-$id = $_POST["id"];
-$inn = $_POST["inn"];
-$new_email = $_POST["new_email"];
+$id = $_GET["id"];
+$inn = $_GET["inn"];
+$new_email = $_GET["new_email"];
 $new_email=htmlspecialchars($new_email);
 $email_from_kp = $new_email;
 require_once("../mailer/modul/valid_email.php"); // Проверяем валидный ли емайл
-$actual_email = $_POST["actual_email"];
-$commentEmail = $_POST["commentEmail"];
+$actual_email = $_GET["actual_email"];
+$commentEmail = $_GET["commentEmail"];
 $commentEmail=htmlspecialchars($commentEmail);
 $today = date("Y-m-d H:i:s"); 
 
@@ -30,11 +30,8 @@ if (isset($email_db)) {
       
       if ($new_email == $email_) { 
         $priz = 1;
-        // echo "<b>".$new_email."  =  ".$email_,"</b><br>";
        } 
-      //  else {
-      // echo "".$new_email."   |   ".$email_,"<br>";
-      //  }
+
     }
   }
  
@@ -79,7 +76,7 @@ if (isset($email_db)) {
      }
 
 
-header ("Location: ..?id=".$id);  // перенаправление на нужную страницу
+header ("Location: ../index.php?id=".$id);  // перенаправление на нужную страницу
 exit();    // прерываем работу скрипта, чтобы забыл о прошлом
 
 

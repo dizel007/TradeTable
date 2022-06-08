@@ -276,7 +276,7 @@ echo <<<HTML
                   <a href="#close" class="close"></a>
       
       <div class ="center">ДОБАВЛЕНИЕ НОВОГО ТЕЛЕФОННОГО НОМЕРА<br><br></div>
-                  <form  action="changedb/insert_telephone.php?id=$id&inn=$inn" method="post">
+                  <form  action="changedb/insert_telephone.php?id=$id&inn=$inn" method="get">
  <table class="modal_tabel" width="100%" cellspacing="0" cellpadding="5">
  <caption>Наименование КОМПАНИИ: $name</caption>
 
@@ -465,7 +465,7 @@ echo <<<HTML
                   <a href="#close" class="close"></a>
       
       <div class ="center">ДОБАВЛЕНИЕ НОВОЙ ЭЛЕКТРОННОЙ ПОЧТЫ<br><br></div>
-                  <form  action="changedb/insert_email.php?id=$id&inn=$inn" method="post">
+                  <form  action="changedb/insert_email.php?id=$id&inn=$inn" method="get">
  <table class="modal_tabel" width="100%" cellspacing="0" cellpadding="5">
  <caption>Наименование КОМПАНИИ: $name</caption>
 

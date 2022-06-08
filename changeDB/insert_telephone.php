@@ -2,20 +2,20 @@
 require_once "../connect_db.php";
 require_once "../functions/telephone_make.php";
  
-$id = $_POST["id"];
-$inn = $_POST["inn"];
-$new_telephone = $_POST["telefon"];
+$id = $_GET["id"];
+$inn = $_GET["inn"];
+$new_telephone = $_GET["telefon"];
 $new_telephone=htmlspecialchars($new_telephone);
 
 $new_telephone = telephoneMake($new_telephone); // приводит телефон к стандартному виду
 
 $new_telephone =  DeleteFirstSymbol($new_telephone);
-$whatsapp = $_POST["whatsapp"];
-$viber = $_POST["viber"];
-$actual = $_POST["actual_phone"];
-$commentPhone = $_POST["commentPhone"];
+$whatsapp = $_GET["whatsapp"];
+$viber = $_GET["viber"];
+$actual = $_GET["actual_phone"];
+$commentPhone = $_GET["commentPhone"];
 $commentPhone=htmlspecialchars($commentPhone);
-$contactName = $_POST["contactName"];
+$contactName = $_GET["contactName"];
 $contactName=htmlspecialchars($contactName);
 $today = date("Y-m-d H:i:s"); 
 
@@ -84,7 +84,7 @@ $db_comment.=" актуал :".$actual.";";
    die("Соединение не удалось: (Добавление в реестр изменений) ");
   }
 
-header ("Location: ..?id=".$id);  // перенаправление на нужную страницу
+header ("Location: ../index.php?id=".$id);  // перенаправление на нужную страницу
 exit();    // прерываем работу скрипта, чтобы забыл о прошлом
 
 
