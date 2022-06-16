@@ -106,7 +106,10 @@ if (!empty($_GET['id'])) {
       $inn = $_GET['value'];
       $arr_inn= selectInnFromDB($mysqli,$inn); 
 if (isset($arr_inn[0]['inn'])){
-      printAboutCompany($arr_inn,  "", $mysqli); // выводим на экран инфу о комании
+      // поулчаем id последнего КП по данному ИНН
+      $arr_0_inn = selectArrByInn($mysqli,$inn);
+      $id = $arr_0_inn[0]['id'];
+      printAboutCompany($arr_inn,  $id, $mysqli); // выводим на экран инфу о комании
       echo "<div class = \"zagolovok\">Выбран ИНН : $inn<BR></div>";
       $arr_name = selectArrByInn($mysqli,$inn);
       printOurTable($arr_name, $FinishContract,$pageNumber, $stringCount) ; 
