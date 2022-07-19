@@ -63,6 +63,10 @@ $ZakupNameTemp = str_replace('"', '', $ZakupName);
 $ZakupNameTemp = str_replace(' ', '%20', $ZakupNameTemp); // чтобы передавать длинные пути с пробелами
 $link_pdf = str_replace(' ', '%20', $link_pdf); // чтобы передавать длинные пути с пробелами
 
+
+$pos_N = strpos($ZakupName, "№");
+$ZakupName = substr($ZakupName,$pos_N);
+
 // Форма Для отправки, Если МЫ нашли в каталоге файл
 echo "<div class=\"col-12 shadow-lg up-page\">";
 echo "<h5 class=\"center\"> ФОРМА ДЛЯ ОТПРАВКИ ПИСЬМА КЛИЕНТУ</h5>";

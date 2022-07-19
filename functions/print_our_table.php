@@ -210,24 +210,26 @@ echo <<<HTML
        <!-- <td class = "hidden_class_column"><img class ="markerClass" id="markerLink $id" src="marker"></td> -->
        <td class = "hidden_class_column">$puncPp</td>
 
-
-<!-- *************  ССЫлка для скачивания КП в формате EXCEL  *********************************  -->
-       <td><a href= "$LinkKp">$KpNumber</a></td> 
 HTML;
+//*************  ССЫлка для скачивания КП в формате EXCEL  *********************************
+if ($exist_excel_file) { 
+echo "<td><a href=\"open_excel/simplexlsx.php?LinkKp=$LinkKp\" class=\"btn\" target=\"_blank\">$KpNumber</a></td>";  }
+else {
+  echo "<td>$KpNumber</td>"; 
+}
 
 // Проверяем есть ли файл с КП в формате ексель на сервере **************************************
 // Если есть то картника стает яркой 
-
 if ($exist_excel_file) {  
-  echo "<td><a href=\"open_excel/simplexlsx.php?LinkKp=$LinkKp\" class=\"btn\" target=\"_blank\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/excel.png\" alt=\"Excel\"></a></td>";
+  echo "<td><a href=\"$LinkKp\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/excel.png\" alt=\"Excel\"></a></td>";
         } else {
   echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/excel.png\" alt=\"Excel\"></td>";
        }  
-
+ // Дата Кп
 echo <<<HTML
        <td width="60">$KpData</td>
        <td width ="70" class="$second_sell_cl hidden_class_column">$InnCustomer</td>
-     HTML;
+HTML;
 
 // Проверяем есть ли ПДФ файл, то рисуем Иконку и цепляем ссылку на него        
         if ($exist_pdf_file) {  
