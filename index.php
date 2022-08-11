@@ -15,12 +15,15 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) // Проверяем з�
             header("Location: login.php"); exit();
         }
         else
-        {
+        {   
+      
             date_default_timezone_set('Europe/Moscow');
              // Ставим куки
-             setcookie("id", $data['user_id'], time() + 60 * 60 * 24, "/");
+             $hash= $_COOKIE['hash'];
+             $user_id_cook = $_COOKIE['id'];
+             setcookie("id", $user_id_cook, time() + 60 * 60 * 24, "/");
              setcookie("hash", $hash, time() + 60 * 60 * 24, "/", null, null, true); // httponly !!!
-             setcookie("user_name", $data['user_login'], time() + 60 * 60 * 24, "/", null, null, true); // httponly !!!
+            
             $user = $userdata['user_login'];
             $userType = $userdata['userType'];
             

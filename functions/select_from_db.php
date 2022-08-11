@@ -5,7 +5,12 @@ function selectAllArr($mysqli, $FinishContract) {
 //$sql = "SELECT * FROM reestrkp ORDER BY pp";
 if ($FinishContract == 0) {
 // $sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
-$sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY KpData DESC , KpNumber DESC";
+
+// $sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY KpData DESC , KpNumber DESC";
+
+$sql = "SELECT * FROM reestrkp WHERE `FinishContract` =0 ORDER BY KpData DESC , CHAR_LENGTH(`KpNumber`) DESC, KpNumber DESC";
+
+
 } else {
   // $sql = "SELECT * FROM reestrkp ORDER BY FinishContract ASC, KpData DESC , KpNumber DESC";
   $sql = "SELECT * FROM reestrkp ORDER BY KpData DESC , KpNumber DESC";
