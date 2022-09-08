@@ -17,6 +17,7 @@ echo <<<HTML
             
             <td>№КП</td>
             <td>Ex</td> 
+            <td>Сч</td> 
             <td>Дата КП</td>
             <td class="hidden_class_column">ИНН</td>
             <td>PDF</td>
@@ -225,9 +226,18 @@ if ($exist_excel_file) {
         } else {
   echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/excel.png\" alt=\"Excel\"></td>";
        }  
+// Проверяем есть ли файл с КП в формате ексель на сервере **************************************
+// Скачиваем счет
+if ($exist_excel_file) {  
+  echo "<td><a href=\"xls_schet/make_schet.php?LinkKp=$LinkKp\"><img class=\"scale11\" style = \"opacity: 0.8\" src=\"icons/table/schet.png\" alt=\"Excel\"></a></td>";
+        } else {
+  echo "<td><img style = \"opacity: 0.2\" src=\"icons/table/schet.png\" alt=\"Excel\"></td>";
+       }  
+
+
  // Дата Кп
 echo <<<HTML
-       <td width="60">$KpData</td>
+       <td width="65">$KpData</td>
        <td width ="70" class="$second_sell_cl hidden_class_column">$InnCustomer</td>
 HTML;
 
